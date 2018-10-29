@@ -1,0 +1,19 @@
+@charset "UTF-8";
+.wrapper {
+    height: 100vh;
+    display: flex;
+
+    /* Direction of the items, can be row or column */
+    flex-direction: column;
+    
+}
+
+/* header,
+footer {
+    height: 30px;
+} */
+
+main {
+	padding: 20px;
+    flex: 1;
+}
