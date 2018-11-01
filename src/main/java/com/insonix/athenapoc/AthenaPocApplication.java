@@ -17,17 +17,32 @@ import com.insonix.athenapoc.utils.IConstants.AwsAthena;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
+/**
+ * The Main Configuration Class of AthenaPocApplication.
+ * 
+ */
 @SpringBootApplication
 @EnableConfigurationProperties(AwsProperties.class)
 public class AthenaPocApplication {
 
+	/** The aws properties. */
 	@Autowired
 	AwsProperties awsProperties;
 
+	/**
+	 * The main method: The entry point of the application
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(AthenaPocApplication.class, args);
 	}
 
+	/**
+	 * Amazon Athena : creating instance to be used in aplication
+	 *
+	 * @return the amazon athena
+	 */
 	@Bean
 	public AmazonAthena athenaClient() {
 		AWSStaticCredentialsProvider credsProvider = new AWSStaticCredentialsProvider(
@@ -39,6 +54,11 @@ public class AthenaPocApplication {
 		return builder.build();
 	}
 
+	/**
+	 * Layout dialect config for Thymeleaf
+	 *
+	 * @return the layout dialect
+	 */
 	@Bean
 	public LayoutDialect layoutDialect() {
 		return new LayoutDialect();

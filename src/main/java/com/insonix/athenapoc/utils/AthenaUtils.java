@@ -24,8 +24,9 @@ import com.amazonaws.services.athena.model.StartQueryExecutionResult;
 import com.insonix.athenapoc.utils.IConstants.AwsAthena;
 
 /**
+ * The Class AthenaUtils: The utilty calss for transacting with Athena
+ *
  * @author Nikhil Mahajan
- * 
  * @since Oct 27, 2018
  */
 public class AthenaUtils {
@@ -33,6 +34,12 @@ public class AthenaUtils {
 	/**
 	 * Submits a sample query to Athena and returns the execution ID of the
 	 * query.
+	 *
+	 * @param client
+	 *            the AmazonAthena client
+	 * @param athenaQuery
+	 *            the athena query
+	 * @return the excutionId
 	 */
 	public static String submitAthenaQuery(AmazonAthena client, String athenaQuery) {
 		// The QueryExecutionContext allows us to set the Database.
@@ -63,6 +70,13 @@ public class AthenaUtils {
 	 * Wait for an Athena query to complete, fail or to be cancelled. This is
 	 * done by polling Athena over an interval of time. If a query fails or is
 	 * cancelled, then it will throw an exception.
+	 *
+	 * @param client
+	 *            the AmazonAthena client
+	 * @param queryExecutionId
+	 *            the query execution id
+	 * @throws InterruptedException
+	 *             the interrupted exception
 	 */
 
 	public static void waitForQueryToComplete(AmazonAthena client, String queryExecutionId)
@@ -94,6 +108,12 @@ public class AthenaUtils {
 	 * This code calls Athena and retrieves the results of a query. The query
 	 * must be in a completed state before the results can be retrieved and
 	 * paginated. The first row of results are the column headers.
+	 *
+	 * @param client
+	 *            the client
+	 * @param queryExecutionId
+	 *            the query execution id
+	 * @return the list
 	 */
 	public static List<Map<String, String>> processResultRows(AmazonAthena client, String queryExecutionId) {
 		GetQueryResultsRequest getQueryResultsRequest = new GetQueryResultsRequest()
@@ -124,12 +144,21 @@ public class AthenaUtils {
 
 		}
 
+		// removing the first record as it contains column names only
 		records.remove(0);
-		// records.get(0).keySet();
-//		System.out.println(records);
 		return records;
 	}
 
+	/**
+	 * Process single row object from Amazon athena query result
+	 *
+	 * @param row
+	 *            the row
+	 * @param columnInfoList
+	 *            the column info list
+	 * @return the Map<String, String> where key = columnName and value = row
+	 *         value in string for that column
+	 */
 	public static Map<String, String> processRow(Row row, List<ColumnInfo> columnInfoList) {
 
 		Map<String, String> record = new HashMap<>();
@@ -138,37 +167,38 @@ public class AthenaUtils {
 			ColumnInfo col = columnInfoList.get(i);
 
 			record.put(col.getName(), data.getVarCharValue());
-			switch (columnInfoList.get(i).getType()) {
-			case "varchar":
-				// Convert and Process as String
-				break;
-			case "tinyint":
-				// Convert and Process as tinyint
-				break;
-			case "smallint":
-				// Convert and Process as smallint
-				break;
-			case "integer":
-				// Convert and Process as integer
-				break;
-			case "bigint":
-				// Convert and Process as bigint
-				break;
-			case "double":
-				// Convert and Process as double
-				break;
-			case "boolean":
-				// Convert and Process as boolean
-				break;
-			case "date":
-				// Convert and Process as date
-				break;
-			case "timestamp":
-				// Convert and Process as timestamp
-				break;
-			default:
-				throw new RuntimeException("Unexpected Type is not expected" + columnInfoList.get(i).getType());
-			}
+			// switch (columnInfoList.get(i).getType()) {
+			// case "varchar":
+			// // Convert and Process as String
+			// break;
+			// case "tinyint":
+			// // Convert and Process as tinyint
+			// break;
+			// case "smallint":
+			// // Convert and Process as smallint
+			// break;
+			// case "integer":
+			// // Convert and Process as integer
+			// break;
+			// case "bigint":
+			// // Convert and Process as bigint
+			// break;
+			// case "double":
+			// // Convert and Process as double
+			// break;
+			// case "boolean":
+			// // Convert and Process as boolean
+			// break;
+			// case "date":
+			// // Convert and Process as date
+			// break;
+			// case "timestamp":
+			// // Convert and Process as timestamp
+			// break;
+			// default:
+			// throw new RuntimeException("Unexpected Type is not expected" +
+			// columnInfoList.get(i).getType());
+			// }
 		}
 
 		return record;

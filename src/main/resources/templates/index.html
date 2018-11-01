@@ -15,19 +15,18 @@
 <!-- <h3>Athena POC</h3> -->
 
 <div class="row">
+	<div class="col-lg-12" th:if="${error}">
+		<div class="alert alert-dismissible alert-danger">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>Oh snap!</strong> <p th:text="${error}"></p>.
+		</div>
+	</div>
 <div class="col-lg-6 ">
 	<div class="card border-primary mb-3">
 	 	<div class="card-body">
 			<form>
 		  		<fieldset>
-		  			<div class="row">
-						<div class="col-lg-6">
-							<legend>Athena Tweet Search </legend>
-						</div>
-						<div class="col-lg-6 text-right">
-							<a class="btn btn-danger" href="Javascript:void(0)">Run Node Script</a>
-						</div>	  		
-		  			</div>
+		  			<legend>Collect</legend>
 		    		<div class="row">
 			    		<div class="form-group col-lg-6">
 					      <label for="langSelect">Select Language</label>
@@ -43,7 +42,7 @@
 					    </div>
 					    <div class="form-group col-lg-12 text-center">
 					    <label>&nbsp;</label>
-					    	<button type="button" class="btn btn-success btn-block">Submit</button>
+					    	<button type="button" class="btn btn-secondary btn-block">Submit</button>
 					    </div>
 				    </div>
 		    	</fieldset>
@@ -56,7 +55,7 @@
 	 	<div class="card-body">
 	 	<form th:action="@{/query/execute}" method="post">
 		  		<fieldset>
-		  			<legend>Execute Query</legend>
+		  			<legend>Analyze</legend>
 		    		<div class="row">
 			    		
 					    <div class="form-group col-lg-12">
@@ -65,7 +64,7 @@
 					    </div>
 					    <div class="form-group col-lg-12 text-center">
 					    <label>&nbsp;</label>
-					    	<button type="submit" class="btn btn-success btn-block">Execute</button>
+					    	<button type="submit" class="btn btn-secondary btn-block">Execute</button>
 					    </div>
 				    </div>
 		    	</fieldset>
@@ -88,10 +87,40 @@
 		    </tr>
 		  </tbody>
 		</table> 
-
-
 	</div>
 </div>
+
+<!-- <div class="row">
+	<div class="col-lg-8">
+		<div class="card border-secondary mb-3">
+		  <div class="card-header text-center"><h4>Events</h4></div>
+			  <div class="card-body">
+			  <h4>Events &nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary pill-right">Create</a></h4>
+				<ul class="list-group">
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				    Halloween
+				    <div>
+				    	<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Start</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Stop</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Delete</a>
+				    </div>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				    Winter Olympics 2018
+				    <div>
+				    	<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Start</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Stop</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Delete</a>
+				    </div>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				    Thanksgiving
+				    <div>
+				    	<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Start</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Stop</a>&nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary">Delete</a>
+				    </div>
+				  </li>
+				</ul>
+			  </div>
+		</div>
+	</div>
+</div>
+ -->
 </main>
 </body>
 </html>

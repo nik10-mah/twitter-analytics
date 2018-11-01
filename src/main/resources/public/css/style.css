@@ -17,3 +17,19 @@ main {
 	padding: 20px;
     flex: 1;
 }
+
+.btn-outline-primary {
+    color: #3E3F3A;
+    background-color: transparent;
+    background-image: none;
+    border-color: #3E3F3A;
+}
+.btn-primary {
+	color: #fff;
+    background-color: #3E3F3A;
+    border-color: #3E3F3A;
+	
+}
+.border-primary {
+	border-color: #3E3F3A !important
+}
