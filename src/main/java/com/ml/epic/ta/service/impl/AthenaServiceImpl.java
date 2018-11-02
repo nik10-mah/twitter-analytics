@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.insonix.athenapoc.service.impl;
+package com.ml.epic.ta.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.athena.AmazonAthena;
-import com.insonix.athenapoc.service.AthenaService;
-import com.insonix.athenapoc.utils.AthenaUtils;
+import com.ml.epic.ta.service.AthenaService;
+import com.ml.epic.ta.utils.AthenaUtils;
 
 /**
  * The Class AthenaServiceImpl.
  *
- * @author Nikhil Mahajan
+ * 
  * @since Oct 27, 2018
  */
 @Service("athenaService")
@@ -29,7 +29,7 @@ public class AthenaServiceImpl implements AthenaService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.insonix.athenapoc.service.AthenaService#executeQuery(java.lang.
+	 * @see com.ml.epic.ta.service.AthenaService#executeQuery(java.lang.
 	 * String)
 	 */
 	@Override

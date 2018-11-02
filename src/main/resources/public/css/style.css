@@ -18,6 +18,21 @@ main {
     flex: 1;
 }
 
+.navbar-header {
+    float: left;
+    /* padding: 15px; */
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {float:none;}
+
+.btn-home {
+     padding: 10%; 
+    font-size: 48px 
+}
+
+
+
 .btn-outline-primary {
     color: #3E3F3A;
     background-color: transparent;

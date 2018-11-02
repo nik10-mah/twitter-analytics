@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.insonix.athenapoc.service;
+package com.ml.epic.ta.service;
 
 import java.util.Map;
 
 /**
  * The Interface AthenaService.
  *
- * @author Nikhil Mahajan
+ * 
  * @since Oct 27, 2018
  */
 public interface AthenaService {

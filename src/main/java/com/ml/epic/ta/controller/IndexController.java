@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.insonix.athenapoc.controller;
+package com.ml.epic.ta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amazonaws.services.athena.AmazonAthena;
-import com.insonix.athenapoc.service.AthenaService;
+import com.ml.epic.ta.service.AthenaService;
 
 /**
  * The Class IndexController: the home page Controller
  *
- * @author Nikhil Mahajan
+ * 
  * @since Oct 27, 2018
  */
 @Controller
@@ -34,7 +34,7 @@ public class IndexController {
 	 * @return the model and view
 	 * @throws InterruptedException the interrupted exception
 	 */
-	@GetMapping(value = "/")
+	@GetMapping(value = "/index")
 	public ModelAndView index() throws InterruptedException{
 		ModelAndView mav =new ModelAndView("index");
 		return mav;

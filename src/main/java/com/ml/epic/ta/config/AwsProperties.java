@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.insonix.athenapoc.config;
+package com.ml.epic.ta.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author Nikhil Mahajan
+ * 
  * 
  * @since Oct 27, 2018
  */

@@ -1,4 +1,4 @@
-package com.insonix.athenapoc;
+package com.ml.epic.ta;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,12 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.amazonaws.services.athena.AmazonAthena;
-import com.insonix.athenapoc.utils.AthenaUtils;
-import com.insonix.athenapoc.utils.IConstants.AwsAthena;
+import com.ml.epic.ta.utils.AthenaUtils;
+import com.ml.epic.ta.utils.IConstants.AwsAthena;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AthenaPocApplicationTests {
+public class TasApplicationTests {
 
 	
 	@Autowired

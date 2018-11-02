@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.insonix.athenapoc.config;
+package com.ml.epic.ta.config;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,7 +15,7 @@ import com.amazonaws.services.athena.model.InvalidRequestException;
  * The Class ErrorController: For handling all the exception globally
  * Any exception occured will redirect user to Home Page
  *
- * @author Nikhil Mahajan
+ * 
  * @since 29-Oct-2018
  */
 @ControllerAdvice
@@ -52,7 +52,7 @@ public class ErrorController {
 	 * @return the model and view
 	 */
 	private ModelAndView handleRedirect(Exception ex) {
-		ModelAndView mav = new ModelAndView("index");
+		ModelAndView mav = new ModelAndView("home");
 		mav.addObject("error", ex.getMessage());
 		ex.printStackTrace();
 		return mav;

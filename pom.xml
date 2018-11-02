@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.insonix</groupId>
-	<artifactId>athena-poc</artifactId>
+	<groupId>com.ml.epic</groupId>
+	<artifactId>twitter-analytics</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>athena-poc</name>
-	<description>Demo project for Spring Boot</description>
+	<name>twitter-analytics</name>
+	<description>Twitter Analytics System using AWS</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -19,6 +19,7 @@
 	</parent>
 
 	<properties>
+		<start-class>com.ml.epic.ta.TasApplication</start-class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -39,10 +40,8 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> 
+			</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -65,7 +64,7 @@
 	</dependencies>
 
 	<build>
-	<finalName>athena-poc</finalName>
+		<finalName>twitter-analytics</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

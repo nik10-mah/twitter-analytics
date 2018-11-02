@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.insonix.athenapoc.model;
+package com.ml.epic.ta.model;
 
 /**
- * @author Nikhil Mahajan
+ * 
  * 
  * @since Oct 27, 2018
  */

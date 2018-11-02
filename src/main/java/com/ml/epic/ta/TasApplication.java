@@ -1,4 +1,4 @@
-package com.insonix.athenapoc;
+package com.ml.epic.ta;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -12,8 +12,8 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.athena.AmazonAthena;
 import com.amazonaws.services.athena.AmazonAthenaClientBuilder;
-import com.insonix.athenapoc.config.AwsProperties;
-import com.insonix.athenapoc.utils.IConstants.AwsAthena;
+import com.ml.epic.ta.config.AwsProperties;
+import com.ml.epic.ta.utils.IConstants.AwsAthena;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -23,7 +23,7 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
  */
 @SpringBootApplication
 @EnableConfigurationProperties(AwsProperties.class)
-public class AthenaPocApplication {
+public class TasApplication {
 
 	/** The aws properties. */
 	@Autowired
@@ -35,7 +35,7 @@ public class AthenaPocApplication {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(AthenaPocApplication.class, args);
+		SpringApplication.run(TasApplication.class, args);
 	}
 
 	/**

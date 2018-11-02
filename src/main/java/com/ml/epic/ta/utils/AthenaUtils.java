@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.insonix.athenapoc.utils;
+package com.ml.epic.ta.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,12 +21,12 @@ import com.amazonaws.services.athena.model.ResultConfiguration;
 import com.amazonaws.services.athena.model.Row;
 import com.amazonaws.services.athena.model.StartQueryExecutionRequest;
 import com.amazonaws.services.athena.model.StartQueryExecutionResult;
-import com.insonix.athenapoc.utils.IConstants.AwsAthena;
+import com.ml.epic.ta.utils.IConstants.AwsAthena;
 
 /**
  * The Class AthenaUtils: The utilty calss for transacting with Athena
  *
- * @author Nikhil Mahajan
+ * 
  * @since Oct 27, 2018
  */
 public class AthenaUtils {
