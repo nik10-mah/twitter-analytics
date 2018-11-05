@@ -12,6 +12,8 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.athena.AmazonAthena;
 import com.amazonaws.services.athena.AmazonAthenaClientBuilder;
+import com.amazonaws.services.translate.AmazonTranslate;
+import com.amazonaws.services.translate.AmazonTranslateClientBuilder;
 import com.ml.epic.ta.config.AwsProperties;
 import com.ml.epic.ta.utils.IConstants.AwsAthena;
 
@@ -32,10 +34,19 @@ public class TasApplication {
 	/**
 	 * The main method: The entry point of the application
 	 *
-	 * @param args the arguments
+	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(TasApplication.class, args);
+	}
+
+	public AWSStaticCredentialsProvider credentialsProvider() {
+
+		AWSStaticCredentialsProvider credsProvider = new AWSStaticCredentialsProvider(
+				new BasicAWSCredentials(awsProperties.getAccessKey(), awsProperties.getSecretKey()));
+
+		return credsProvider;
 	}
 
 	/**
@@ -45,13 +56,24 @@ public class TasApplication {
 	 */
 	@Bean
 	public AmazonAthena athenaClient() {
-		AWSStaticCredentialsProvider credsProvider = new AWSStaticCredentialsProvider(
-				new BasicAWSCredentials(awsProperties.getAccessKey(), awsProperties.getSecretKey()));
 
 		AmazonAthenaClientBuilder builder = AmazonAthenaClientBuilder.standard().withRegion(Regions.US_EAST_1)
-				.withCredentials(credsProvider).withClientConfiguration(
+				.withCredentials(credentialsProvider()).withClientConfiguration(
 						new ClientConfiguration().withClientExecutionTimeout(AwsAthena.CLIENT_EXECUTION_TIMEOUT));
 		return builder.build();
+	}
+
+	/**
+	 * Aws translate: Bean for AWS Transalte Service to be used in application
+	 *
+	 * @return the amazon translate
+	 */
+	@Bean
+	public AmazonTranslate awsTranslate() {
+		AmazonTranslateClientBuilder builder = AmazonTranslateClientBuilder.standard().withRegion(Regions.US_EAST_1)
+				.withCredentials(credentialsProvider());
+		return builder.build();
+
 	}
 
 	/**

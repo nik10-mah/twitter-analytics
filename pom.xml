@@ -43,6 +43,14 @@
 		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> 
 			</dependency> -->
 
+
+		<!-- For custom properties of in application.props file -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -56,11 +64,13 @@
 			<version>1.11.438</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-translate -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-translate</artifactId>
+			<version>1.11.442</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
