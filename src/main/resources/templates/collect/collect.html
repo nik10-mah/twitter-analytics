@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/mainLayout}">
+<body>
+<main layout:fragment="content">
+<div class="col-lg-12" th:if="${stop}">
+		<div class="alert alert-dismissible alert-danger">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>Oh snap!</strong> <p th:text="${stop}"></p>.
+		</div>
+	</div>
+	
+	<div class="col-lg-12" th:if="${delete}">
+		<div class="alert alert-dismissible alert-danger">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>Oh snap!</strong> <p th:text="${delete}"></p>.
+		</div>
+	</div>
+ <div class="row">
+ 		
+ 
+	<div class="col-lg-8 offset-md-2">
+		<div class="card border-secondary mb-3">
+		  <div class="card-header text-center"><h4>Events</h4></div>
+		  <!-- <form th:action="@{/collect/startEvent/input}" > -->
+			  <div class="card-body">
+			  <h4>Events &nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary pill-right"  data-toggle="modal" data-target="#createDialog">Create</a></h4>
+				<ul class="list-group">
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				    Halloween
+				    <div>
+				    	<a th:href="@{/collect/startEvent/input}" class="btn btn-sm btn-secondary">Start</a>&nbsp;&nbsp;<a th:href="@{/collect/stopEvent}" class="btn btn-sm btn-secondary">Stop</a>&nbsp;&nbsp;<a th:href="@{/collect/deleteEvent}" class="btn btn-sm btn-secondary">Delete</a>
+				    </div>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				    Winter Olympics 2018
+				    <div>
+				    	<a th:href="@{/collect/startEvent/input}" class="btn btn-sm btn-secondary">Start</a>&nbsp;&nbsp;<a th:href="@{/collect/stopEvent}" class="btn btn-sm btn-secondary">Stop</a>&nbsp;&nbsp;<a th:href="@{/collect/deleteEvent}" class="btn btn-sm btn-secondary">Delete</a>
+				    </div>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center">
+				    Thanksgiving
+				    <div>
+				    	<a th:href="@{/collect/startEvent/input}" class="btn btn-sm btn-secondary">Start</a>&nbsp;&nbsp;<a th:href="@{/collect/stopEvent}" class="btn btn-sm btn-secondary">Stop</a>&nbsp;&nbsp;<a th:href="@{/collect/deleteEvent}" class="btn btn-sm btn-secondary">Delete</a>
+				    </div>
+				  </li>
+				</ul>
+			  </div>
+		</div>
+	</div>
+	<!-- </form> -->
+</div>
+
+<!--   <div th:include=":: dialog"></div>
+ -->
+
+
+</main>
+</body>
+</html>
