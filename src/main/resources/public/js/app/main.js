@@ -8,3 +8,13 @@ var Common = {
 		alert('Coming Soon');
 	}
 }
+
+var Analyze = {
+		onChangeDorpDown: function (){
+			document.getElementById("aSql").value = '';
+			document.getElementById("aSql").value = document.getElementById("selectedSql").value;
+		},
+		onKeyUpAnalyzeQuery: function (){
+			document.getElementById("selectedSql").value='';
+		},
+	}
