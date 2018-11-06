@@ -1,15 +1,23 @@
 package com.ml.epic.ta.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.ml.epic.ta.service.AwsTranslateService;
 
 @RestController
 @RequestMapping("/collect")
 public class CollectController {
+	
+	@Autowired
+	AwsTranslateService awsTranslateService;
 	
 	@GetMapping(value = "/")
 	public ModelAndView collect() {
@@ -32,6 +40,9 @@ public class CollectController {
 	@GetMapping(value = "/startEvent/input")
 	public ModelAndView inputStartEvent() {
 		ModelAndView mav =new ModelAndView("/collect/startEvent");
+		// To Display AWS supported languages in Start Event Page, Use getSupportedLanguages method from AWS Translate Service
+		List<String> langCodes = awsTranslateService.getSupportedLanguages();
+		mav.addObject("langCodes",langCodes);
 		return mav;
 	}
 

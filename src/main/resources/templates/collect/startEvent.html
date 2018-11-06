@@ -29,8 +29,15 @@
       				
       				<div class="form-group col-lg-12">
       					<label for="selectedLanguages">Select Languages</label>    
-      					<div class="row">  										
-      					<div class="custom-control custom-checkbox col-md-3">
+      					<div class="row">  	
+      							<div class="custom-control custom-checkbox col-md-3" 
+      									th:each="str,iterStat : ${langCodes}">
+   									 <input type="checkbox" th:value="${str}"  >
+     						 			 <span th:text="${str}"></span>
+   									<!-- <span th:text="${str}"/>This will print the index value
+   									<span th:text="${iterStat.index}"/>This will print the Index -->
+								</div> 							
+      					<!-- <div class="custom-control custom-checkbox col-md-3">
      						 <input type="checkbox" class="custom-control-input" id="Arabic" >
      						 <label class="custom-control-label" for="Arabic">Arabic</label>
    						 </div>
@@ -45,11 +52,11 @@
    						  <div class="custom-control custom-checkbox col-md-3">
      						 <input type="checkbox" class="custom-control-input" id="French" >
      						 <label class="custom-control-label" for="French">French</label>
-   						 </div>
+   						 </div> -->
    						 </div>
    						 
    						 
-   						 <div class="row">  										
+   						 <!-- <div class="row">  										
       					<div class="custom-control custom-checkbox col-md-3">
      						 <input type="checkbox" class="custom-control-input" id="German" >
      						 <label class="custom-control-label" for="German">German</label>
@@ -66,11 +73,11 @@
      						 <input type="checkbox" class="custom-control-input" id="Portuguese" >
      						 <label class="custom-control-label" for="Portuguese">Portuguese</label>
    						 </div>
-   						 </div>
+   						 </div> -->
    						 
    						 
    						 
-   						 <div class="row">  										
+   						 <!-- <div class="row">  										
       					<div class="custom-control custom-checkbox col-md-3">
      						 <input type="checkbox" class="custom-control-input" id="Russian" >
      						 <label class="custom-control-label" for="Russian">Russian</label>
@@ -83,11 +90,11 @@
      						 <input type="checkbox" class="custom-control-input" id="Turkish" >
      						 <label class="custom-control-label" for="Turkish">Turkish</label>
    						 </div>
-   						  <!-- <div class="custom-control custom-checkbox col-md-3">
+   						  <div class="custom-control custom-checkbox col-md-3">
      						 <input type="checkbox" class="custom-control-input" id="Arabic" checked="">
      						 <label class="custom-control-label" for="Arabic">French</label>
-   						 </div> -->
    						 </div>
+   						 </div> -->
       				</div>	
 				</div>
 				
