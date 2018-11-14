@@ -65,19 +65,27 @@ var Collect = {
 		},
 		checkValidation: function(targetLangs, textToTranslate){
 			var valid = true;
+			 // regex - No Special Character. Space and , is allowed
+		    const regex = /[^a-zA-Z0-9 ,]/;
 			 // Validation Select at least one Language Code.
 		    if(targetLangs.length<1){
 		    	alert('Kindly select at least one Language Code from checkboxes.')
-		    	return false;
+		    	valid = false;
+		    }		    
+		    // check for empty value
+		    else if(textToTranslate === null || textToTranslate === '' || textToTranslate === undefined){
+		        alert('Kindly enter keywords.');
+		    	valid = false;
+		    }		   
+		    // Validation for  No Special Character Space and , is allowed
+		    else if(regex.test(textToTranslate)) {
+		        alert('Kindly enter keywords without Special Characters.');
+		    	valid = false;
+		    }
+		    else{
+		    	valid = true;
 		    }
 		    
-		    // regex - No Special Character. Space and , is allowed
-		    const regex = /[^a-zA-Z0-9 ,]/;
-		    // Validation for  No Special Character Space and , is allowed
-		    if(regex.test(textToTranslate)) {
-		        alert('Kindly enter keywords without Special Characters.');
-		        return false;
-		    }
 		    return valid;
 		}
 }
