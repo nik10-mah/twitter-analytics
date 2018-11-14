@@ -40,9 +40,15 @@ var Collect = {
 		    		//alert(i + (cboxes[i].checked?' checked ':' unchecked ') + cboxes[i].value);
 		    	}
 		    }
-		    // Keywords to translate
+		 // Keywords to translate
 		    const textToTranslate = document.getElementById("inputKeyword1").value;
 		    
+		    const result = this.checkValidation(targetLangs, textToTranslate);
+		    if(!result){
+		    	// if not valid
+		    	return;
+		    }
+		   
 		    var request = $.ajax({
 		    	  url: "/collect/startEvent/transalate?sourceLanguage="+sourceLanguage+"&targetLangs="+targetLangs+"&text="+textToTranslate,
 		    	  type: "GET",
@@ -56,5 +62,22 @@ var Collect = {
 		    	});
 		    
 		    
+		},
+		checkValidation: function(targetLangs, textToTranslate){
+			var valid = true;
+			 // Validation Select at least one Language Code.
+		    if(targetLangs.length<1){
+		    	alert('Kindly select at least one Language Code from checkboxes.')
+		    	return false;
+		    }
+		    
+		    // regex - No Special Character. Space and , is allowed
+		    const regex = /[^a-zA-Z0-9 ,]/;
+		    // Validation for  No Special Character Space and , is allowed
+		    if(regex.test(textToTranslate)) {
+		        alert('Kindly enter keywords without Special Characters.');
+		        return false;
+		    }
+		    return valid;
 		}
 }

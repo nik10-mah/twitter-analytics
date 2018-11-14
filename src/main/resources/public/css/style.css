@@ -48,3 +48,9 @@ main {
 .border-primary {
 	border-color: #3E3F3A !important
 }
+.tags-input-div {
+    margin: 13px 0px;
+}
+.corresponding-keywords{
+	padding: 10px;
+}
