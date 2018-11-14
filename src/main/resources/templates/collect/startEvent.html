@@ -8,162 +8,86 @@
 </head>
 <body>
 	<main layout:fragment="content">
-	
-		<div class="row">
-		
+
+	<div class="row">
+
 		<div class="col-lg-8 offset-md-2">
-		<div class="card border-secondary mb-3">
-		  <div class="card-header text-center"><h4>Start Event</h4></div>
-		<form th:action="@{/collect/startEvent/input}" method="get">
-		   <div class="card-body">
+			<div class="card border-secondary mb-3">
+				<div class="card-header text-center">
+					<h4>Start Event</h4>
+				</div>
+				<form th:action="@{/collect/startEvent/execute}" th:object="${eventDto}" method="POST">
+					<div class="card-body">
+						<div class="form-group col-lg-12">
+							<label for="selectedEvent">Select Event Name</label> 
+							<select th:field="*{eventName}"
+								class="form-control"  >
+								<option th:value="'0'">Select</option>
+								<option th:value="'Halloween'">Halloween</option>
+								<option th:value="'Winter Olympics 2018'">Winter
+									Olympics 2018</option>
+								<option th:value="'Thanksgiving'">Thanksgiving</option>
+							</select>
+						</div>
+
+
+						<div class="form-group col-lg-12">
+							<label for="selectedLanguages">Select Languages</label>
+							<div class="row">
+								<div class="custom-control custom-checkbox col-md-3"
+									th:each="str,iterStat : ${allTargetLangsCodes}">
+									<input type="checkbox" th:value="${str}" th:field="*{targetLangs}"> <span
+										th:text="${str}"></span>
+									
+							</div>
+							
+						</div>
+					</div>
+
+
 					<div class="form-group col-lg-12">
-      										<label for="selectedEvent">Select Event Name</label>      										
-      										<select class="form-control" name="selectedEvent" id="selectedEvent">
-      									    	<option>Select</option>
-        										 <option th:value="'Halloween'">Halloween</option>
-        										 <option th:value="'Winter Olympics 2018'">Winter Olympics 2018</option>
-        										 <option th:value="'Thanksgiving'">Thanksgiving</option>
-      										 </select>
-      				</div>	
-      				
-      				
-      				<div class="form-group col-lg-12">
-      					<label for="selectedLanguages">Select Languages</label>    
-      					<div class="row">  	
-      							<div class="custom-control custom-checkbox col-md-3" 
-      									th:each="str,iterStat : ${langCodes}">
-   									 <input type="checkbox" th:value="${str}"  >
-     						 			 <span th:text="${str}"></span>
-   									<!-- <span th:text="${str}"/>This will print the index value
-   									<span th:text="${iterStat.index}"/>This will print the Index -->
-								</div> 							
-      					<!-- <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Arabic" >
-     						 <label class="custom-control-label" for="Arabic">Arabic</label>
-   						 </div>
-   						 <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Chinese" >
-     						 <label class="custom-control-label" for="Chinese">Chinese</label>
-   						 </div>
-   						 <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Czech" >
-     						 <label class="custom-control-label" for="Czech">Czech</label>
-   						 </div>
-   						  <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="French" >
-     						 <label class="custom-control-label" for="French">French</label>
-   						 </div> -->
-   						 </div>
-   						 
-   						 
-   						 <!-- <div class="row">  										
-      					<div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="German" >
-     						 <label class="custom-control-label" for="German">German</label>
-   						 </div>
-   						 <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Italian" >
-     						 <label class="custom-control-label" for="Italian">Italian</label>
-   						 </div>
-   						 <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Japanese" >
-     						 <label class="custom-control-label" for="Japanese">Japanese</label>
-   						 </div>
-   						  <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Portuguese" >
-     						 <label class="custom-control-label" for="Portuguese">Portuguese</label>
-   						 </div>
-   						 </div> -->
-   						 
-   						 
-   						 
-   						 <!-- <div class="row">  										
-      					<div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Russian" >
-     						 <label class="custom-control-label" for="Russian">Russian</label>
-   						 </div>
-   						 <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Spanish" >
-     						 <label class="custom-control-label" for="Spanish">Spanish</label>
-   						 </div>
-   						 <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Turkish" >
-     						 <label class="custom-control-label" for="Turkish">Turkish</label>
-   						 </div>
-   						  <div class="custom-control custom-checkbox col-md-3">
-     						 <input type="checkbox" class="custom-control-input" id="Arabic" checked="">
-     						 <label class="custom-control-label" for="Arabic">French</label>
-   						 </div>
-   						 </div> -->
-      				</div>	
-				</div>
-				
-				
-				<div class="form-group col-lg-12">
-      					<label for="enterKeywords">Enter Keywords</label>    
-      					<div class="row">
-      					<div class="col-md-3"><input type="text" class="form-control" placeholder="Enter Keyword" id="inputKeyword1"></div>
-      					<div class="col-md-3"><input type="text" class="form-control " placeholder="Enter Keyword" id="inputKeyword2"></div>
-      					<div class="col-md-3"><input type="text" class="form-control " placeholder="Enter Keyword" id="inputKeyword3"></div>
-  							<div class="col-md-12 text-right"> <button type="button" class="btn btn-secondary" >Translate</button></div>
-    						
-      						
-  	 					</div>
-      			</div>
-				
-						   
-				
-				<div class="form-group col-lg-12">
-				<div class="card border-secondary mb-3">
-      					<label for="correspondingKeywords">Corresponding Keywords</label>    
-      					<div class="row">
-      					<div class="col-md-3"><label for="Italian" >Italian</label></div>
-      					
-      					<div class="col-md-3"><input type="text" class="form-control"  id="correspondingKeyword1" placeholder="Italian"></div>
-      					<div class="col-md-3"><input type="text" class="form-control "  id="correspondingKeyword2" placeholder="Italian"></div>
-      					<div class="col-md-3"><input type="text" class="form-control "  id="correspondingKeyword3" placeholder="Italian"></div>
-    						
-      						
-  	 					</div>
-  	 					
-  	 					
-  	 					<div class="row">
-      					<div class="col-md-3"><label for="French" >French</label></div>
-      					
-      					<div class="col-md-3"><input type="text" class="form-control"  id="correspondingKeyword4" placeholder="French"></div>
-      					<div class="col-md-3"><input type="text" class="form-control "  id="correspondingKeyword5" placeholder="French"></div>
-      					<div class="col-md-3"><input type="text" class="form-control "  id="correspondingKeyword6" placeholder="French"></div>
-    						
-      						
-  	 					</div>
-  	 					
-  	 					
-  	 					<div class="row">
-      					<div class="col-md-3"><label for="Turkish" >Turkish</label></div>
-      					
-      					<div class="col-md-3"><input type="text" class="form-control"  id="correspondingKeyword7" placeholder="Turkish"></div>
-      					<div class="col-md-3"><input type="text" class="form-control "  id="correspondingKeyword8" placeholder="Turkish"></div>
-      					<div class="col-md-3"><input type="text" class="form-control "  id="correspondingKeyword9" placeholder="Turkish"></div>
-    						
-      						
-  	 					</div>
-      			</div>
-      			<div class="row">
-      			      			 <div class="col-md-12 text-right"> <button type="button" class="btn btn-secondary" >Start Twitter Stream</button></div>
-      			</div>
-      			</div>
-      			
-      			
-				
-				
-				
-				
+						<label for="enterKeywords">Enter Keywords</label>
+						<div class="row">
+							<div class="col-md-3">
+								<input type="text" class="form-control"
+									placeholder="Enter Keyword" id="inputKeyword1" th:field="*{keywords}">
+							</div>
+							<!-- <div class="col-md-3">
+								<input type="text" class="form-control "
+									placeholder="Enter Keyword" id="inputKeyword2">
+							</div>
+							<div class="col-md-3">
+								<input type="text" class="form-control "
+									placeholder="Enter Keyword" id="inputKeyword3">
+							</div> -->
+							<div class="col-md-12 text-right">
+								<button type="button" class="btn btn-secondary"
+									onclick="Javascript: Collect.clickTranslate(this)">Translate</button>
+							</div>
+
+
+						</div>
+					</div>
+
+
+
+					<div class="form-group col-lg-12">
+							<div id="translatedDiv"
+								th:include="/collect/correspondingKeywords :: correspondingKeywords">
+							</div>
+						
+						<div class="row">
+							<div class="col-md-12 text-right">
+							  <input type="submit" class="btn btn-secondary" value="Start Stream"/>
+							</div>
+						</div>
+					</div>
 				</form>
-				</div>
-				</div>
-				
 			</div>
-			
+		</div>
+
+	</div>
+
 	</main>
 </body>
 </html>
