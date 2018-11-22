@@ -54,3 +54,7 @@ main {
 .corresponding-keywords{
 	padding: 10px;
 }
+.form-check.checkbox-custom {
+    float: left;
+    padding: 10px 25px 9px 22px;
+}

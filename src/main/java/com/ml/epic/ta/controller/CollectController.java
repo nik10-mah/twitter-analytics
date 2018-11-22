@@ -111,7 +111,7 @@ public class CollectController {
 		Map<String, String> translatedText = awsTranslateService.findTranslation(sourceLanguage, targetLangs, text);
 		
 		// Set in view modal
-		ModelAndView mav =new ModelAndView("/collect/correspondingKeywords");
+		ModelAndView mav =new ModelAndView("/collect/translatedKeywords");
 		mav.addObject("translatedText", translatedText);
 		return mav;
 	}

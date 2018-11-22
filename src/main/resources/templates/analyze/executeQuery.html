@@ -19,27 +19,27 @@
 					<form th:action="@{/analyze/query/execute}" method="post" >
 						<fieldset>
 							<legend>Analyze</legend>
-							<div class="row">
-
-								<div class="form-group col-lg-12">
-									<label for="asql">Type your query</label> 
+								 <div class="form-group">
+      								<label for="selectedSql">Select Query</label>      										
+        							<select class="form-control" name="selectedSql" id="selectedSql" onchange="Javascript: Analyze.onChangeDorpDown()">
+      									<option th:value="''">Select</option>
+        								<option th:value="'select lang, count(*) cnt from socialanalyticsblog.tweets group by lang order by cnt desc'">select lang, count(*) cnt from socialanalyticsblog.tweets group by lang order by cnt desc</option>
+        								<option th:value="'select ts.text, ts.originaltext from socialanalyticsblog.tweet_sentiments ts join socialanalyticsblog.tweets t on (ts.tweetid = t.id) where lang = \'en\' and ts.text like \'%good%\' '">select ts.text, ts.originaltext from socialanalyticsblog.tweet_sentiments ts join socialanalyticsblog.tweets t on (ts.tweetid = t.id) where lang = 'en' and ts.text like 'good'</option>
+        								<option th:value="'select ts.text, ts.originaltext from socialanalyticsblog.tweet_sentiments ts join socialanalyticsblog.tweets t on (ts.tweetid = t.id) where lang = \'ar\' '">select ts.text, ts.originaltext from socialanalyticsblog.tweet_sentiments ts join socialanalyticsblog.tweets t on (ts.tweetid = t.id) where lang = 'ar'</option>
+        								<option th:value="'select * from socialanalyticsblog.tweet_sentiments where sentiment = \'POSITIVE\' limit 20 '">select * from socialanalyticsblog.tweet_sentiments where sentiment = 'POSITIVE' limit 20</option>
+      								</select>
+    							</div>
+    							<div class="form-group">
+    								<label for="or">OR</label>
+    							</div>
+    							<div class="form-group">
+      								<label for="asql">Type your query</label> 
 									<input type="text" class="form-control" name="asql" id="aSql" th:value="${asql}" placeholder="Enter your Query Here" onkeyup ="Javascript: Analyze.onKeyUpAnalyzeQuery()"/>
-      								<label for="or">OR</label>
-      									<div class="col-lg-12">
-      										<label for="selectedSql">Choose from Existing</label>      										
-      										<select class="form-control" name="selectedSql" id="selectedSql" onchange="Javascript: Analyze.onChangeDorpDown()">
-      									    	<option th:value="''">Select</option>
-        										 <option th:value="'select lang, count(*) cnt from socialanalyticsblog.tweets group by lang order by cnt desc'">select lang, count(*) cnt from socialanalyticsblog.tweets group by lang order by cnt desc</option>
-        										<option th:value="'select ts.text, ts.originaltext from socialanalyticsblog.tweet_sentiments ts join socialanalyticsblog.tweets t on (ts.tweetid = t.id) where lang = \'en\' and ts.text like \'%good%\' '">select ts.text, ts.originaltext from socialanalyticsblog.tweet_sentiments ts join socialanalyticsblog.tweets t on (ts.tweetid = t.id) where lang = 'en' and ts.text like 'good'</option>
-        										<option th:value="'select ts.text, ts.originaltext from socialanalyticsblog.tweet_sentiments ts join socialanalyticsblog.tweets t on (ts.tweetid = t.id) where lang = \'ar\' '">select ts.text, ts.originaltext from socialanalyticsblog.tweet_sentiments ts join socialanalyticsblog.tweets t on (ts.tweetid = t.id) where lang = 'ar'</option>
-        										<option th:value="'select * from socialanalyticsblog.tweet_sentiments where sentiment = \'POSITIVE\' limit 20 '">select * from socialanalyticsblog.tweet_sentiments where sentiment = 'POSITIVE' limit 20</option>
-      										 </select>
-      									</div>
+    							</div>
+								<div class="form-group">
+									<button type="submit" class="btn btn-secondary ">Execute</button>
+									<button type="submit" class="btn btn-secondary ">Execute & Save</button>
 								</div>
-								<div class="form-group col-lg-12 text-center">
-									<button type="submit" class="btn btn-secondary btn-block">Execute</button>
-								</div>
-							</div>
 						</fieldset>
 					</form>
 				</div>
