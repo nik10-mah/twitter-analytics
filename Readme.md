@@ -42,9 +42,9 @@ Use following command to run the jar file
 $ java -jar .\twitter-analytics.jar
 ```
 
-Application will run port 9090 at following url:-
+Application will run port 5000 at following url:-
 ```sh
-http://localhost:9090
+http://localhost:5000
 ```
 
 ### Sample Queries to run
