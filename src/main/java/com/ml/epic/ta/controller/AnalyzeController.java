@@ -3,6 +3,11 @@
  */
 package com.ml.epic.ta.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amazonaws.services.athena.AmazonAthena;
+import com.ml.epic.ta.model.SampleQuery;
 import com.ml.epic.ta.service.AthenaService;
 
 /**
@@ -33,7 +39,7 @@ public class AnalyzeController {
 	AthenaService athenaService;
 
 	/**
-	 * Input query: Open Query form to input query from user
+	 * Input query: Open Query form to input query from user.
 	 *
 	 * @return the model and view
 	 */
@@ -43,9 +49,16 @@ public class AnalyzeController {
 		return mav;
 	}
 	
+	/**
+	 * Input query.
+	 *
+	 * @return the model and view
+	 */
 	@GetMapping(value = "/query/input")
 	public ModelAndView inputQuery() {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
+		//mav.addObject("mapObj", SampleQuery.values());
+		mav.addAllObjects(this.setModal());
 		return mav;
 	}
 
@@ -61,9 +74,26 @@ public class AnalyzeController {
 	@PostMapping(value = "/query/execute")
 	public ModelAndView executeQuery(@RequestParam("asql") String asql) throws InterruptedException {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
-		mav.addAllObjects(athenaService.executeQuery(asql));
+		Map<String,Object> map = athenaService.executeQuery(asql);
+		map.putAll(this.setModal());
+		List pageSizes  = new ArrayList(5);
+		pageSizes.add(10);
+		pageSizes.add(25);
+		map.put("pageSizes", pageSizes);
+		mav.addAllObjects(map);
 		mav.addObject("asql", asql);
 		return mav;
+	}
+	
+	/**
+	 * Sets the modal.
+	 *
+	 * @return the map
+	 */
+	private Map<String,Object> setModal() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sampleQueries", SampleQuery.values());
+		return map;
 	}
 
 }

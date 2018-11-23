@@ -12,6 +12,8 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.athena.AmazonAthena;
 import com.amazonaws.services.athena.AmazonAthenaClientBuilder;
+import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
+import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProviderClientBuilder;
 import com.amazonaws.services.translate.AmazonTranslate;
 import com.amazonaws.services.translate.AmazonTranslateClientBuilder;
 import com.ml.epic.ta.config.AwsProperties;
@@ -61,6 +63,19 @@ public class TasApplication {
 				.withCredentials(credentialsProvider()).withClientConfiguration(
 						new ClientConfiguration().withClientExecutionTimeout(AwsAthena.CLIENT_EXECUTION_TIMEOUT));
 		return builder.build();
+	}
+
+	/**
+	 * Authentication client for using AWS Cognito User and Identity pools.
+	 *
+	 * @return the amazon cognito identity
+	 */
+	@Bean
+	public AWSCognitoIdentityProvider authClient() {
+		AWSCognitoIdentityProviderClientBuilder builder = AWSCognitoIdentityProviderClientBuilder.standard()
+				.withRegion(Regions.US_EAST_1).withCredentials(credentialsProvider());
+		return builder.build();
+
 	}
 
 	/**

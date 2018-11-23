@@ -1,6 +1,6 @@
 <!DOCTYPE html> 
 <html xmlns:th="http://www.thymeleaf.org">
-<table class="table table-hover table-bordered table-striped" th:fragment="config(columns, rows)" th:if="${rows}">
+<table class="table table-hover table-bordered table-striped" th:fragment="config(columns, rows, pageSizes)" th:if="${rows}">
   <thead>
     <tr>
       <th scope="row" th:each="column : ${columns}" th:text="${column}" class="text-capitalize">Header</th>
@@ -20,7 +20,7 @@
 		      <a class="page-link" href="#">&laquo;</a>
 		    </li>
 		    <li class="page-item"  th:each="i : ${#numbers.sequence( 1, pageCount)}" th:classappend="${i == 1} ? active">
-		      <a class="page-link" href="#" th:text="${i}">1</a>
+		      <a class="page-link" href="#" th:text="${i}" >1</a>
 		    </li>
 		    <!-- <li class="page-item">
 		      <a class="page-link" href="#">2</a>
@@ -34,10 +34,21 @@
 		    <li class="page-item">
 		      <a class="page-link" href="#">5</a>
 		    </li> -->
+		   
 		    <li class="page-item">
 		      <a class="page-link" href="#">&raquo;</a>
 		    </li>
+		    <li>
+		    	<div class="form-group">
+                    <select class="form-control pagination" id="pageSizeSelect">
+                        <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                            th:value="${pageSize}"
+                            th:selected="${pageSize} == ${selectedPageSize}"></option>
+                    </select>
+                </div>
+            </li>
 		  </ul>
+		   
 		</div>
   	</td>
   	</tr>
