@@ -15,7 +15,7 @@
 				<form th:action="@{/collect/startEvent/execute}" th:object="${eventDto}" method="POST">
 					<fieldset>
 				
-						<legend class="text-center" > <span th:text="${eventName}"></span> </legend>
+						<legend class="text-center" >StartEvent: <span th:text="${eventName}"></span> </legend>
 						<!-- <div class="form-group">
       						<label for="selectedEvent">Select Event Name</label>
       						<select th:field="*{eventName}" class="form-control" >
