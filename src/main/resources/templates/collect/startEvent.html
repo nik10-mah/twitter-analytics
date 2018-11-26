@@ -15,8 +15,8 @@
 				<form th:action="@{/collect/startEvent/execute}" th:object="${eventDto}" method="POST">
 					<fieldset>
 				
-						<legend class="text-center"> Start Event </legend>
-						<div class="form-group">
+						<legend class="text-center" > <span th:text="${eventName}"></span> </legend>
+						<!-- <div class="form-group">
       						<label for="selectedEvent">Select Event Name</label>
       						<select th:field="*{eventName}" class="form-control" >
         						<option th:value="'0'">Select</option>
@@ -24,7 +24,7 @@
 								<option th:value="'Winter Olympics 2018'">Winter Olympics 2018</option>
 								<option th:value="'Thanksgiving'">Thanksgiving</option>
       						</select>
-    					</div>
+    					</div> -->
 
 						
 					

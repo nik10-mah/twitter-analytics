@@ -69,7 +69,7 @@ public class CollectController {
 	 * @return the model and view
 	 */
 	@GetMapping(value = "/startEvent/input")
-	public ModelAndView inputStartEvent() {
+	public ModelAndView inputStartEvent(@RequestParam String eventName) {
 		ModelAndView mav =new ModelAndView("/collect/startEvent");
 		// To Display AWS supported languages in Start Event Page, Use getSupportedLanguages method from AWS Translate Service
 		List<String> allTargetLangsCodes = awsTranslateService.getSupportedLanguages();
@@ -77,12 +77,16 @@ public class CollectController {
 		EventDTO eventDto = new EventDTO();
 		
 		mav.addObject("eventDto",eventDto);
+		mav.addObject("eventName",eventName);
+
 		mav.addObject("allTargetLangsCodes",allTargetLangsCodes);
 		
+		System.out.println(eventName);
 		
 		return mav;
 	}
-
+	
+	
 	/**
 	 * Execute start event.
 	 *  to execute the start event
