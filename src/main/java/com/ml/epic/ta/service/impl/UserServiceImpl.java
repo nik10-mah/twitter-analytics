@@ -33,11 +33,13 @@ public class UserServiceImpl implements UserService {
 	 * java.lang.String)
 	 */
 	@Override
-	public String authenticate(String username, String password) {
-		String token = null;
+	public AdminInitiateAuthResult authenticate(String username, String password) {
+		// String token = null;
 		final Map<String, String> authParams = new HashMap<>();
-		authParams.put("USERNAME", "nik10mah@gmail.com");
-		authParams.put("PASSWORD", "Nikhil_10");
+		// authParams.put("USERNAME", "nik10mah@gmail.com");
+		// authParams.put("PASSWORD", "Nikhil_10");
+		authParams.put("USERNAME", username);
+		authParams.put("PASSWORD", password);
 
 		final AdminInitiateAuthRequest authRequest = new AdminInitiateAuthRequest();
 		authRequest.withAuthFlow(AuthFlowType.ADMIN_NO_SRP_AUTH).withClientId("3045rrdm5kjp5dh3qt85m9tkuu")
@@ -46,7 +48,7 @@ public class UserServiceImpl implements UserService {
 		AdminInitiateAuthResult result = authClient.adminInitiateAuth(authRequest);
 		System.out.println(" Challenge " + result.getChallengeName());
 		System.out.println(" Result " + result.getAuthenticationResult());
-		return token;
+		return result;
 	}
 
 }

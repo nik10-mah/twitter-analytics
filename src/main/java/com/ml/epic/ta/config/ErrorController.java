@@ -21,6 +21,10 @@ import com.amazonaws.services.athena.model.InvalidRequestException;
 @ControllerAdvice
 public class ErrorController {
 
+	
+	//TODO: add method for BadCredentials Exception
+	//TODO: add method for 
+	
 	/**
 	 * Error Handler for Athena API request exception for invlaid syntax
 	 *

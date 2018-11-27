@@ -3,6 +3,8 @@
  */
 package com.ml.epic.ta;
 
+import static org.assertj.core.api.Assertions.fail;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,12 +32,11 @@ public class AwsCognitoTests extends BaseTest {
 		try {
 
 			final Map<String, String> authParams = new HashMap<>();
-//			authParams.put("USERNAME", "nik10.mah@gmail.com");
-//			authParams.put("PASSWORD", "1qaz!QAZ");
+			authParams.put("USERNAME", "nik10.mah@gmail.com");
+			authParams.put("PASSWORD", "1qaz!QAZ");
 			
-			authParams.put("USERNAME", "abby@vradars.com");
-			authParams.put("PASSWORD", "Abby@2018");
-			
+//			authParams.put("USERNAME", "abby@vradars.com");
+//			authParams.put("PASSWORD", "Abby@2018");
 			
 
 			final AdminInitiateAuthRequest authRequest = new AdminInitiateAuthRequest();
@@ -44,9 +45,11 @@ public class AwsCognitoTests extends BaseTest {
 
 			AdminInitiateAuthResult result = authClient.adminInitiateAuth(authRequest);
 			System.out.println(" Challenge " + result.getChallengeName());
-//			System.out.println(" Result " + result.getAuthenticationResult());
+			System.out.println(" Result " + result.getAuthenticationResult());
 
 		} catch (Exception e) {
+			System.out.println("============" + e.getMessage());
+			fail(e.getMessage());
 			e.printStackTrace();
 		}
 

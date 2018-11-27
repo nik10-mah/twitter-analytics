@@ -76,9 +76,11 @@ public class AnalyzeController {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
 		Map<String,Object> map = athenaService.executeQuery(asql);
 		map.putAll(this.setModal());
-		List pageSizes  = new ArrayList(5);
+		List<Integer> pageSizes  = new ArrayList<>(5);
 		pageSizes.add(10);
+		pageSizes.add(15);
 		pageSizes.add(25);
+		pageSizes.add(50);
 		map.put("pageSizes", pageSizes);
 		mav.addAllObjects(map);
 		mav.addObject("asql", asql);

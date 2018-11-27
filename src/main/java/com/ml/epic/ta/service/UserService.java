@@ -3,6 +3,8 @@
  */
 package com.ml.epic.ta.service;
 
+import com.amazonaws.services.cognitoidp.model.AdminInitiateAuthResult;
+
 /**
  * For user Managetment.
  *
@@ -17,5 +19,5 @@ public interface UserService {
 	 * @param password the password
 	 * @return the string
 	 */
-	String authenticate(String username, String password);
+	AdminInitiateAuthResult authenticate(String username, String password);
 }
