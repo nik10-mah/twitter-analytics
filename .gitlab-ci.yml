@@ -21,7 +21,7 @@ aws-upload:
     - mkdir -p ~/.ssh     
     - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa     
     - chmod 600 ~/.ssh/id_rsa     
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script: 
   - "scp target/twitter-analytics.jar ec2-user@$DEPLOY_SERVER:/home/ec2-user/tas-build"
   only: 
