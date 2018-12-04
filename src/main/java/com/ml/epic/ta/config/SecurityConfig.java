@@ -8,12 +8,21 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.ml.epic.ta.auth.CustomAuthenticationFailureHandler;
+import com.ml.epic.ta.auth.CustomizeAuthenticationSuccessHandler;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AwsAuthenticationProvider authProvider;
+	
+	@Autowired
+	private CustomizeAuthenticationSuccessHandler customizeAuthenticationSuccessHandler;
+	
+	@Autowired
+	private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -22,15 +31,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-		http.authorizeRequests().antMatchers("/", "/css/**", "/images/**", "/js/**", "/fonts/**").permitAll()
-				.anyRequest().authenticated().and().formLogin().failureUrl("/login?error=true").loginPage("/login").permitAll()
-				.defaultSuccessUrl("/home").and().logout().logoutUrl("/logout").permitAll();
+		// allow css, images , js, fonts and default urls
+		http.authorizeRequests().antMatchers("/", "/css/**", "/images/**", "/js/**", "/fonts/**","/login","/login/challenge").permitAll()
+				.anyRequest().authenticated()
+				.and()
+				.formLogin()
+					.successHandler(customizeAuthenticationSuccessHandler)
+					.failureHandler(customAuthenticationFailureHandler)
+					.loginPage("/login").permitAll()
+				.and()
+				.logout()
+					.logoutUrl("/logout").permitAll();
+		
+		
 	}
-
+	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**"); // #excluding resources
-
 	}
 }

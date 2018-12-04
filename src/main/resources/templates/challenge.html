@@ -7,7 +7,7 @@
 		<div class="col-lg-12" th:if="${error}">
 			<div class="alert alert-dismissible alert-danger">
 		  		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  		<strong>Oh snap!</strong> <p th:text="${error}"></p>
+		  		<strong>Oh snap!</strong> <p th:text="${error}"></p>.
 			</div>
 		</div>
 	
@@ -22,17 +22,17 @@
 			<div class="col-lg-8 offset-md-2 card border-secondary mb-3">
 					<form th:action="@{/login}" method="post" >
 						<fieldset>
-							<legend class="text-center">Login</legend>
-    						<div class="form-group">
+							<legend class="text-center">Challenge Page</legend>
+    						<!-- <div class="form-group">
       							<label for="username">Username</label> 
 								<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username" />
-    						</div>
+    						</div> -->
     						<div class="form-group">
       							<label for="password">Password</label>
       							<input type="password" class="form-control" id="password" name="password" placeholder="Password">
     						</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-secondary btn-block">Login</button>
+								<button type="submit" class="btn btn-secondary btn-block">Change Password</button>
 							</div>
 						</fieldset>
 					</form>

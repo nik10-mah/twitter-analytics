@@ -4,6 +4,8 @@
 package com.ml.epic.ta.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,42 +13,77 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ml.epic.ta.service.UserService;
 
+// TODO: Auto-generated Javadoc
 /**
- * The Class IndexController: the home page Controller
+ * The Class IndexController: the home page Controller.
  *
- * 
  * @since Oct 27, 2018
  */
 @Controller
 public class HomeController {
 
-	// @Autowired
-	// AuthenticationManager authenticationManager;
+	
 
+	/** The user service. */
 	@Autowired
 	UserService userService;
 
 	/**
-	 * Home: Default app url will invoke this method
+	 * Home: Default app url, /login, /signin  will invoke this method.
 	 *
+	 * @param error the error
+	 * @param logout the logout
 	 * @return the view to be redirected to
+	 * @throws InterruptedException the interrupted exception
 	 */
 	@GetMapping(value = { "/", "/login", "/signin" })
-	public ModelAndView login(@RequestParam(required = false) String error,
+	public ModelAndView login(@RequestParam(required = false, value="error") String error,
 			@RequestParam(required = false) String logout) throws InterruptedException {
+	
 		ModelAndView mav = new ModelAndView("login");
-		
+		//System.out.println("\n\n\n"+error+"\n\n\n");
 		if (null != error) {
+			mav = new ModelAndView("login");
+			// Message to Display
 			mav.addObject("error", "Invalid Username or Password");
 		}
 
-		// TODO check if user is already login send to home
+		// check if user is already login send to home
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		String username = null;
+		if (principal instanceof UserDetails) { 
+				username = ((UserDetails)principal).getUsername(); 
+			} else { 
+					 username = principal.toString(); 
+			}
+		// if user already login 
+		if(null != username && "anonymousUser" != username) {
+			 mav =new ModelAndView("redirect:/home");
+		}
+		return mav;
+	}
+	
+	/**
+	 * Challenge. URL will redirect to challenge page to change password
+	 *
+	 * @return the model and view
+	 */
+	@GetMapping(value="/login/challenge")
+	public ModelAndView challenge() {
+		ModelAndView mav = new ModelAndView("/challenge");
 		return mav;
 	}
 
+	/**
+	 * Signout. Will call on url /signout and /logout
+	 *
+	 * @return the model and view
+	 * @throws InterruptedException the interrupted exception
+	 */
 	@GetMapping(value = { "/signout", "/logout" })
 	public ModelAndView signout() throws InterruptedException {
 		ModelAndView mav = new ModelAndView("login");
+		// Message to Display
 		mav.addObject("success", "You have been successfully logout");
 		return mav;
 	}
@@ -58,6 +95,12 @@ public class HomeController {
 	// return mav;
 	// }
 
+	/**
+	 * Home.  will call at url /home
+	 *
+	 * @return the model and view
+	 * @throws InterruptedException the interrupted exception
+	 */
 	@GetMapping(value = "/home")
 	public ModelAndView home() throws InterruptedException {
 		ModelAndView mav = new ModelAndView("home");
