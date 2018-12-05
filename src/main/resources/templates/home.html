@@ -13,17 +13,19 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-6 mx-auto">
-			<div class="card mb-3">
-				<div class="card-body">
+			<div class="card mb-3 text-center">
+				<div class="card-body box">
+					<img th:src="@{images/collect.png}"/>
 <!-- 					<a href="Javascript: Common.comingSoon()" class="btn btn-secondary btn-lg btn-block ">Collect</a>
- -->					 <a th:href="@{/collect/}" class="btn btn-secondary btn-lg btn-block ">Collect</a> 
+ -->					 <a th:href="@{/collect/}" class="btn btn-secondary btn-lg btn-block card-btn ">Collect</a> 
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-6 mx-auto">
-			<div class="card mb-3">
-				<div class="card-body">
-					<a th:href="@{/analyze}" class="btn btn-secondary btn-lg btn-block ">Analyze</a>
+			<div class="card mb-3 text-center">
+				<div class="card-body box">
+						<img th:src="@{images/analyze.png}"/>
+					<a th:href="@{/analyze}" class="btn btn-secondary btn-lg btn-block card-btn ">Analyze</a>
 				</div>
 			</div>
 		</div>

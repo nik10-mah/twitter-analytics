@@ -4,6 +4,7 @@
 	layout:decorate="~{layouts/mainLayout}">
 <body>
 <main layout:fragment="content">
+		<div class="container">
 <div class="col-lg-12" th:if="${stop}">
 		<div class="alert alert-dismissible alert-danger">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -17,13 +18,58 @@
 		  <strong>Oh snap!</strong> <p th:text="${delete}"></p>.
 		</div>
 	</div>
+
+<div class="row">
+<div class="col-md-12 text-center">
+<span class="subheader-title">EVENTS</span>
+
+</div>
+
+</div>
+
+			<form th:action="@{/collect/startEvent/input}" >
+ <div class="top-head">
+		<a href="javascript:void(0)" class="btn btn-sm btn-add"  data-toggle="modal" data-target="#createDialog"><i class="fa fa-plus"></i> Create</a>
+
+ </div>
+
+			<div class="card border-secondary mb-3">	       
+			<table class="table table-striped">
+				<thead>
+				<th>Event Name </th>
+				<th class="action">Action</th>
+
+				</thead>
+				<tbody>
+					<tr>
+						<td> Halloweenn</td>
+											<td class="action"><a th:href="@{/collect/startEvent/input?eventName=Halloween}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Start"><i class="fa fa-external-link"></i></a>&nbsp;&nbsp;<a th:href="@{/collect/stopEvent}" class="icon-action" data-toggle="tooltip" data-placement="top" title="" data-original-title="Stop"><i class="fa fa-ban"></i></a>&nbsp;&nbsp;<a th:href="@{/collect/deleteEvent}" class="icon-action" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash-o"></i></a></td>
+					</tr>
+					<tr>
+						<td>Mary</td>
+						
+						<td class="action"><a th:href="@{/collect/startEvent/input?eventName=Halloween}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Start"><i class="fa fa-external-link"></i></a>&nbsp;&nbsp;<a th:href="@{/collect/stopEvent}" class="icon-action" data-toggle="tooltip" data-placement="top" title="" data-original-title="Stop"><i class="fa fa-ban"></i></a>&nbsp;&nbsp;<a th:href="@{/collect/deleteEvent}" class="icon-action" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash-o"></i></a></td>
+					</tr>
+					<tr>
+						<td>July</td>
+					
+						<td class="action"><a th:href="@{/collect/startEvent/input?eventName=Halloween}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Start"><i class="fa fa-external-link"></i></a>&nbsp;&nbsp;<a th:href="@{/collect/stopEvent}"class="icon-action" data-toggle="tooltip" data-placement="top" title="" data-original-title="Stop"><i class="fa fa-ban"></i></a>&nbsp;&nbsp;<a th:href="@{/collect/deleteEvent}" class="icon-action" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash-o"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
+	</div>
+
+
+<!-- 
  <div class="row">
  		
  
 	<div class="col-lg-8 offset-md-2">
 		<div class="card border-secondary mb-3">
 		  <div class="card-header text-center"><h4>Events</h4></div>
-		  <!-- <form th:action="@{/collect/startEvent/input}" > -->
+		 <form th:action="@{/collect/startEvent/input}" >
 			  <div class="card-body">
 			  <h4>Events &nbsp;<a href="javascript:void(0)" class="btn btn-sm btn-secondary pill-right"  data-toggle="modal" data-target="#createDialog">Create</a></h4>
 				<ul class="list-group">
@@ -49,8 +95,8 @@
 			  </div>
 		</div>
 	</div>
-	<!-- </form> -->
-</div>
+	 </form> 
+</div> -->
 	<!--  POP UP Dialog to open -->
    <div th:replace="collect/createDialog :: dialog"></div> 
  

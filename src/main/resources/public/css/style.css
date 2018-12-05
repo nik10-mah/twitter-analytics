@@ -90,15 +90,15 @@ background:#fdf9f9;
 }
 .btn-theme-global {
     background: transparent;
-    padding: 14px 0px;
-    font-size: 19px;
+    padding: 10px 0px;
+    font-size: 15px;
     color: #3e3e3e;
     border: 1px solid #3e3e3e;
 }
 .btn-theme-global:hover {
     background: #00aced;
-    padding: 14px 0px;
-    font-size: 19px;
+    padding: 10px 0px;
+    font-size: 15px;
     color: #fff;
     border:1px solid #00aced;
 }
@@ -130,4 +130,57 @@ footer.footer {
 a.nav-link {
     font-size: 14px!important;
     color: #3e3e3e!important;
+}
+
+/********************************** homepage css ******************************/
+.card-body.box img {
+    width: 200px;
+    padding: 20px;
+}
+a.btn.btn-secondary.btn-lg.btn-block.card-btn {
+    background: transparent;
+    color: #474747;
+    font-size: 20px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-color: #e2d4d4;
+    padding: 14px 0px;
+}
+a.btn.btn-secondary.btn-lg.btn-block.card-btn:hover {
+    background: #08acdc;
+    color: #ffffff;
+   }
+
+   /******************************** collect page csss ***********************/
+   .action {
+    text-align:right!important;
+}
+a.btn.btn-sm.btn-add {
+    background: transparent;
+    border: 1px solid #d6c8c8;
+    color: #000;
+    padding: 10px 40px;
+    font-size: 14px;
+}
+a.btn.btn-sm.btn-add:hover {
+    background: #03A9F4;
+    color:#fff;
+
+}
+.top-head {
+    margin: 20px 0px;
+}
+.action i.fa {
+    color: #3e4142;
+    font-size: 15px;
+    padding-left: 12px;
+}
+span.subheader-title {
+    font-size: 18px;
+    font-weight:bold;
+}
+/**************************** modal css ************************/
+.modal-header {
+    background: #00aadb;
+    color: #fff;
 }
