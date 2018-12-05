@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.ml.epic.ta.auth.CustomAuthenticationFailureHandler;
 import com.ml.epic.ta.auth.CustomizeAuthenticationSuccessHandler;
@@ -40,8 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.failureHandler(customAuthenticationFailureHandler)
 					.loginPage("/login").permitAll()
 				.and()
-				.logout()
-					.logoutUrl("/logout").permitAll();
+				.logout().logoutUrl("/logout").logoutSuccessUrl("/");
+/*				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+*/					/*.invalidateHttpSession(true).permitAll()*/;
 		
 		
 	}
