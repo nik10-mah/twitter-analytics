@@ -4,12 +4,14 @@
 package com.ml.epic.ta.config;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amazonaws.services.athena.model.InvalidRequestException;
+import com.amazonaws.services.cognitoidp.model.InvalidPasswordException;
 
 /**
  * The Class ErrorController: For handling all the exception globally
@@ -48,6 +50,42 @@ public class ErrorController {
 	public ModelAndView handleNotFound(Exception ex) {
 		return this.handleRedirect(ex);
 	}
+	
+	/*@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	@ExceptionHandler(RuntimeException.class)
+	public ModelAndView genralRuntimeException(RuntimeException ex) {
+		return this.handleRedirect(ex);
+	}*/
+	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	@ExceptionHandler(BadCredentialsException.class)
+	public ModelAndView confirmSignupInvalidCredentials(BadCredentialsException ex) {
+		return this.handleRedirectConfirmSignup(ex);
+	}
+	
+	/**
+	 * Confirm signup invalid password.
+	 *
+	 * @param ex the ex
+	 * @return the model and view
+	 */
+	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	@ExceptionHandler(InvalidPasswordException.class)
+	public ModelAndView confirmSignupInvalidPassword(InvalidPasswordException ex) {
+		return this.handleRedirectConfirmSignup(ex);
+	}
+	
+	/**
+	 * Unexpected challenge.
+	 *
+	 * @param ex the ex
+	 * @return the model and view
+	 */
+	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	@ExceptionHandler(RuntimeException.class)
+	public ModelAndView unexpectedChallenge(RuntimeException ex) {
+		return this.handleRedirectConfirmSignup(ex);
+	}
+	
 
 	/**
 	 * Handles redirect view .
@@ -57,6 +95,19 @@ public class ErrorController {
 	 */
 	private ModelAndView handleRedirect(Exception ex) {
 		ModelAndView mav = new ModelAndView("home");
+		mav.addObject("error", ex.getMessage());
+		ex.printStackTrace();
+		return mav;
+	}
+	
+	/**
+	 * Handle redirect confirm signup.
+	 *
+	 * @param ex the ex
+	 * @return the model and view
+	 */
+	private ModelAndView handleRedirectConfirmSignup(Exception ex) {
+		ModelAndView mav = new ModelAndView("login");
 		mav.addObject("error", ex.getMessage());
 		ex.printStackTrace();
 		return mav;

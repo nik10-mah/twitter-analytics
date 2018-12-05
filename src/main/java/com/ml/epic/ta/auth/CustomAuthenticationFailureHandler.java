@@ -3,6 +3,7 @@ package com.ml.epic.ta.auth;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,8 +12,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
-
-import com.ml.epic.ta.auth.CustomAuthenticationException;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -33,7 +32,10 @@ public class CustomAuthenticationFailureHandler  extends SimpleUrlAuthentication
 			// if CognitoChallengeException
 			if(map.get("exceptionName").equals("CognitoChallengeException")) {
 				// redirect to challenge page to change password
-				  response.sendRedirect("/login/challenge");
+				
+				  request.setAttribute("map", map);
+				  RequestDispatcher dispatcher = request.getRequestDispatcher("/confirmSignup/challenge");
+				  dispatcher.forward(request, response);
 			}
 			
 		}

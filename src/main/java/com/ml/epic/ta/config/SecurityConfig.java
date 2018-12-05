@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// allow css, images , js, fonts and default urls
-		http.authorizeRequests().antMatchers("/", "/css/**", "/images/**", "/js/**", "/fonts/**","/login","/login/challenge").permitAll()
+		http.authorizeRequests().antMatchers("/", "/css/**", "/images/**", "/js/**", "/fonts/**","/login","/confirmSignup/execute").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()

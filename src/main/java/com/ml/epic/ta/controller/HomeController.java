@@ -3,14 +3,27 @@
  */
 package com.ml.epic.ta.controller;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.amazonaws.services.cognitoidp.model.AdminInitiateAuthResult;
+import com.amazonaws.services.cognitoidp.model.ChallengeNameType;
+import com.amazonaws.services.cognitoidp.model.NotAuthorizedException;
+import com.amazonaws.services.cognitoidp.model.UserNotFoundException;
+import com.ml.epic.ta.dto.ConfirmSignUpDTO;
 import com.ml.epic.ta.service.UserService;
 
 // TODO: Auto-generated Javadoc
@@ -39,7 +52,7 @@ public class HomeController {
 	@GetMapping(value = { "/", "/login", "/signin" })
 	public ModelAndView login(@RequestParam(required = false, value="error") String error,
 			@RequestParam(required = false) String logout) throws InterruptedException {
-	
+
 		ModelAndView mav = new ModelAndView("login");
 		//System.out.println("\n\n\n"+error+"\n\n\n");
 		if (null != error) {
@@ -68,9 +81,21 @@ public class HomeController {
 	 *
 	 * @return the model and view
 	 */
-	@GetMapping(value="/login/challenge")
-	public ModelAndView challenge() {
+	@PostMapping(value="/confirmSignup/challenge")
+	public ModelAndView challenge(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("/challenge");
+		// if condition to check for hashMap instance to save from unchecked or classCast exception
+		if(null != request.getAttribute("map") && request.getAttribute("map") instanceof HashMap) {
+			// get Parameters
+			HashMap<?, ?> map = (HashMap<?, ?>) request.getAttribute("map");
+			// Initilize ConfirmSignUpDTO Object
+			ConfirmSignUpDTO confirmSignUpDto = new ConfirmSignUpDTO();
+			// Set Email
+			confirmSignUpDto.setEmail((String)map.get("email"));
+			mav.addObject("confirmSignUpDto", confirmSignUpDto);
+		}
+		
+		
 		return mav;
 	}
 
@@ -104,6 +129,45 @@ public class HomeController {
 	@GetMapping(value = "/home")
 	public ModelAndView home() throws InterruptedException {
 		ModelAndView mav = new ModelAndView("home");
+		return mav;
+	}
+	
+	
+	/**
+	 * Confirm signup.
+	 *
+	 * @param confirmSignUpDto the confirm sign up dto
+	 * @return the model and view
+	 * @throws InterruptedException the interrupted exception
+	 */
+	@PostMapping(value = "/confirmSignup/execute")
+	public ModelAndView confirmSignup(@ModelAttribute("confirmSignUpDto") ConfirmSignUpDTO confirmSignUpDto) throws InterruptedException {
+		
+		AdminInitiateAuthResult result = null;
+		String email = confirmSignUpDto.getEmail();
+		String tempPassword = confirmSignUpDto.getTempPassword();
+		String finalPassword = confirmSignUpDto.getNewPassword();
+		ModelAndView mav = null;
+		
+		try {
+			// check for Authentication Email And temporary Password correct or not.
+		result = userService.authenticate(email, tempPassword );
+		}catch (NotAuthorizedException  | UserNotFoundException e) {
+			throw new BadCredentialsException("Incorrect username or password");
+		} 
+		
+		// Challege will return for NEW Password Required
+		 if (! ChallengeNameType.NEW_PASSWORD_REQUIRED.name().equals(result.getChallengeName()))
+         {
+             throw new RuntimeException( "unexpected challenge: " + result.getChallengeName());
+         }
+		 // Get Session by Email And Temporary Password
+		 String session = result.getSession();
+		 // Confirm Signup , Update New Password
+		 boolean signupConfirmed = userService.confirmSignup(email, tempPassword, finalPassword, session);
+		 if(signupConfirmed)
+			 mav = new ModelAndView("login");
+		
 		return mav;
 	}
 
