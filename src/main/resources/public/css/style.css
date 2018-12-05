@@ -58,3 +58,76 @@ main {
     float: left;
     padding: 10px 25px 9px 22px;
 }
+
+/******************************************* login page css **********************************************/
+
+#login-backround
+{
+background:#fdf9f9;
+
+}
+.main-box-login {
+    background: #fff;
+    border: 1px solid #e2dada;
+    padding: 50px;
+    margin-top: 30px;
+}
+.logo-image img {
+    width: 350px;
+    text-align: center;
+    max-width:100%;
+}
+.logo-left-image img {
+    width: 85%;
+}
+.custom-fields {
+    height: 50px;
+}
+.btn-theme-global {
+    background: #414141;
+    padding: 14px 0px;
+    font-size: 19px;
+}
+.btn-theme-global {
+    background: transparent;
+    padding: 14px 0px;
+    font-size: 19px;
+    color: #3e3e3e;
+    border: 1px solid #3e3e3e;
+}
+.btn-theme-global:hover {
+    background: #00aced;
+    padding: 14px 0px;
+    font-size: 19px;
+    color: #fff;
+    border:1px solid #00aced;
+}
+.login-form {
+    padding: 50px 0px;
+}
+.login-form i.fa {
+    font-size: 20px;
+    color: #c2c1c0;
+}
+.login-form span.input-group-text {
+    background: transparent;
+    border-right: 0px;
+}
+.login-form input {
+    border-left: 0px!important;
+}
+nav.navbar.navbar-expand-lg.navbar-light {
+    border-bottom: 1px solid #dcd2d2;
+}
+footer.footer {
+    background: #3e3e3e;
+    color: #fff;
+    padding: 10px 0px;
+}
+.bg-light {
+    background-color: #ffffff !important;
+}
+a.nav-link {
+    font-size: 14px!important;
+    color: #3e3e3e!important;
+}

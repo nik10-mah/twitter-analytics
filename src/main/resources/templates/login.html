@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layouts/mainLayout}">
+layout:decorate="~{layouts/mainLayout}">
 <body>
-	<main layout:fragment="content"> 
+	
+	<main layout:fragment="content" id="login-backround" > 
+		<div class="container">
 		<div class="col-lg-12" th:if="${error}">
 			<div class="alert alert-dismissible alert-danger">
 		  		<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -18,27 +20,49 @@
 		</div>
 	</div>
 	
-		<div class="col-md-6 mx-auto">
-			<div class="col-lg-8 offset-md-2 card border-secondary mb-3">
+		<div class="row main-box-login">
+			<div class="col-md-7">
+
+					<div class="logo-left-image">
+
+							<img th:src="@{/images/login-left.png}" />
+							
+												</div>
+
+			</div>
+			<div class="col-lg-5">
+				 <div class="col-md-12 login-form">
+
+					<div class="logo-image">
+
+
+					</div>
 					<form th:action="@{/login}" method="post" >
 						<fieldset>
 							<legend class="text-center">Login</legend>
     						<div class="form-group">
-      							<label for="username">Username</label> 
-								<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username" />
+								<div class="input-group">
+										<div class="input-group-append">
+												<span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+											  </div><input type="text" class="form-control custom-fields" name="username" id="username"  placeholder="Enter your Username" />
+							</div>
     						</div>
     						<div class="form-group">
-      							<label for="password">Password</label>
-      							<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+									<div class="input-group">
+											<div class="input-group-append">
+													<span class="input-group-text"><i class="fa fa-lock"></i></span>
+												  </div> <input type="password" class="form-control custom-fields" id="password" name="password" placeholder="Password">
+								</div>
     						</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-secondary btn-block">Login</button>
+								<button type="submit" class="btn btn-secondary btn-block btn-theme-global">Login</button>
 							</div>
 						</fieldset>
 					</form>
 				</div>
+				</div>
 		</div>
-	
+	</div>
 </main>
 </body>
 </html>

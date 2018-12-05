@@ -4,7 +4,7 @@
 	layout:decorate="~{layouts/mainLayout}">
 <body>
 	<main layout:fragment="content"> <!-- <h3>Athena POC</h3> -->
-	
+	<div class="container">
 	<div class="col-lg-12" th:if="${error}">
 		<div class="alert alert-dismissible alert-danger">
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -12,7 +12,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-4 mx-auto">
+		<div class="col-lg-6 mx-auto">
 			<div class="card mb-3">
 				<div class="card-body">
 <!-- 					<a href="Javascript: Common.comingSoon()" class="btn btn-secondary btn-lg btn-block ">Collect</a>
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-4 mx-auto">
+		<div class="col-lg-6 mx-auto">
 			<div class="card mb-3">
 				<div class="card-body">
 					<a th:href="@{/analyze}" class="btn btn-secondary btn-lg btn-block ">Analyze</a>
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 
-
+</div>
 
 	</main>
 </body>
