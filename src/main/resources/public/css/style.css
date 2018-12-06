@@ -70,7 +70,7 @@ background:#fdf9f9;
     background: #fff;
     border: 1px solid #e2dada;
     padding: 50px;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 .logo-image img {
     width: 350px;
@@ -192,7 +192,7 @@ span.subheader-title {
 button.btn.btn-global {
     background: transparent;
     border: 1px solid #bbadad;
-    padding: 10px 30px;
+    padding: 8px 20px;
     font-size: 14px;
     color: #313131;
 }
@@ -230,17 +230,18 @@ button.btn.btn-global:hover {
 input.btn.btn-global {
     background: #fff;
     border: 1px solid #c7b5b5;
-    padding: 10px 30px;
+    padding: 8px 20px;
     font-size: 14px;
+    color: #313131;
 }
 input.btn.btn-global:hover {
     background: #03A9F4;
     border: 1px solid #03A9F4;
-    padding: 10px 30px;
+    padding: 8px 20px;
     font-size: 14px;
     color:#fff;
 }
 .col-padding
 {
-    padding: 0px;
+padding: 0px;
 }
