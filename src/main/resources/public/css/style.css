@@ -179,8 +179,68 @@ span.subheader-title {
     font-size: 18px;
     font-weight:bold;
 }
+.btn:focus, .btn.focus {
+    outline: 0;
+    -webkit-box-shadow: unset; 
+   box-shadow: unset; 
+}
 /**************************** modal css ************************/
 .modal-header {
     background: #00aadb;
     color: #fff;
+}
+button.btn.btn-global {
+    background: transparent;
+    border: 1px solid #bbadad;
+    padding: 10px 30px;
+    font-size: 14px;
+    color: #313131;
+}
+button.btn.btn-global:hover {
+    background: #00aadb;
+    border: 1px solid #00aadb;
+    color:#fff;
+ 
+}
+/************************************** startevent page css *****************************************/
+.event-view {
+    border: 1px solid #d4c6c6;
+  
+}
+.event-name {
+    background: #03A9F4;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    margin: 0px 0px 35px;
+    padding: 10px 0px;
+}
+.trnslated-box {
+    background: #f3f0f0;
+    padding: 20px;
+}
+.title-trans {
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    color: #000;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+input.btn.btn-global {
+    background: #fff;
+    border: 1px solid #c7b5b5;
+    padding: 10px 30px;
+    font-size: 14px;
+}
+input.btn.btn-global:hover {
+    background: #03A9F4;
+    border: 1px solid #03A9F4;
+    padding: 10px 30px;
+    font-size: 14px;
+    color:#fff;
+}
+.col-padding
+{
+    padding: 0px;
 }
