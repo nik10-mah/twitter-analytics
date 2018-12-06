@@ -87,24 +87,44 @@ public class AnalyzeController {
 		return mav;
 	}
 	
+	/**
+	 * Dashboard.
+	 *
+	 * @return the model and view
+	 */
 	@GetMapping(value = "/dashboard")
 	public ModelAndView dashboard() {
 		ModelAndView mav = new ModelAndView(BASE + "dashboard");
 		return mav;
 	}
 	
+	/**
+	 * Extract images.
+	 *
+	 * @return the model and view
+	 */
 	@GetMapping(value = "/extractImages")
 	public ModelAndView extractImages() {
 		ModelAndView mav = new ModelAndView(BASE + "extractImages");
 		return mav;
 	}
 	
+	/**
+	 * User activity.
+	 *
+	 * @return the model and view
+	 */
 	@GetMapping(value = "/dashboard/userActivity")
 	public ModelAndView userActivity() {
 		ModelAndView mav = new ModelAndView(BASE + "userActivity");
 		return mav;
 	}
 	
+	/**
+	 * Streams activity.
+	 *
+	 * @return the model and view
+	 */
 	@GetMapping(value = "/dashboard/streamsActivity")
 	public ModelAndView streamsActivity() {
 		ModelAndView mav = new ModelAndView(BASE + "streamsActivity");
