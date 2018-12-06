@@ -87,6 +87,18 @@ public class AnalyzeController {
 		return mav;
 	}
 	
+	@GetMapping(value = "/dashboard")
+	public ModelAndView dashboard() {
+		ModelAndView mav = new ModelAndView(BASE + "dashboard");
+		return mav;
+	}
+	
+	@GetMapping(value = "/extractImages")
+	public ModelAndView extractImages() {
+		ModelAndView mav = new ModelAndView(BASE + "extractImages");
+		return mav;
+	}
+	
 	/**
 	 * Sets the modal.
 	 *
