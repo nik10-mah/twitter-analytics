@@ -99,6 +99,12 @@ public class AnalyzeController {
 		return mav;
 	}
 	
+	@GetMapping(value = "/userActivity")
+	public ModelAndView userActivity() {
+		ModelAndView mav = new ModelAndView(BASE + "userActivity");
+		return mav;
+	}
+	
 	/**
 	 * Sets the modal.
 	 *
