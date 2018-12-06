@@ -1,5 +1,9 @@
 <!DOCTYPE html> 
 <html xmlns:th="http://www.thymeleaf.org">
+<div class="tables-filters">
+		<a  class="btn btn-sm btn-add"  href="#"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; Export PDF</a>		
+
+</div>
 <table class="table table-hover table-bordered table-striped" th:fragment="config(columns, rows, pageSizes)" th:if="${rows}">
   <thead>
     <tr>
