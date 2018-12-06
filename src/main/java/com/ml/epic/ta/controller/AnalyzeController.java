@@ -105,6 +105,12 @@ public class AnalyzeController {
 		return mav;
 	}
 	
+	@GetMapping(value = "/streamsActivity")
+	public ModelAndView streamsActivity() {
+		ModelAndView mav = new ModelAndView(BASE + "streamsActivity");
+		return mav;
+	}
+	
 	/**
 	 * Sets the modal.
 	 *
