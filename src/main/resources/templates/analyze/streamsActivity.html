@@ -4,6 +4,50 @@
 	layout:decorate="~{layouts/mainLayout}">
 <body>
 <main layout:fragment="content">
-
+		<div class="container">
+				<div class="row">
+				  <div class="col-md-12 text-center">
+					<span class="subheader-title">Stream Activity</span>
+				  </div>
+				</div>
+				<form th:action="@{/collect/startEvent/input}">
+				  <div class="top-head">
+						<a href="javascript:void(0)" class="btn btn-sm btn-add"  th:href="@{/analyze/dashboard/}"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp; Dashboard</a>
+				  </div>
+				<div class="card border-secondary mb-3">
+					<table class="table table-striped">
+					  <thead>
+						<th>Stream Name</th>
+						<th>Started By</th>
+						<th>Stopped By</th>
+					   
+					  </thead>
+					  <tbody>
+						<tr>
+						  <td>Thanksgiving Day</td>
+						  <td>Amhehen Johnash</td>
+						  <td>Lohnsan Daniel</td>
+						</tr>
+						<tr>
+								<td>Hellowen</td>
+								<td>Amhehen Johnash</td>
+								<td>Lohnsan Daniel</td>
+						</tr>
+						<tr>
+								<td>Cyber Monday</td>
+								<td>Amhehen Johnash</td>
+								<td>Lohnsan Daniel</td>
+						</tr>
+						<tr>
+								<td>Thanksgiving Day</td>
+								<td>Amhehen Johnash</td>
+								<td>Lohnsan Daniel</td>
+						</tr>
+					  </tbody>
+					</table>
+				  </div>
+				</form>
+			  </div>
+</main>
 </body>
 </html>

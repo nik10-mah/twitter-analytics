@@ -202,6 +202,9 @@ button.btn.btn-global:hover {
     color:#fff;
  
 }
+.modal-footer {
+    padding: 1rem 0px;
+}
 /************************************** startevent page css *****************************************/
 .event-view {
     border: 1px solid #d4c6c6;

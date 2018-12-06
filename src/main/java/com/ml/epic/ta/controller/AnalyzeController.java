@@ -99,13 +99,13 @@ public class AnalyzeController {
 		return mav;
 	}
 	
-	@GetMapping(value = "/userActivity")
+	@GetMapping(value = "/dashboard/userActivity")
 	public ModelAndView userActivity() {
 		ModelAndView mav = new ModelAndView(BASE + "userActivity");
 		return mav;
 	}
 	
-	@GetMapping(value = "/streamsActivity")
+	@GetMapping(value = "/dashboard/streamsActivity")
 	public ModelAndView streamsActivity() {
 		ModelAndView mav = new ModelAndView(BASE + "streamsActivity");
 		return mav;
