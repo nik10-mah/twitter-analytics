@@ -7,7 +7,7 @@
 		<div class="title-trans">
 				<label for="translatedKeywords"> <i class="fa fa-exchange"></i> Translated Keywords</label>
 		</div>
-	<div th:fragment="translatedKeywords">
+	<div th:fragment="translatedKeywords(actionName)">
 		<div th:if="${translatedText}">
 			<div class="mb-3 col-padding corresponding-keywords" >
 			
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<div class="form-group text-right">
-				  <input type="submit" class="btn btn-global" value="Start Stream"/>
+				  <input type="submit" class="btn btn-global" th:value="${actionName}"/>
 			</div>
 		</div>
 	</div>

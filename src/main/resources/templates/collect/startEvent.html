@@ -59,7 +59,7 @@
     						<button type="button" class="btn btn-global" onclick="Javascript: Collect.clickTranslate(this)">Translate</button>
     					</div>
     										<div class="form-group">
-							<div id="translatedDiv"	th:include="/collect/translatedKeywords :: translatedKeywords">
+							<div id="translatedDiv"	th:include="/collect/translatedKeywords :: translatedKeywords(actionName=${actionName})">
 							</div>
 						</div>
 				   </fieldset>

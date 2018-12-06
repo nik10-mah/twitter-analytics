@@ -117,6 +117,7 @@ public class CollectController {
 		// Set in view modal
 		ModelAndView mav =new ModelAndView("/collect/translatedKeywords");
 		mav.addObject("translatedText", translatedText);
+		mav.addObject("actionName","Start Event");
 		return mav;
 	}
 	

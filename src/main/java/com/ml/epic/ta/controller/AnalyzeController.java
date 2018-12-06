@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amazonaws.services.athena.AmazonAthena;
+import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.model.SampleQuery;
 import com.ml.epic.ta.service.AthenaService;
+import com.ml.epic.ta.service.AwsTranslateService;
 
 /**
  * The Class IndexController: the home page Controller.
@@ -37,6 +39,9 @@ public class AnalyzeController {
 
 	@Autowired
 	AthenaService athenaService;
+	
+	@Autowired
+	AwsTranslateService awsTranslateService;
 
 	/**
 	 * Input query: Open Query form to input query from user.
@@ -106,6 +111,29 @@ public class AnalyzeController {
 	@GetMapping(value = "/extractImages")
 	public ModelAndView extractImages() {
 		ModelAndView mav = new ModelAndView(BASE + "extractImages");
+		// To Display AWS supported languages in Start Event Page, Use getSupportedLanguages method from AWS Translate Service
+				List<String> allTargetLangsCodes = awsTranslateService.getSupportedLanguages();
+				// Ctreate Empty Object of DTO to initalise the Binding on UI
+				EventDTO eventDto = new EventDTO();
+				
+				mav.addObject("eventDto",eventDto);
+				//mav.addObject("eventName",eventName);
+
+				mav.addObject("allTargetLangsCodes",allTargetLangsCodes);
+				mav.addObject("actionName","Extract Images");
+				//System.out.println(eventName);
+		return mav;
+	}
+	
+	@GetMapping(value = "/transalate")
+	public ModelAndView translateStartEvent(@RequestParam String sourceLanguage, @RequestParam List<String> targetLangs, @RequestParam String text ) {
+		// Get Translated Text
+		Map<String, String> translatedText = awsTranslateService.findTranslation(sourceLanguage, targetLangs, text);
+		
+		// Set in view modal
+		ModelAndView mav =new ModelAndView("/collect/translatedKeywords");
+		mav.addObject("translatedText", translatedText);
+		mav.addObject("actionName","Export Images");
 		return mav;
 	}
 	
