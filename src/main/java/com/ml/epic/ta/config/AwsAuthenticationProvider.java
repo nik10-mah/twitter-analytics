@@ -19,16 +19,15 @@ import com.amazonaws.services.cognitoidp.model.UserNotFoundException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ml.epic.ta.auth.CustomAuthenticationException;
+import com.ml.epic.ta.auth.TasAuthenticationException;
 import com.ml.epic.ta.service.UserService;
 
 /**
- * The Class AwsAuthenticationProvider.
+ * The Class AwsAuthenticationProvider.: Used to Authenticate the user.
  */
 @Component
 public class AwsAuthenticationProvider implements AuthenticationProvider {
 
-	/** The user service. */
 	@Autowired
 	UserService userService;
 
@@ -41,53 +40,57 @@ public class AwsAuthenticationProvider implements AuthenticationProvider {
 		Authentication auth = null;
 		AdminInitiateAuthResult result = null;
 		try {
-			
+
 			result = userService.authenticate(username, password);
 			// if in result there come a challenge name
 			if (null != result.getChallengeName()) {
-				/*throw new CognitoChallengeException("Open form for challenge " + result.getChallengeName(),
-						result.getChallengeName(), result.getChallengeParameters());*/
+				/*
+				 * throw new CognitoChallengeException("Open form for challenge " +
+				 * result.getChallengeName(), result.getChallengeName(),
+				 * result.getChallengeParameters());
+				 */
 				// Make Map to put values
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("exceptionName", "CognitoChallengeException");
 				map.put("msg", "Open form for challenge " + result.getChallengeName());
-				
-				//map.put("authSession", result.getSession());
-				//result.getSession()
-				//map.put("name", result.getChallengeName());
+
+				// map.put("authSession", result.getSession());
+				// result.getSession()
+				// map.put("name", result.getChallengeName());
 				HashMap<?, ?> userAttributes = null;
-				userAttributes =  new ObjectMapper().readValue(result.getChallengeParameters().get("userAttributes"), HashMap.class);
+				userAttributes = new ObjectMapper().readValue(result.getChallengeParameters().get("userAttributes"),
+						HashMap.class);
 				System.out.println(userAttributes.get("email"));
 				map.put("email", userAttributes.get("email"));
 				map.put("email_verified", userAttributes.get("email_verified"));
 				// throw custom exception , pass map in it
-				throw new CustomAuthenticationException(map);
+				throw new TasAuthenticationException(map);
 			}
 			auth = new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());
 
-		} catch (NotAuthorizedException  | UserNotFoundException e) {
+		} catch (NotAuthorizedException | UserNotFoundException e) {
 			throw new BadCredentialsException("Incorrect username or password");
 		} catch (JsonParseException e) {
-			throw new CustomAuthenticationException("JSON Parse Error");
+			throw new TasAuthenticationException("JSON Parse Error");
 		} catch (JsonMappingException e) {
-			throw new CustomAuthenticationException("JSON Mapping Error");
+			throw new TasAuthenticationException("JSON Mapping Error");
 		} catch (IOException e) {
-			throw new CustomAuthenticationException("Some Error Occured");
+			throw new TasAuthenticationException("Some Error Occured");
 		}
-		
-		
 
 		return auth;
 
 	}
 
-	/* (non-Javadoc)
-	 * @see org.springframework.security.authentication.AuthenticationProvider#supports(java.lang.Class)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.springframework.security.authentication.AuthenticationProvider#supports(
+	 * java.lang.Class)
 	 */
 	@Override
 	public boolean supports(Class<?> authentication) {
-		// TODO Auto-generated method stub
-		// return false;
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
 }

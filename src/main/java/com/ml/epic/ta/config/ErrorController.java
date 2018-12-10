@@ -14,8 +14,8 @@ import com.amazonaws.services.athena.model.InvalidRequestException;
 import com.amazonaws.services.cognitoidp.model.InvalidPasswordException;
 
 /**
- * The Class ErrorController: For handling all the exception globally
- * Any exception occured will redirect user to Home Page
+ * The Class ErrorController: For handling all the exception globally Any
+ * exception occured will redirect user to Home Page
  *
  * 
  * @since 29-Oct-2018
@@ -23,10 +23,6 @@ import com.amazonaws.services.cognitoidp.model.InvalidPasswordException;
 @ControllerAdvice
 public class ErrorController {
 
-	
-	//TODO: add method for BadCredentials Exception
-	//TODO: add method for 
-	
 	/**
 	 * Error Handler for Athena API request exception for invlaid syntax
 	 *
@@ -50,18 +46,20 @@ public class ErrorController {
 	public ModelAndView handleNotFound(Exception ex) {
 		return this.handleRedirect(ex);
 	}
-	
-	/*@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
-	@ExceptionHandler(RuntimeException.class)
-	public ModelAndView genralRuntimeException(RuntimeException ex) {
-		return this.handleRedirect(ex);
-	}*/
+
+	/*
+	 * @ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	 * 
+	 * @ExceptionHandler(RuntimeException.class) public ModelAndView
+	 * genralRuntimeException(RuntimeException ex) { return this.handleRedirect(ex);
+	 * }
+	 */
 	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
 	@ExceptionHandler(BadCredentialsException.class)
 	public ModelAndView confirmSignupInvalidCredentials(BadCredentialsException ex) {
 		return this.handleRedirectConfirmSignup(ex);
 	}
-	
+
 	/**
 	 * Confirm signup invalid password.
 	 *
@@ -73,7 +71,7 @@ public class ErrorController {
 	public ModelAndView confirmSignupInvalidPassword(InvalidPasswordException ex) {
 		return this.handleRedirectConfirmSignup(ex);
 	}
-	
+
 	/**
 	 * Unexpected challenge.
 	 *
@@ -85,7 +83,6 @@ public class ErrorController {
 	public ModelAndView unexpectedChallenge(RuntimeException ex) {
 		return this.handleRedirectConfirmSignup(ex);
 	}
-	
 
 	/**
 	 * Handles redirect view .
@@ -99,7 +96,7 @@ public class ErrorController {
 		ex.printStackTrace();
 		return mav;
 	}
-	
+
 	/**
 	 * Handle redirect confirm signup.
 	 *
