@@ -23,7 +23,6 @@ import com.amazonaws.services.athena.model.ResultConfiguration;
 import com.amazonaws.services.athena.model.Row;
 import com.amazonaws.services.athena.model.StartQueryExecutionRequest;
 import com.amazonaws.services.athena.model.StartQueryExecutionResult;
-import com.ml.epic.ta.AwsCognitoTests;
 import com.ml.epic.ta.utils.IConstants.AwsAthena;
 
 /**
