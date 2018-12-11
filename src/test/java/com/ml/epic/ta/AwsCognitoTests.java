@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.fail;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ public class AwsCognitoTests extends BaseTest {
 
 	@Autowired
 	AWSCognitoIdentityProvider authClient;
+	public static final Logger log = Logger.getLogger(AwsCognitoTests.class.getName());
 
 	@Test
 	public void authTest() {
@@ -44,11 +47,14 @@ public class AwsCognitoTests extends BaseTest {
 					.withUserPoolId("us-east-1_tZBScdml6").withAuthParameters(authParams);
 
 			AdminInitiateAuthResult result = authClient.adminInitiateAuth(authRequest);
-			System.out.println(" Challenge " + result.getChallengeName());
-			System.out.println(" Result " + result.getAuthenticationResult());
+			
+			log.log(Level.INFO, "Challenge "+ result.getChallengeName());
+			log.log(Level.INFO, "Result"+result.getAuthenticationResult());
+			
 
 		} catch (Exception e) {
-			System.out.println("============" + e.getMessage());
+			
+			log.log(Level.WARNING, "========"+e.getMessage());
 			fail(e.getMessage());
 			e.printStackTrace();
 		}

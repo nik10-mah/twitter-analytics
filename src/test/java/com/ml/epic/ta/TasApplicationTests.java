@@ -1,5 +1,8 @@
 package com.ml.epic.ta;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,22 +17,23 @@ import com.ml.epic.ta.utils.IConstants.AwsAthena;
  * @since Nov 1, 2018
  */
 public class TasApplicationTests extends BaseTest{
+	
 
 	
 	@Autowired
 	AmazonAthena athenaClient;
 	
-	
+	public static final Logger log = Logger.getLogger(TasApplicationTests.class.getName());
 	@Test
 	public void executeQuery() throws InterruptedException {
-		System.out.println("athenaClient " + athenaClient); 
-		
-		
-		 String queryExecutionId = AthenaUtils.submitAthenaQuery(athenaClient, AwsAthena.ATHENA_SAMPLE_QUERY);
 
-		 AthenaUtils.waitForQueryToComplete(athenaClient, queryExecutionId);
+		log.log(Level.INFO, "athenaClient" + athenaClient);
 
-		 AthenaUtils.processResultRows(athenaClient, queryExecutionId);
+		String queryExecutionId = AthenaUtils.submitAthenaQuery(athenaClient, AwsAthena.ATHENA_SAMPLE_QUERY);
+
+		AthenaUtils.waitForQueryToComplete(athenaClient, queryExecutionId);
+
+		AthenaUtils.processResultRows(athenaClient, queryExecutionId);
 	}
 
 }

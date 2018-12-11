@@ -42,7 +42,7 @@ public class AwsTranslateTests extends BaseTest {
 
 		for (Map.Entry<String, String> entry : transalations.entrySet()) {
 
-			System.out.println(entry);
+			//System.out.println(entry);
 			
 		}
 	}

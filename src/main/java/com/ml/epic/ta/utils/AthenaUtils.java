@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.amazonaws.services.athena.AmazonAthena;
 import com.amazonaws.services.athena.model.ColumnInfo;
@@ -21,6 +23,7 @@ import com.amazonaws.services.athena.model.ResultConfiguration;
 import com.amazonaws.services.athena.model.Row;
 import com.amazonaws.services.athena.model.StartQueryExecutionRequest;
 import com.amazonaws.services.athena.model.StartQueryExecutionResult;
+import com.ml.epic.ta.AwsCognitoTests;
 import com.ml.epic.ta.utils.IConstants.AwsAthena;
 
 /**
@@ -31,6 +34,7 @@ import com.ml.epic.ta.utils.IConstants.AwsAthena;
  */
 public class AthenaUtils {
 
+	public static final Logger log = Logger.getLogger(AthenaUtils.class.getName());
 	/**
 	 * Submits a sample query to Athena and returns the execution ID of the
 	 * query.
@@ -100,7 +104,8 @@ public class AthenaUtils {
 				// Sleep an amount of time before retrying again.
 				Thread.sleep(AwsAthena.SLEEP_AMOUNT_IN_MS);
 			}
-			System.out.println("Current Status is: " + queryState);
+			
+			log.log(Level.INFO, "Current Status is: "+queryState);
 		}
 	}
 

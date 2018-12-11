@@ -1,6 +1,8 @@
 package com.ml.epic.ta.auth;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,15 +14,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomizeAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-
+	public static final Logger log = Logger.getLogger(CustomizeAuthenticationSuccessHandler.class.getName());
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		
-		System.out.println(request);
-		System.out.println(response);
-		System.out.println(authentication);
+		
+		log.info(request.toString());
+		log.log(Level.INFO, response.toString());
+		log.log(Level.INFO, authentication.toString());
     	response.sendRedirect("/home");
 
 	}
