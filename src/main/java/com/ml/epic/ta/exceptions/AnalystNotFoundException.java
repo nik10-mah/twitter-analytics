@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ml.epic.ta.auth;
+package com.ml.epic.ta.exceptions;
 
 /**
  * The Class AnalystNotFoundException: Custom Exception class is thrown when

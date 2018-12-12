@@ -13,6 +13,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
+import com.ml.epic.ta.exceptions.TasAuthenticationException;
+
 /**
  * The Class CustomAuthenticationFailureHandler. : For Handling when user is Not authorized.
  */
@@ -24,7 +26,7 @@ public class TasAuthenticationFailureHandler extends SimpleUrlAuthenticationFail
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		// check exception
-		if (exception.getClass().isAssignableFrom(TasAuthenticationException.class)) {
+		/*if (exception.getClass().isAssignableFrom(TasAuthenticationException.class)) {
 			TasAuthenticationException customAuthenticationException = (TasAuthenticationException) exception;
 			Map<String, ?> map = customAuthenticationException.getParams();
 			// if CognitoChallengeException
@@ -36,9 +38,9 @@ public class TasAuthenticationFailureHandler extends SimpleUrlAuthenticationFail
 				dispatcher.forward(request, response);
 			}
 
-		}
+		}*/
 		// if Bad Credentials
-		else if (exception.getClass().isAssignableFrom(BadCredentialsException.class)) {
+		if (exception.getClass().isAssignableFrom(BadCredentialsException.class)) {
 			// redirect to login page , with error = true , to display error message
 			response.sendRedirect("/login?error=true");
 		}

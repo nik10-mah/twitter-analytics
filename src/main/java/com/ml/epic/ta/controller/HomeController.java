@@ -85,13 +85,14 @@ public class HomeController {
 	 */
 	@PostMapping(value="/confirmSignup/challenge")
 	public ModelAndView challenge(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("/challenge");
+		ModelAndView mav = new ModelAndView("challenge");
 		// if condition to check for hashMap instance to save from unchecked or classCast exception
 		if(null != request.getAttribute("map") && request.getAttribute("map") instanceof HashMap) {
 			// get Parameters
 			HashMap<?, ?> map = (HashMap<?, ?>) request.getAttribute("map");
 			// Initilize ConfirmSignUpDTO Object
 			ConfirmSignUpDTO confirmSignUpDto = new ConfirmSignUpDTO();
+			System.out.println((String)map.get("email"));
 			// Set Email
 			confirmSignUpDto.setEmail((String)map.get("email"));
 			mav.addObject("confirmSignUpDto", confirmSignUpDto);

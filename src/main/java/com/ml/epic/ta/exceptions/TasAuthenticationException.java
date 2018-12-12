@@ -1,4 +1,4 @@
-package com.ml.epic.ta.auth;
+package com.ml.epic.ta.exceptions;
 
 import java.util.Map;
 

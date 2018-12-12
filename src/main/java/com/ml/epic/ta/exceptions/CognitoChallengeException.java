@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ml.epic.ta.auth;
+package com.ml.epic.ta.exceptions;
 
 import java.util.Map;
 
@@ -15,7 +15,8 @@ public class CognitoChallengeException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public CognitoChallengeException(String message, String challengeName, Map<String, String> challengeParams) {
+	public CognitoChallengeException(String message, String challengeName, Map<String, String> challengeParams)
+	{
 		super(message);
 	}
 
