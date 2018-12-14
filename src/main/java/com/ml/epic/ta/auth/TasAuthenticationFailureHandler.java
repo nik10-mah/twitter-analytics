@@ -1,9 +1,7 @@
 package com.ml.epic.ta.auth;
 
 import java.io.IOException;
-import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,8 +10,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
-
-import com.ml.epic.ta.exceptions.TasAuthenticationException;
 
 /**
  * The Class CustomAuthenticationFailureHandler. : For Handling when user is Not authorized.
