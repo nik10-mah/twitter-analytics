@@ -103,7 +103,7 @@ background:#fdf9f9;
     border:1px solid #00aced;
 }
 .login-form {
-    padding: 50px 0px;
+    padding: 50px 0px 0px 0px;
 }
 .login-form i.fa {
     font-size: 20px;
@@ -299,4 +299,73 @@ padding: 0px;
     padding: 30px;
     color: #fff;
     font-size: 14px;
+}
+/************************ forgotpassword-signup css *************************************/
+
+span.forgot-text a {
+    color: #4a4a4e;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.col-md-12.signup-bar {
+    padding: 20px 0px;
+    text-align: center;
+}
+.padding-zero
+{
+padding:0px;
+}
+span.signup-text a {
+    color: #0d8dbd;
+    font-weight: bold;
+    font-size: 16px;
+}
+.login-form.recovery {
+    padding: 120px 0px;
+}
+.check-box-m {
+    line-height: 23px;
+    padding: 5px 0px 0px 0px;
+}
+span.checkbox-text {
+    position: relative;
+    top: -2px;
+    padding: 0px;
+}
+.signup-form span.input-group-text {
+    background: transparent;
+    border-right: 0px;
+}
+.signup-form input {
+    border-left: 0px!important;
+}
+.signup-form i.fa {
+    font-size: 20px;
+    color: #c2c1c0;
+}
+.bootstrap-tagsinput {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    display: inline-block;
+    padding: 7px 6px;
+    color: #525556;
+    vertical-align: middle;
+    border-radius: 4px;
+    max-width: 100%;
+    line-height: 22px;
+    cursor: text;
+    width: 100%;
+}
+.bootstrap-tagsinput .tag {
+    margin-right: 2px;
+    color: white;
+    background: #00aadb;
+    padding: 4px;
+}
+span.company-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: #07acdc;
 }

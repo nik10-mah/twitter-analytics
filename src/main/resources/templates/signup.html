@@ -4,7 +4,95 @@
 	layout:decorate="~{layouts/mainLayout}">
 <body>
 	<main layout:fragment="content"> 
-SIGN UP
+		<div class="container">
+			
+			<div class="row main-box-login">
+				<div class="col-md-7">
+	
+						<div class="logo-left-image">
+	
+								<img th:src="@{/images/login-left.png}" />
+								
+													</div>
+	
+				</div>
+				<div class="col-lg-5">
+					 <div class="col-md-12 signup-form">
+	
+						<div class="logo-image">
+	
+	
+						</div>
+						<form th:action="@{/login}" method="post" >
+							<fieldset>
+								<legend class="text-center">Create User</legend>
+								<div class="form-group">
+									<div class="input-group">
+											<div class="input-group-append">
+													<span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+												  </div><input type="text" class="form-control custom-fields" name="username" id="username"  placeholder=" Username" />
+								</div>
+								<div class="col-md-12 check-box-m">
+                                 <input type="checkbox" name="sendinginviation" ><span class="checkbox-text"> Sending Invitation to this new user ?</span>
+                              <div class="col-md-12">
+			 <input type="checkbox" name="sendinginviation" ><span class="checkbox-text"> SMS (Default)</span>&nbsp;&nbsp;
+							 <input type="checkbox" name="sendinginviation" ><span class="checkbox-text"> Email</span>
+							  </div>
+								</div>
+								</div>
+								<div class="form-group">
+										<div class="input-group">
+												<div class="input-group-append">
+														<span class="input-group-text"><i class="fa fa-lock"></i></span>
+													  </div> <input type="password" class="form-control custom-fields" id="Temporarypassword" name="Temporarypassword" placeholder="Temporary Password">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+											<div class="input-group-append">
+													<span class="input-group-text"><i class="fa fa-phone-square"></i></span>
+												  </div> <input type="password" class="form-control custom-fields" id="Temporarypassword" name="Temporarypassword" placeholder="Phone Number">
+								</div>
+								<div class="col-md-12 check-box-m">
+									<input type="checkbox" name="sendinginviation" ><span class="checkbox-text"> Make Phone Number as Verified ?</span>
+						
+								   </div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+										<div class="input-group-append">
+												<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+											  </div> <input type="email" class="form-control custom-fields" id="email" name="Email" placeholder="Email Address">
+							</div>
+							<div class="col-md-12 check-box-m">
+								<input type="checkbox" name="verified" ><span class="checkbox-text"> Make Email as Verified ?</span>
+					
+							   </div>
+						</div>
+						
+								<div class="form-group">
+									<button type="submit" class="btn btn-secondary btn-block btn-theme-global">Create User</button>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+			<!-- 		<div class="form-group">
+						<div class="input-group">
+							<a th:href="@{/forgotPassword/input}" >Forgot Password</a>
+						</div>
+						<div class="input-group">
+							<a th:href="@{/signup}" >SignUp</a>
+						</div>
+					</div> -->
+		
+					<div class="col-md-12 login-bar text-center">
+						<span class="signup-text"> Already a member ? 	<a th:href="@{/login}" > Login </a></span>
+			
+			
+							</div>
+					</div>
+			</div>
+		</div>
 </main>
 </body>
 </html>

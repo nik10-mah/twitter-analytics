@@ -54,20 +54,31 @@ layout:decorate="~{layouts/mainLayout}">
 												  </div> <input type="password" class="form-control custom-fields" id="password" name="password" placeholder="Password">
 								</div>
     						</div>
-    						<div class="form-group">
-								<div class="input-group">
-									<a th:href="@{/forgotPassword/input}" >Forgot Password</a>
-								</div>
-								<div class="input-group">
-									<a th:href="@{/signup}" >SignUp</a>
-								</div>
-    						</div>
+    				
 							<div class="form-group">
 								<button type="submit" class="btn btn-secondary btn-block btn-theme-global">Login</button>
 							</div>
 						</fieldset>
 					</form>
 				</div>
+		<!-- 		<div class="form-group">
+					<div class="input-group">
+						<a th:href="@{/forgotPassword/input}" >Forgot Password</a>
+					</div>
+					<div class="input-group">
+						<a th:href="@{/signup}" >SignUp</a>
+					</div>
+				</div> -->
+				<div class="col-md-12 padding-zero ">
+			<span class="forgot-text"> <a th:href="@{/forgotPassword/input}" > Forgot Password ? </a></span>
+
+
+				</div>
+				<div class="col-md-12 signup-bar">
+					<span class="signup-text"> Not a member yet ? 	<a th:href="@{/signup}" > Register Now </a></span>
+		
+		
+						</div>
 				</div>
 		</div>
 	</div>
