@@ -37,14 +37,14 @@
 	
 	
 						</div>
-						<form th:action="@{/confirmSignup/execute}" th:object="${confirmSignUpDto}" method="post" >
+						<form th:action="@{/confirmSignup/execute}" th:object="${confirmSignUpDto}" method="post" action>
 							<fieldset>
 								<legend class="text-center">Confirm Sign Up</legend>
 								<div class="form-group">
 										<input type="hidden" class="form-control" th:field="*{email}"  placeholder="Enter your Email" />
 									</div>
 									<div class="form-group">
-										  <label for="temporaryPassword">Temporary Password</label>
+									
 										  <div class="input-group">
 										  <div class="input-group-append">
 												<span class="input-group-text"><i class="fa fa-lock"></i></span>
@@ -53,16 +53,27 @@
 										</div>
 									</div>
 									<div class="form-group">
-										  <label for="password">New Password</label>
+										
 										  <div class="input-group">
 											    <div class="input-group-append">
 														<span class="input-group-text"><i class="fa fa-lock"></i></span>
 													  </div>
-										  <input type="password" class="form-control"  th:field="*{newPassword}"  placeholder="NEW PASSWORD REQUIRED">
+										  <input type="password" id="password" class="form-control"  th:field="*{newPassword}"  placeholder="NEW PASSWORD REQUIRED">
 										  </div>
 									</div>
 									<div class="form-group">
-										<button type="submit" class="btn btn-global">Change Password</button>
+										
+										  <div class="input-group">
+											    <div class="input-group-append">
+														<span class="input-group-text"><i class="fa fa-lock"></i></span>
+													  </div>
+										  <input type="password" id="confirmPassword" class="form-control"  onkeyup="Javascript: Challenge.validatePassword()"  placeholder="CONFIRM PASSWORD REQUIRED">
+										  
+										  </div>
+										  <span class="errorMsg"></span>
+									</div>
+									<div class="form-group">
+										<button type="submit" id="challengeSubmit" class="btn btn-secondary btn-block btn-theme-global" >Change Password</button>
 									</div>
 							</fieldset>
 						</form>
@@ -70,6 +81,8 @@
 					</div>
 			</div>
 	</div>
+	<script th:src="@{/js/app/challenge.js}" src="../public/js/application/challenge.js" type="text/javascript"></script>
+ 	
 </main>
 </body>
 </html>
