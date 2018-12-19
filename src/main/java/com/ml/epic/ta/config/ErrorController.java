@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.amazonaws.services.athena.model.InvalidRequestException;
 import com.amazonaws.services.cognitoidp.model.InvalidParameterException;
 import com.amazonaws.services.cognitoidp.model.InvalidPasswordException;
+import com.amazonaws.services.cognitoidp.model.UsernameExistsException;
 import com.ml.epic.ta.dto.SignUpDTO;
 
 /**
@@ -49,7 +50,6 @@ public class ErrorController {
 		return this.handleRedirect(ex);
 	}
 
-	
 	/**
 	 * Sign up. handler for exception if exception comes during signup
 	 *
@@ -61,6 +61,19 @@ public class ErrorController {
 	public ModelAndView signUp(InvalidParameterException ex) {
 		return this.handleRedirectSignup(ex);
 	}
+
+	/**
+	 * Sign up. handler for exception if exception comes during signup
+	 *
+	 * @param ex the ex
+	 * @return the model and view
+	 */
+	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	@ExceptionHandler(UsernameExistsException.class)
+	public ModelAndView signUpUserAlreadyExist(UsernameExistsException ex) {
+		return this.handleRedirectSignup(ex);
+	}
+
 	/*
 	 * @ResponseStatus(HttpStatus.BAD_REQUEST) // 400
 	 * 
@@ -123,7 +136,7 @@ public class ErrorController {
 		ex.printStackTrace();
 		return mav;
 	}
-	
+
 	/**
 	 * Handle redirect signup. : Redirects to SignUp Page.
 	 *
@@ -132,7 +145,7 @@ public class ErrorController {
 	 */
 	private ModelAndView handleRedirectSignup(Exception ex) {
 		ModelAndView mav = new ModelAndView("signup");
-		SignUpDTO signUpDTO = new SignUpDTO(); 
+		SignUpDTO signUpDTO = new SignUpDTO();
 		mav.addObject("signUpDTO", signUpDTO);
 		mav.addObject("error", ex.getMessage());
 		ex.printStackTrace();
