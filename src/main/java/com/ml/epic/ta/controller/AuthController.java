@@ -39,14 +39,14 @@ public class AuthController {
 	 */
 	@PostMapping(value = "/signup/execute")
 	public ModelAndView signUpExecute(@ModelAttribute("signUpDTO") SignUpDTO signUpDTO) throws InterruptedException {
-		ModelAndView mav = new ModelAndView("login");
+		ModelAndView mav = new ModelAndView("auth/login");
 
 		HashMap<String, String> map = userService.signUp(signUpDTO);
 		String error = (String) map.get("error");
 		String success = (String) map.get("success");
 
 		if (null != error) {
-			mav = new ModelAndView("signup");
+			mav = new ModelAndView("auth/signup");
 			mav.addObject("error", error);
 		} else {
 			mav.addObject("success", success);
@@ -63,7 +63,7 @@ public class AuthController {
 	 */
 	@GetMapping(value = "/signup")
 	public ModelAndView signup() throws InterruptedException {
-		ModelAndView mav = new ModelAndView("signup");
+		ModelAndView mav = new ModelAndView("auth/signup");
 		/*
 		 * List<String> invitationTypes = new ArrayList<String>();
 		 * invitationTypes.add("SMS(DEFAULT)"); invitationTypes.add("EMAIL");
@@ -119,7 +119,7 @@ public class AuthController {
 	 */
 	@PostMapping(value = "/confirmSignup/challenge")
 	public ModelAndView challenge(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("challenge");
+		ModelAndView mav = new ModelAndView("auth/challenge");
 		// if condition to check for hashMap instance to save from unchecked or
 		// classCast exception
 		if (null != request.getAttribute("map") && request.getAttribute("map") instanceof HashMap) {

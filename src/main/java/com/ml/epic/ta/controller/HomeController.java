@@ -43,10 +43,10 @@ public class HomeController {
 	public ModelAndView login(@RequestParam(required = false, value = "error") String error,
 			@RequestParam(required = false) String logout) throws InterruptedException {
 
-		ModelAndView mav = new ModelAndView("login");
+		ModelAndView mav = new ModelAndView("auth/login");
 		// System.out.println("\n\n\n"+error+"\n\n\n");
 		if (null != error) {
-			mav = new ModelAndView("login");
+			mav = new ModelAndView("auth/login");
 			// Message to Display
 			mav.addObject("error", "Invalid Username or Password");
 		}
@@ -74,7 +74,7 @@ public class HomeController {
 	 */
 	@GetMapping(value = { "/signout", "/logout" })
 	public ModelAndView signout(HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
-		ModelAndView mav = new ModelAndView("login");
+		ModelAndView mav = new ModelAndView("auth/login");
 		// FOR Log out
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
@@ -88,7 +88,7 @@ public class HomeController {
 
 	// @GetMapping(value = { "/error" })
 	// public ModelAndView error() throws InterruptedException {
-	// ModelAndView mav = new ModelAndView("login");
+	// ModelAndView mav = new ModelAndView("auth/login");
 	// mav.addObject("error", "Invalid Username or Password");
 	// return mav;
 	// }

@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
 		HashMap<String, String> map = new HashMap<String, String>();
 		if (null != signUpDto.getUsername() && !signUpDto.getUsername().equals("")) {
 			this.signUpLogic(signUpDto);
-			map.put("success", "User Created. Kindly Login.");
+			map.put("success", "User Created.Kindly check your email for temporary password.");
 			map.put("error", null);
 
 		} else {
