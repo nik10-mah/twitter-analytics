@@ -144,7 +144,7 @@ public class ErrorController {
 	 * @return the model and view
 	 */
 	private ModelAndView handleRedirectSignup(Exception ex) {
-		ModelAndView mav = new ModelAndView("signup");
+		ModelAndView mav = new ModelAndView("auth/signup");
 		SignUpDTO signUpDTO = new SignUpDTO();
 		mav.addObject("signUpDTO", signUpDTO);
 		mav.addObject("error", ex.getMessage());
