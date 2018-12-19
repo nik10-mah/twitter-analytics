@@ -159,31 +159,9 @@ public class HomeController {
 		return mav;
 	}
 
-	/**
-	 * Forgot password: Open the forgotPassword page only so that user can email to
-	 * get reset link
-	 *
-	 * @return the model and view
-	 * @throws InterruptedException the interrupted exception
-	 */
-	@GetMapping(value = "/forgotPassword/input")
-	public ModelAndView forgotPassword() throws InterruptedException {
-		ModelAndView mav = new ModelAndView("forgotPassword");
-		return mav;
-	}
+	
 
-	/**
-	 * Reset password: OPen the resetPassword page only so that user can put new
-	 * password to reset password
-	 *
-	 * @return the model and view
-	 * @throws InterruptedException the interrupted exception
-	 */
-	@GetMapping(value = "/resetPassword/input")
-	public ModelAndView resetPassword() throws InterruptedException {
-		ModelAndView mav = new ModelAndView("resetPassword");
-		return mav;
-	}
+	
 
 	/**
 	 * Confirm signup.
