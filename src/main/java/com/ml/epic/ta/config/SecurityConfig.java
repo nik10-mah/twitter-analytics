@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// allow css, images , js, fonts and default urls
 		http.authorizeRequests()
-				.antMatchers("/", "/css/**", "/images/**", "/js/**", "/fonts/**", "/login","/signup","/resetPassword/input","/forgotPassword/input")
+				.antMatchers("/", "/css/**", "/images/**", "/js/**", "/fonts/**", "/login","/signup","/resetPassword/input","/forgotPassword/input","/signup/execute")
 				.permitAll().anyRequest().authenticated().and().formLogin()
 				.successHandler(customizeAuthenticationSuccessHandler).failureHandler(tasAuthenticationFailureHandler)
 				.loginPage("/login").permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/");

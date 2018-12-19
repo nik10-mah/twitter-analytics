@@ -26,6 +26,7 @@ import com.amazonaws.services.cognitoidp.model.ChallengeNameType;
 import com.amazonaws.services.cognitoidp.model.NotAuthorizedException;
 import com.amazonaws.services.cognitoidp.model.UserNotFoundException;
 import com.ml.epic.ta.dto.ConfirmSignUpDTO;
+import com.ml.epic.ta.dto.SignUpDTO;
 import com.ml.epic.ta.service.UserService;
 
 // TODO: Auto-generated Javadoc
@@ -37,26 +38,24 @@ import com.ml.epic.ta.service.UserService;
 @Controller
 public class HomeController {
 
-	
-
 	/** The user service. */
 	@Autowired
 	UserService userService;
 
 	/**
-	 * Home: Default app url, /login, /signin  will invoke this method.
+	 * Home: Default app url, /login, /signin will invoke this method.
 	 *
-	 * @param error the error
+	 * @param error  the error
 	 * @param logout the logout
 	 * @return the view to be redirected to
 	 * @throws InterruptedException the interrupted exception
 	 */
 	@GetMapping(value = { "/", "/login", "/signin" })
-	public ModelAndView login(@RequestParam(required = false, value="error") String error,
+	public ModelAndView login(@RequestParam(required = false, value = "error") String error,
 			@RequestParam(required = false) String logout) throws InterruptedException {
 
 		ModelAndView mav = new ModelAndView("login");
-		//System.out.println("\n\n\n"+error+"\n\n\n");
+		// System.out.println("\n\n\n"+error+"\n\n\n");
 		if (null != error) {
 			mav = new ModelAndView("login");
 			// Message to Display
@@ -64,41 +63,41 @@ public class HomeController {
 		}
 
 		// check if user is already login send to home
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = null;
-		if (principal instanceof UserDetails) { 
-				username = ((UserDetails)principal).getUsername(); 
-			} else { 
-					 username = principal.toString(); 
-			}
-		// if user already login 
-		if(null != username && "anonymousUser" != username) {
-			 mav =new ModelAndView("redirect:/home");
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		// if user already login
+		if (null != username && "anonymousUser" != username) {
+			mav = new ModelAndView("redirect:/home");
 		}
 		return mav;
 	}
-	
+
 	/**
 	 * Challenge. URL will redirect to challenge page to change password
 	 *
 	 * @return the model and view
 	 */
-	@PostMapping(value="/confirmSignup/challenge")
+	@PostMapping(value = "/confirmSignup/challenge")
 	public ModelAndView challenge(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("challenge");
-		// if condition to check for hashMap instance to save from unchecked or classCast exception
-		if(null != request.getAttribute("map") && request.getAttribute("map") instanceof HashMap) {
+		// if condition to check for hashMap instance to save from unchecked or
+		// classCast exception
+		if (null != request.getAttribute("map") && request.getAttribute("map") instanceof HashMap) {
 			// get Parameters
 			HashMap<?, ?> map = (HashMap<?, ?>) request.getAttribute("map");
 			// Initilize ConfirmSignUpDTO Object
 			ConfirmSignUpDTO confirmSignUpDto = new ConfirmSignUpDTO();
-			System.out.println((String)map.get("email"));
+			System.out.println((String) map.get("email"));
 			// Set Email
-			confirmSignUpDto.setEmail((String)map.get("email"));
+			confirmSignUpDto.setEmail((String) map.get("email"));
 			mav.addObject("confirmSignUpDto", confirmSignUpDto);
 		}
-		
-		
+
 		return mav;
 	}
 
@@ -112,11 +111,11 @@ public class HomeController {
 	public ModelAndView signout(HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
 		ModelAndView mav = new ModelAndView("login");
 		// FOR Log out
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
-        if (auth != null){      
-        	// Log out
-           new SecurityContextLogoutHandler().logout(request, response, auth);  
-        }  
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			// Log out
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
 		// Message to Display
 		mav.addObject("success", "You have been successfully logout");
 		return mav;
@@ -130,7 +129,7 @@ public class HomeController {
 	// }
 
 	/**
-	 * Home.  will call at url /home
+	 * Home. will call at url /home
 	 *
 	 * @return the model and view
 	 * @throws InterruptedException the interrupted exception
@@ -140,7 +139,7 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("home");
 		return mav;
 	}
-	
+
 	/**
 	 * Signup: use to open the sign up page at url /signup
 	 *
@@ -150,11 +149,19 @@ public class HomeController {
 	@GetMapping(value = "/signup")
 	public ModelAndView signup() throws InterruptedException {
 		ModelAndView mav = new ModelAndView("signup");
+		/*
+		 * List<String> invitationTypes = new ArrayList<String>();
+		 * invitationTypes.add("SMS(DEFAULT)"); invitationTypes.add("EMAIL");
+		 * mav.addObject("invitationTypes", invitationTypes);
+		 */
+		SignUpDTO signUpDTO = new SignUpDTO();
+		mav.addObject("signUpDTO", signUpDTO);
 		return mav;
 	}
-	
+
 	/**
-	 * Forgot password: Open the forgotPassword page only so that user can email to get reset link 
+	 * Forgot password: Open the forgotPassword page only so that user can email to
+	 * get reset link
 	 *
 	 * @return the model and view
 	 * @throws InterruptedException the interrupted exception
@@ -164,9 +171,10 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("forgotPassword");
 		return mav;
 	}
-	
+
 	/**
-	 * Reset password: OPen the resetPassword page only so that user can put new password to reset password 
+	 * Reset password: OPen the resetPassword page only so that user can put new
+	 * password to reset password
 	 *
 	 * @return the model and view
 	 * @throws InterruptedException the interrupted exception
@@ -176,8 +184,7 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView("resetPassword");
 		return mav;
 	}
-	
-	
+
 	/**
 	 * Confirm signup.
 	 *
@@ -186,33 +193,33 @@ public class HomeController {
 	 * @throws InterruptedException the interrupted exception
 	 */
 	@PostMapping(value = "/confirmSignup/execute")
-	public ModelAndView confirmSignup(@ModelAttribute("confirmSignUpDto") ConfirmSignUpDTO confirmSignUpDto) throws InterruptedException {
-		
+	public ModelAndView confirmSignup(@ModelAttribute("confirmSignUpDto") ConfirmSignUpDTO confirmSignUpDto)
+			throws InterruptedException {
+
 		AdminInitiateAuthResult result = null;
 		String email = confirmSignUpDto.getEmail();
 		String tempPassword = confirmSignUpDto.getTempPassword();
 		String finalPassword = confirmSignUpDto.getNewPassword();
 		ModelAndView mav = null;
-		
+
 		try {
 			// check for Authentication Email And temporary Password correct or not.
-		result = userService.authenticate(email, tempPassword );
-		}catch (NotAuthorizedException  | UserNotFoundException e) {
+			result = userService.authenticate(email, tempPassword);
+		} catch (NotAuthorizedException | UserNotFoundException e) {
 			throw new BadCredentialsException("Incorrect username or password");
-		} 
-		
+		}
+
 		// Challege will return for NEW Password Required
-		 if (! ChallengeNameType.NEW_PASSWORD_REQUIRED.name().equals(result.getChallengeName()))
-         {
-             throw new RuntimeException( "unexpected challenge: " + result.getChallengeName());
-         }
-		 // Get Session by Email And Temporary Password
-		 String session = result.getSession();
-		 // Confirm Signup , Update New Password
-		 boolean signupConfirmed = userService.confirmSignup(email, tempPassword, finalPassword, session);
-		 if(signupConfirmed)
-			 mav = new ModelAndView("login");
-		
+		if (!ChallengeNameType.NEW_PASSWORD_REQUIRED.name().equals(result.getChallengeName())) {
+			throw new RuntimeException("unexpected challenge: " + result.getChallengeName());
+		}
+		// Get Session by Email And Temporary Password
+		String session = result.getSession();
+		// Confirm Signup , Update New Password
+		boolean signupConfirmed = userService.confirmSignup(email, tempPassword, finalPassword, session);
+		if (signupConfirmed)
+			mav = new ModelAndView("home");
+
 		return mav;
 	}
 
