@@ -56,11 +56,18 @@ public class UserServiceImpl implements UserService {
 				.withUserPoolId("us-east-1_tZBScdml6").withAuthParameters(authParams);
 
 		AdminInitiateAuthResult result = authClient.adminInitiateAuth(authRequest);
-		System.out.println(" Challenge " + result.getChallengeName());
-		System.out.println(" Result " + result.getAuthenticationResult());
 		return result;
 	}
 
+	/**
+	 * Confirm signup auth.
+	 *
+	 * @param emailAddress the email address
+	 * @param tempPassword the temp password
+	 * @param finalPassword the final password
+	 * @param session the session
+	 * @return the admin respond to auth challenge result
+	 */
 	// Method will call to Confirm Sign Up
 	public AdminRespondToAuthChallengeResult confirmSignupAuth(String emailAddress, String tempPassword,
 			String finalPassword, String session) {
