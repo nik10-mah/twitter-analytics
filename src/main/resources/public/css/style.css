@@ -303,10 +303,10 @@ padding: 0px;
 /************************ forgotpassword-signup css *************************************/
 
 span.forgot-text a {
-    color: #4a4a4e;
+    color: #41aae2;
     font-size: 14px;
     font-weight: bold;
-    text-decoration: none;
+    
 }
 .col-md-12.signup-bar {
     padding: 20px 0px;
