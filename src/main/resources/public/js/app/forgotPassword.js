@@ -1,4 +1,4 @@
-//$("#forgotPasswordSubmit").attr('disabled', true);
+$("#forgotPasswordSubmit").attr('disabled', true);
 var forgotPassword = {
 
 	/*// function for validating password for reset the password.
@@ -21,9 +21,13 @@ var forgotPassword = {
 	}*/
 		
 		onKeyUpUsername: function (e){
-			let username = 	$("#username").text();
+			let username = 	$("#username").val();
+			
 			if(username != null && username != "" && username != undefined){
 				$("#forgotPasswordSubmit").attr('disabled', false);
+			}
+			else{
+				$("#forgotPasswordSubmit").attr('disabled', true);
 			}
 		}
 }
