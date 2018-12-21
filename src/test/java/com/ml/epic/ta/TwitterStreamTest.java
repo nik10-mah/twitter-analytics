@@ -43,5 +43,20 @@ public class TwitterStreamTest extends BaseTest {
 		System.out.println(resp);
 
 	}
+	
+	@Test
+	public void stop() throws URISyntaxException {
+		RestTemplate restTemplate = new RestTemplate();
+
+		String url = BASE_URL + "/event/stop";
+		String requestJson = "{\"event_name\":\"NewYearEve2019\"}";
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
+		String resp = restTemplate.postForObject(url, entity, String.class);
+		System.out.println(resp);
+
+	}
 
 }
