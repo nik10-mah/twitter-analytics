@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
@@ -30,7 +29,7 @@ public class AwsCognitoTests extends BaseTest {
 	AWSCognitoIdentityProvider authClient;
 	public static final Logger log = Logger.getLogger(AwsCognitoTests.class.getName());
 
-	@Test
+
 	public void authTest() {
 		try {
 

@@ -16,9 +16,12 @@ import com.amazonaws.services.athena.AmazonAthena;
 import com.amazonaws.services.athena.AmazonAthenaClientBuilder;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProviderClientBuilder;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.translate.AmazonTranslate;
 import com.amazonaws.services.translate.AmazonTranslateClientBuilder;
 import com.ml.epic.ta.utils.IConstants.AwsAthena;
+import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 
 /**
  * The Class AwsConfig: All the AWs Configuration Resides here
@@ -27,6 +30,7 @@ import com.ml.epic.ta.utils.IConstants.AwsAthena;
  */
 @Configuration
 @EnableConfigurationProperties(AwsProperties.class)
+@EnableDynamoDBRepositories(basePackages = "com.ml.epic.ta.repository")
 public class AwsConfig {
 
 	@Autowired
@@ -78,5 +82,18 @@ public class AwsConfig {
 				.withCredentials(credentialsProvider());
 		return builder.build();
 
+	}
+	
+	/**
+	 * Amazon dynamo DB : Bean for AWS Amazon dynamo DB Service to be used in application
+	 *
+	 * @return the amazon dynamo DB
+	 */
+	@Bean
+	public AmazonDynamoDB amazonDynamoDB() {
+		//Connect AWS
+				AmazonDynamoDB amazonDynamoDB =  AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1)
+		                .withCredentials(credentialsProvider()).build();
+				return amazonDynamoDB;
 	}
 }
