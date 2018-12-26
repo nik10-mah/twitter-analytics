@@ -104,6 +104,19 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <!-- end::security[] -->
+        
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb -->
+        <dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-dynamodb</artifactId>
+			<version>${aws.version}</version>
+		</dependency>
+ 		<!-- https://mvnrepository.com/artifact/com.github.derjust/spring-data-dynamodb -->
+ 		<dependency>
+			<groupId>com.github.derjust</groupId>
+			<artifactId>spring-data-dynamodb</artifactId>
+			<version>5.0.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
