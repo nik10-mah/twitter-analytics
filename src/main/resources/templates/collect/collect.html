@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/mainLayout}">
+
+<body>
+	<main layout:fragment="content">
+		<!-- Listing, Message Div and Create Button Here -->
+		<div th:replace="collect/listing :: listing"></div>
+		<!--  POP UP Dialog to open -->
+		<div th:replace="collect/createDialog :: dialog"></div>
+	</main>
+</body>
+</html>

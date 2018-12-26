@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/mainLayout}"
+>
+  <body>
+    <main layout:fragment="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <span class="subheader-title">User Activity</span>
+          </div>
+        </div>
+
+        <form th:action="@{/collect/startEvent/input}">
+          <div class="top-head">
+				<a href="javascript:void(0)" class="btn btn-sm btn-add"  th:href="@{/analyze/dashboard/}"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp; Dashboard</a>
+          </div>
+
+          <div class="card border-secondary mb-3">
+            <table class="table table-striped">
+              <thead>
+                <th>AnalystName</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+               
+              </thead>
+              <tbody>
+                <tr>
+                  <td>David johnsan</td>
+                  <td>11:00 AM</td>
+                  <td>12:30 PM</td>
+                </tr>
+                <tr>
+                  <td>David johnsan</td>
+                  <td>11:00 AM</td>
+                  <td>12:30 PM</td>
+                </tr>
+                <tr>
+                  <td>David johnsan</td>
+                  <td>11:00 AM</td>
+                  <td>12:30 PM</td>
+                </tr>
+                <tr>
+                  <td>David johnsan</td>
+                  <td>11:00 AM</td>
+                  <td>12:30 PM</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

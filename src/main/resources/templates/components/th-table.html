@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="config(columns, rows, id)">
+<table class="table table-striped table-bordered" th:id="${id}" th:if="${rows}">
+  <thead>
+    <tr>
+      <th scope="row" th:each="column : ${columns}" th:text="${column}" class="text-capitalize">Header</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="row : ${rows} ">
+      <td th:each="column : ${columns}" th:text="${row.get(column)}">Column content</td>
+    </tr>
+  </tbody>
+  <!-- <tfoot>
+  <tr>
+  	<td colspan="100%">
+		 <div th:with="pageCount=${#lists.size(rows)/10 + 1}">
+		  <ul class="pagination">
+		    <li class="page-item disabled">
+		      <a class="page-link" href="#">&laquo;</a>
+		    </li>
+		    <li class="page-item"  th:each="i : ${#numbers.sequence( 1, pageCount)}" th:classappend="${i == 1} ? active">
+		      <a class="page-link" href="#" th:text="${i}" >1</a>
+		    </li>
+		    <li class="page-item">
+		      <a class="page-link" href="#">2</a>
+		    </li>
+		    <li class="page-item">
+		      <a class="page-link" href="#">3</a>
+		    </li>
+		    <li class="page-item">
+		      <a class="page-link" href="#">4</a>
+		    </li>
+		    <li class="page-item">
+		      <a class="page-link" href="#">5</a>
+		    </li>
+		   
+		    <li class="page-item">
+		      <a class="page-link" href="#">&raquo;</a>
+		    </li>
+		    <li>
+		    	<div class="form-group">
+                    <select class="form-control pagination" id="pageSizeSelect">
+                        <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                            th:value="${pageSize}"
+                            th:selected="${pageSize} == ${selectedPageSize}"></option>
+                    </select>
+                </div>
+            </li>
+		  </ul>
+		   
+		</div>
+  	</td>
+  	</tr>
+  </tfoot> -->
+</table>
+</div>
+</html>

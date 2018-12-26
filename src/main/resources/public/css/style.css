@@ -1,0 +1,371 @@
+@charset "UTF-8";
+.wrapper {
+    height: 100vh;
+    display: flex;
+
+    /* Direction of the items, can be row or column */
+    flex-direction: column;
+    
+}
+
+/* header,
+footer {
+    height: 30px;
+} */
+
+main {
+	padding: 20px;
+    flex: 1;
+}
+
+.navbar-header {
+    float: left;
+    /* padding: 15px; */
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {float:none;}
+
+.btn-home {
+     padding: 10%; 
+    font-size: 48px 
+}
+
+
+
+.btn-outline-primary {
+    color: #3E3F3A;
+    background-color: transparent;
+    background-image: none;
+    border-color: #3E3F3A;
+}
+.btn-primary {
+	color: #fff;
+    background-color: #3E3F3A;
+    border-color: #3E3F3A;
+	
+}
+.border-primary {
+	border-color: #3E3F3A !important
+}
+.tags-input-div {
+    margin: 13px 0px;
+}
+.corresponding-keywords{
+	padding: 10px;
+}
+.form-check.checkbox-custom {
+    float: left;
+    padding: 10px 25px 9px 22px;
+}
+
+/******************************************* login page css **********************************************/
+
+#login-backround
+{
+background:#fdf9f9;
+
+}
+.main-box-login {
+    background: #fff;
+    border: 1px solid #e2dada;
+    padding: 50px;
+    margin-top: 15px;
+}
+.logo-image img {
+    width: 350px;
+    text-align: center;
+    max-width:100%;
+}
+.logo-left-image img {
+    width: 85%;
+}
+.custom-fields {
+    height: 50px;
+}
+.btn-theme-global {
+    background: #414141;
+    padding: 14px 0px;
+    font-size: 19px;
+}
+.btn-theme-global {
+    background: transparent;
+    padding: 10px 0px;
+    font-size: 15px;
+    color: #3e3e3e;
+    border: 1px solid #3e3e3e;
+}
+.btn-theme-global:hover {
+    background: #00aced;
+    padding: 10px 0px;
+    font-size: 15px;
+    color: #fff;
+    border:1px solid #00aced;
+}
+.login-form {
+    padding: 50px 0px 0px 0px;
+}
+.login-form i.fa {
+    font-size: 20px;
+    color: #c2c1c0;
+}
+.login-form span.input-group-text {
+    background: transparent;
+    border-right: 0px;
+}
+.login-form input {
+    border-left: 0px!important;
+}
+nav.navbar.navbar-expand-lg.navbar-light {
+    border-bottom: 1px solid #dcd2d2;
+}
+footer.footer {
+    background: #3e3e3e;
+    color: #fff;
+    padding: 10px 0px;
+}
+.bg-light {
+    background-color: #ffffff !important;
+}
+a.nav-link {
+    font-size: 14px!important;
+    color: #3e3e3e!important;
+}
+
+/********************************** homepage css ******************************/
+.card-body.box img {
+    width: 200px;
+    padding: 20px;
+}
+a.btn.btn-secondary.btn-lg.btn-block.card-btn {
+    background: transparent;
+    color: #474747;
+    font-size: 16px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-color: #e2d4d4;
+    padding: 14px 0px;
+}
+a.btn.btn-secondary.btn-lg.btn-block.card-btn:hover {
+    background: #08acdc;
+    color: #ffffff;
+   }
+
+   /******************************** collect page csss ***********************/
+   .action {
+    text-align:right!important;
+}
+a.btn.btn-sm.btn-add {
+    background: transparent;
+    border: 1px solid #d6c8c8;
+    color: #000;
+    padding: 10px 40px;
+    font-size: 14px;
+}
+a.btn.btn-sm.btn-add:hover {
+    background: #03A9F4;
+    color:#fff;
+
+}
+.top-head {
+    margin: 20px 0px;
+}
+.action i.fa {
+    color: #3e4142;
+    font-size: 15px;
+    padding-left: 12px;
+}
+span.subheader-title {
+    font-size: 18px;
+    font-weight:bold;
+}
+.btn:focus, .btn.focus {
+    outline: 0;
+    -webkit-box-shadow: unset; 
+   box-shadow: unset; 
+}
+/**************************** modal css ************************/
+.modal-header {
+    background: #00aadb;
+    color: #fff;
+}
+button.btn.btn-global {
+    background: transparent;
+    border: 1px solid #bbadad;
+    padding: 8px 20px;
+    font-size: 14px;
+    color: #313131;
+}
+button.btn.btn-global:hover {
+    background: #00aadb;
+    border: 1px solid #00aadb;
+    color:#fff;
+ 
+}
+.modal-footer {
+    padding: 1rem 0px;
+}
+/************************************** startevent page css *****************************************/
+.event-view {
+    border: 1px solid #d4c6c6;
+  
+}
+.event-name {
+    background: #03A9F4;
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    margin: 0px 0px 35px;
+    padding: 10px 0px;
+}
+.trnslated-box {
+    background: #f3f0f0;
+    padding: 20px;
+}
+.title-trans {
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    color: #000;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+input.btn.btn-global {
+    background: #fff;
+    border: 1px solid #c7b5b5;
+    padding: 8px 20px;
+    font-size: 14px;
+    color: #313131;
+}
+input.btn.btn-global:hover {
+    background: #03A9F4;
+    border: 1px solid #03A9F4;
+    padding: 8px 20px;
+    font-size: 14px;
+    color:#fff;
+}
+.col-padding
+{
+padding: 0px;
+}
+.small-box {
+    border-radius: 2px;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.small-box > .inner {
+    padding: 10px;
+}
+.small-box .icon {
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    z-index: 0;
+    font-size: 90px;
+    color: rgba(0, 0, 0, 0.15);
+}
+.small-box > .small-box-footer {
+    position: relative;
+    text-align: center;
+    padding: 3px 0;
+    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+.small-box:hover {
+    text-decoration: none;
+    color: #f9f9f9;
+}
+
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+    background-color: #03A9F4;
+}
+.bg-grey, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+    background-color: #615d5d;
+}
+.small-box > .small-box-footer:hover {
+    color: #fff;
+    background: #000 !important;
+}
+.small-box > .inner {
+    padding: 30px;
+    color: #fff;
+    font-size: 14px;
+}
+/************************ forgotpassword-signup css *************************************/
+
+span.forgot-text a {
+    color: #41aae2;
+    font-size: 14px;
+    font-weight: bold;
+    
+}
+.col-md-12.signup-bar {
+    padding: 20px 0px;
+    text-align: center;
+}
+.padding-zero
+{
+padding:0px;
+}
+span.signup-text a {
+    color: #0d8dbd;
+    font-weight: bold;
+    font-size: 16px;
+}
+.login-form.recovery {
+    padding: 120px 0px;
+}
+.check-box-m {
+    line-height: 23px;
+    padding: 5px 0px 0px 0px;
+}
+span.checkbox-text {
+    position: relative;
+    top: -2px;
+    padding: 0px;
+}
+.signup-form span.input-group-text {
+    background: transparent;
+    border-right: 0px;
+}
+.signup-form input {
+    border-left: 0px!important;
+}
+.signup-form i.fa {
+    font-size: 20px;
+    color: #c2c1c0;
+}
+.bootstrap-tagsinput {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    display: inline-block;
+    padding: 7px 6px;
+    color: #525556;
+    vertical-align: middle;
+    border-radius: 4px;
+    max-width: 100%;
+    line-height: 22px;
+    cursor: text;
+    width: 100%;
+}
+.bootstrap-tagsinput .tag {
+    margin-right: 2px;
+    color: white;
+    background: #00aadb;
+    padding: 4px;
+}
+span.company-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: #07acdc;
+}

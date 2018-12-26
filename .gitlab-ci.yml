@@ -1,0 +1,36 @@
+image: maven:3.3-jdk-8-alpine
+services:
+  - docker:dind
+
+stages:
+  - build
+  - upload
+  - deploy  
+
+maven-build:
+#  image: maven:3-jdk-8
+  stage: build
+  script: "./mvnw package"
+  artifacts:
+    paths:
+      - target/twitter-analytics.jar
+#  uploading to aws
+aws-upload:
+  stage: upload
+  before_script: 
+    - mkdir -p ~/.ssh     
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa     
+    - chmod 600 ~/.ssh/id_rsa     
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  only: 
+    - master
+  script: 
+    - 'scp target/twitter-analytics.jar ec2-user@$DEPLOY_SERVER:/home/ec2-user/tas-build'  
+#  start deployment
+aws-deploy:
+  stage: deploy  
+  script: 
+    - ssh ec2-user@$DEPLOY_SERVER 
+    - bash aws-deploy.sh
+  only: 
+    - master

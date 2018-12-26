@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/mainLayout}">
+<body>
+	<main layout:fragment="content"> 
+	<div class="container">
+	<div class="row">
+		<div class="col-lg-4 mx-auto">
+			<div class="card mb-3 text-center">
+				<div class="card-body box">
+						<img th:src="@{/images/exe.png}"/>
+					<a th:href="@{/analyze/query/input}" class="btn btn-secondary btn-lg btn-block card-btn">Execute Query</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-lg-4 mx-auto">
+			<div class="card mb-3 text-center">
+				<div class="card-body box">
+						<img th:src="@{/images/dash.png}"/>
+					<a th:href="@{/analyze/dashboard}" class="btn btn-secondary btn-lg btn-block card-btn">View Dashboard</a>
+					<!-- <a href="Javascript: Common.comingSoon()" class="btn btn-secondary btn-lg btn-block">View Dashboard</a> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 mx-auto">
+			<div class="card mb-3 text-center">
+				<div class="card-body box">
+						<img th:src="@{/images/collect.png}"/>
+					<a href="Javascript: Common.comingSoon()" class="btn btn-secondary btn-lg btn-block card-btn">Extract Images</a>
+					<!-- <a href="Javascript: Common.comingSoon()" class="btn btn-secondary btn-lg btn-block card-btn" >Extract Images</a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+	</main>
+</body>
+</html>
