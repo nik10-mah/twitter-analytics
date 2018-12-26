@@ -1,5 +1,6 @@
 package com.ml.epic.ta.controller;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ml.epic.ta.client.service.ClientApiService;
+import com.ml.epic.ta.component.EventToPost;
 import com.ml.epic.ta.dto.CreateEventDTO;
 import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.model.Event;
@@ -34,6 +37,15 @@ public class CollectController {
 	@Autowired
 	EventService eventService;
 	
+	
+//	 The API Service to call NodeJS API
+	@Autowired
+	ClientApiService clientApiService;
+	
+//	The Component to hold the Data of EventDTO
+	@Autowired
+	EventToPost eventToPost;
+
 	
 	/**
 	 * Collect.
@@ -114,8 +126,19 @@ public class CollectController {
 	 * @return the model and view
 	 */
 	@PostMapping(value = "/startEvent/execute")
-	public ModelAndView executeStartEvent(@ModelAttribute("eventDto") EventDTO eventDto) {
-		ModelAndView mav =new ModelAndView("redirect:/collect/startEvent/input");
+	public ModelAndView executeStartEvent(@ModelAttribute("eventDto") EventDTO eventDto) throws URISyntaxException {
+		
+		System.out.println(eventDto.getEventName());
+//		Binding the recieved Data with to component
+		eventToPost.setEventToPostimpl(eventDto);
+		
+//		Generating the Json Data from Class eventToPost
+		clientApiService.setRequestJson(eventToPost.getObject());
+		
+//		Sendint the generated data to clientApi Service to start the Stream
+		clientApiService.start();
+
+		ModelAndView mav =new ModelAndView("redirect:/collect/");
 		return mav;
 	}
 	
@@ -147,7 +170,13 @@ public class CollectController {
 	 * @return the model and view
 	 */
 	@GetMapping(value = "/stopEvent")
-	public ModelAndView stopEvent() {
+	public ModelAndView stopEvent() throws URISyntaxException {
+		String eventName = "Halloween";
+		
+//		Sending the event Name of which stream has to be stopped
+		clientApiService.stop(eventName);
+
+		
 		ModelAndView mav =new ModelAndView("collect/collect");
 		mav.addObject("stop","Event Stoped");
 		return mav;

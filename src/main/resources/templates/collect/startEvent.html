@@ -63,6 +63,9 @@
 								aria-describedby="inputKeyword1"
 								placeholder="Enter Keywords in csv format" data-role="tagsinput"/>
 						</div>
+						<div>
+						<input type="hidden" name="eventName" th:field="${eventName}"/>
+						</div>
 						<div class="form-group text-right">
 							<button type="button" class="btn btn-global"
 								onclick="Javascript: Collect.clickTranslate(this)">Translate</button>
