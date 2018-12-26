@@ -20,7 +20,6 @@ import com.ml.epic.ta.service.EventService;
 @Service("eventService")
 public class EventServiceImpl implements EventService {
 
-	/** The event repository. */
 	@Autowired
 	EventRepository eventRepository;
 
@@ -58,11 +57,13 @@ public class EventServiceImpl implements EventService {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.ml.epic.ta.service.EventService#findAll()
+	 */
 	@Override
 	public List<Event> findAll() {
-		// TODO Auto-generated method stub
-		List<Event> listOfEvents = (List<Event>) eventRepository.findAll();
-		return listOfEvents;
+		List<Event> aoEvents = (List<Event>) eventRepository.findAll();
+		return aoEvents;
 	}
 
 }

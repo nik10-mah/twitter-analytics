@@ -19,5 +19,10 @@ public interface EventService {
 	 */
 	String save(CreateEventDTO createEventDTO);
 
+	/**
+	 * Find all events in database
+	 *
+	 * @return the list
+	 */
 	List<Event> findAll();
 }

@@ -1,5 +1,7 @@
 package com.ml.epic.ta;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -10,11 +12,11 @@ import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
 import com.ml.epic.ta.dto.CreateEventDTO;
 import com.ml.epic.ta.service.EventService;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class DynamoDBLocalConnectivity.
+ * The Class EventsTests.
  */
-public class DynamoDBLocalConnectivity extends BaseTest {
+public class EventsTests extends BaseTest {
 
 	@Autowired
 	AmazonDynamoDB amazonDynamoDB;
@@ -25,7 +27,8 @@ public class DynamoDBLocalConnectivity extends BaseTest {
 	/**
 	 * List tables.
 	 *
-	 * @throws Exception the exception
+	 * @throws Exception
+	 *             the exception
 	 */
 	public void listTables() throws Exception {
 
@@ -54,14 +57,17 @@ public class DynamoDBLocalConnectivity extends BaseTest {
 	 */
 	public void save() {
 		CreateEventDTO createEventDTO = new CreateEventDTO();
-		//eventService.save(createEventDTO);
+		 eventService.save(createEventDTO);
 	}
-	
+
+	/**
+	 * Find all events.
+	 */
 	@Test
-	public void findAllEvents(){
-		System.out.println("kkkkkkkkkkkkk");
-		List<?> list = eventService.findAll();
-		System.out.println("ffffffff"+list);
+	public void findAllEvents() {
+
+		List<?> aoEvents = eventService.findAll();
+		assertTrue(aoEvents.size() > 0);
 	}
 
 }
