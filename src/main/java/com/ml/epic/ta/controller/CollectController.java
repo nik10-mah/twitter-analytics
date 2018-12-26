@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ml.epic.ta.dto.CreateEventDTO;
 import com.ml.epic.ta.dto.EventDTO;
+import com.ml.epic.ta.model.Event;
 import com.ml.epic.ta.service.AwsTranslateService;
 import com.ml.epic.ta.service.EventService;
 
@@ -44,7 +45,8 @@ public class CollectController {
 		ModelAndView mav =new ModelAndView("collect/collect");
 		CreateEventDTO createEventDTO = new CreateEventDTO();
 		mav.addObject("createEventDTO", createEventDTO);
-		eventService.findAll();
+		List<Event> listEvents = eventService.findAll();
+		mav.addObject("listEvents", listEvents);
 		return mav;
 	}
 	
@@ -76,6 +78,8 @@ public class CollectController {
 	public ModelAndView executeCreateEvent(@RequestBody CreateEventDTO createEventDTO) {
 		eventService.save(createEventDTO);	
 		ModelAndView mav =new ModelAndView("collect/listing");
+		List<Event> listEvents = eventService.findAll();
+		mav.addObject("listEvents", listEvents);
 		return mav;
 	}
 	

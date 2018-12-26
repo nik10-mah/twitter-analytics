@@ -66,7 +66,7 @@
 
 					</thead>
 					<tbody>
-						<tr>
+						<!-- <tr>
 							<td>Halloweenn</td>
 							<td>Not Started</td>
 							<td></td>
@@ -102,6 +102,21 @@
 							 <td>John, 17 Dec 2018, 05:00 PM</td>
 							<td class="action"><a
 								th:href="@{/collect/startEvent/input?eventName=Halloween}"
+								class="icon-action" data-toggle="tooltip" data-placement="top"
+								title="Start"><i class="fa fa-external-link"></i></a>&nbsp;&nbsp;<a
+								th:href="@{/collect/stopEvent}" class="icon-action"
+								data-toggle="tooltip" data-placement="top" title=""
+								data-original-title="Stop"><i class="fa fa-ban"></i></a>&nbsp;&nbsp;<a
+								th:href="@{/collect/deleteEvent}" class="icon-action"
+								data-toggle="tooltip" data-placement="top" title=""
+								data-original-title="Delete"><i class="fa fa-trash-o"></i></a></td>
+						</tr> -->
+						<tr th:each="event,row: ${listEvents}">
+							<td th:text="${event.EventName}">Halloweenn</td>
+							<td th:text="${event.status}">Not Started</td>
+							<td></td>
+							<td class="action"><a
+								th:href="@{/collect/startEvent/input?(eventName=${event.EventName})}"
 								class="icon-action" data-toggle="tooltip" data-placement="top"
 								title="Start"><i class="fa fa-external-link"></i></a>&nbsp;&nbsp;<a
 								th:href="@{/collect/stopEvent}" class="icon-action"
