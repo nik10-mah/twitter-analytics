@@ -44,6 +44,7 @@ public class CollectController {
 		ModelAndView mav =new ModelAndView("collect/collect");
 		CreateEventDTO createEventDTO = new CreateEventDTO();
 		mav.addObject("createEventDTO", createEventDTO);
+		eventService.findAll();
 		return mav;
 	}
 	

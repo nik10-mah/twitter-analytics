@@ -1,6 +1,9 @@
 package com.ml.epic.ta.service;
 
+import java.util.List;
+
 import com.ml.epic.ta.dto.CreateEventDTO;
+import com.ml.epic.ta.model.Event;
 
 /**
  * The Interface EventService.
@@ -15,4 +18,6 @@ public interface EventService {
 	 * @return the string :
 	 */
 	String save(CreateEventDTO createEventDTO);
+
+	List<Event> findAll();
 }

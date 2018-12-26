@@ -52,10 +52,16 @@ public class DynamoDBLocalConnectivity extends BaseTest {
 	/**
 	 * Save.
 	 */
-	@Test
 	public void save() {
 		CreateEventDTO createEventDTO = new CreateEventDTO();
 		//eventService.save(createEventDTO);
+	}
+	
+	@Test
+	public void findAllEvents(){
+		System.out.println("kkkkkkkkkkkkk");
+		List<?> list = eventService.findAll();
+		System.out.println("ffffffff"+list);
 	}
 
 }

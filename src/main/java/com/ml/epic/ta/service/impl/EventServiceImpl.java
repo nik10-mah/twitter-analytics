@@ -1,6 +1,7 @@
 package com.ml.epic.ta.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -55,6 +56,13 @@ public class EventServiceImpl implements EventService {
 		eventResult = "success";
 		return eventResult;
 
+	}
+
+	@Override
+	public List<Event> findAll() {
+		// TODO Auto-generated method stub
+		List<Event> listOfEvents = (List<Event>) eventRepository.findAll();
+		return listOfEvents;
 	}
 
 }
