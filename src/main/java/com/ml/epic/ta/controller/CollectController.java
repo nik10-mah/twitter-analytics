@@ -73,9 +73,8 @@ public class CollectController {
 	
 	@PostMapping(value = "/createEvent/execute")
 	public ModelAndView executeCreateEvent(@RequestBody CreateEventDTO createEventDTO) {
-		String result = eventService.save(createEventDTO);	
+		eventService.save(createEventDTO);	
 		ModelAndView mav =new ModelAndView("collect/listing");
-		//mav.addObject("success", "Record Added Successfully.");
 		return mav;
 	}
 	
