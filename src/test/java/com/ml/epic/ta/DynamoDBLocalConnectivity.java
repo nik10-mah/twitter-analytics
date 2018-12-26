@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
+import com.ml.epic.ta.dto.CreateEventDTO;
 import com.ml.epic.ta.service.EventService;
 
 // TODO: Auto-generated Javadoc
@@ -53,7 +54,8 @@ public class DynamoDBLocalConnectivity extends BaseTest {
 	 */
 	@Test
 	public void save() {
-		eventService.save();
+		CreateEventDTO createEventDTO = new CreateEventDTO();
+		//eventService.save(createEventDTO);
 	}
 
 }

@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ml.epic.ta.dto.CreateEventDTO;
 import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.service.AwsTranslateService;
+import com.ml.epic.ta.service.EventService;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -27,7 +30,8 @@ public class CollectController {
 	@Autowired
 	AwsTranslateService awsTranslateService;
 	
-	
+	@Autowired
+	EventService eventService;
 	
 	
 	/**
@@ -38,6 +42,8 @@ public class CollectController {
 	@GetMapping(value = "/")
 	public ModelAndView collect() {
 		ModelAndView mav =new ModelAndView("collect/collect");
+		CreateEventDTO createEventDTO = new CreateEventDTO();
+		mav.addObject("createEventDTO", createEventDTO);
 		return mav;
 	}
 	
@@ -58,9 +64,9 @@ public class CollectController {
 	 * @return the model and view
 	 */
 	@PostMapping(value = "/createEvent/execute")
-	public ModelAndView executeCreateEvent() {
-		ModelAndView mav =new ModelAndView("execute");
-		return mav;
+	public String executeCreateEvent(@RequestBody CreateEventDTO createEventDTO) {
+		String result = eventService.save(createEventDTO);	
+		return result;
 	}
 	
 	/**

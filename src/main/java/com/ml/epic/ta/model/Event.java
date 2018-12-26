@@ -1,32 +1,30 @@
 package com.ml.epic.ta.model;
 
+import java.util.Date;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 /**
- * The Class Event.
+ * The Class Event. Model class for event.
  */
 @DynamoDBTable(tableName = "Events")
 public class Event {
-	
-	/** The event name. */
+
 	String eventName;
-	
-	/** The event keywords. */
 	String eventKeywords;
-	
-	/**
-	 * Instantiates a new event.
-	 */
-	/*String translatedKeywords;
+	String translatedKeywords;
 	Date startedAt;
 	Date stoppedAt;
 	Date createdAt;
 	Date deletedAt;
 	String ownerOfEvent; // (Cognito Username of logged in user will come here)
 	String status;// (CREATED, RUNNING, STOPPED OR DELETED)
-*/
+
+	/**
+	 * Instantiates a new event.
+	 */
 	public Event() {
 		super();
 	}
@@ -34,20 +32,41 @@ public class Event {
 	/**
 	 * Instantiates a new event.
 	 *
-	 * @param eventName the event name
+	 * @param eventName     the event name
 	 * @param eventKeywords the event keywords
 	 */
 	public Event(String eventName, String eventKeywords) {
 		super();
 		this.eventName = eventName;
 		this.eventKeywords = eventKeywords;
-		/*this.translatedKeywords = translatedKeywords;
+		
+	}
+
+	/**
+	 * Instantiates a new event.
+	 *
+	 * @param eventName          the event name
+	 * @param eventKeywords      the event keywords
+	 * @param translatedKeywords the translated keywords
+	 * @param startedAt          the started at
+	 * @param stoppedAt          the stopped at
+	 * @param createdAt          the created at
+	 * @param deletedAt          the deleted at
+	 * @param ownerOfEvent       the owner of event
+	 * @param status             the status
+	 */
+	public Event(String eventName, String eventKeywords, String translatedKeywords, Date startedAt, Date stoppedAt,
+			Date createdAt, Date deletedAt, String ownerOfEvent, String status) {
+		super();
+		this.eventName = eventName;
+		this.eventKeywords = eventKeywords;
+		this.translatedKeywords = translatedKeywords;
 		this.startedAt = startedAt;
 		this.stoppedAt = stoppedAt;
 		this.createdAt = createdAt;
 		this.deletedAt = deletedAt;
 		this.ownerOfEvent = ownerOfEvent;
-		this.status = status;*/
+		this.status = status;
 	}
 
 	/**
@@ -68,7 +87,7 @@ public class Event {
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
-	
+
 	/**
 	 * Gets the event keywords.
 	 *
@@ -88,60 +107,137 @@ public class Event {
 		this.eventKeywords = eventKeywords;
 	}
 
-	/*public String getTranslatedKeywords() {
+	/**
+	 * Gets the translated keywords.
+	 *
+	 * @return the translated keywords
+	 */
+	@DynamoDBAttribute(attributeName = "translated_keywords")
+	public String getTranslatedKeywords() {
 		return translatedKeywords;
 	}
 
+	/**
+	 * Sets the translated keywords.
+	 *
+	 * @param translatedKeywords the new translated keywords
+	 */
 	public void setTranslatedKeywords(String translatedKeywords) {
 		this.translatedKeywords = translatedKeywords;
 	}
 
+	/**
+	 * Gets the started at.
+	 *
+	 * @return the started at
+	 */
+	@DynamoDBAttribute(attributeName = "started_at")
 	public Date getStartedAt() {
 		return startedAt;
 	}
 
+	/**
+	 * Sets the started at.
+	 *
+	 * @param startedAt the new started at
+	 */
 	public void setStartedAt(Date startedAt) {
 		this.startedAt = startedAt;
 	}
 
+	/**
+	 * Gets the stopped at.
+	 *
+	 * @return the stopped at
+	 */
+	@DynamoDBAttribute(attributeName = "stopped_at")
 	public Date getStoppedAt() {
 		return stoppedAt;
 	}
 
+	/**
+	 * Sets the stopped at.
+	 *
+	 * @param stoppedAt the new stopped at
+	 */
 	public void setStoppedAt(Date stoppedAt) {
 		this.stoppedAt = stoppedAt;
 	}
 
+	/**
+	 * Gets the created at.
+	 *
+	 * @return the created at
+	 */
+	@DynamoDBAttribute(attributeName = "created_at")
 	public Date getCreatedAt() {
 		return createdAt;
 	}
 
+	/**
+	 * Sets the created at.
+	 *
+	 * @param createdAt the new created at
+	 */
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
+	/**
+	 * Gets the deleted at.
+	 *
+	 * @return the deleted at
+	 */
+	@DynamoDBAttribute(attributeName = "deleted_at")
 	public Date getDeletedAt() {
 		return deletedAt;
 	}
 
+	/**
+	 * Sets the deleted at.
+	 *
+	 * @param deletedAt the new deleted at
+	 */
 	public void setDeletedAt(Date deletedAt) {
 		this.deletedAt = deletedAt;
 	}
 
+	/**
+	 * Gets the owner of event.
+	 *
+	 * @return the owner of event
+	 */
+	@DynamoDBAttribute(attributeName = "cognito_owner")
 	public String getOwnerOfEvent() {
 		return ownerOfEvent;
 	}
 
+	/**
+	 * Sets the owner of event.
+	 *
+	 * @param ownerOfEvent the new owner of event
+	 */
 	public void setOwnerOfEvent(String ownerOfEvent) {
 		this.ownerOfEvent = ownerOfEvent;
 	}
 
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
+	@DynamoDBAttribute(attributeName = "status")
 	public String getStatus() {
 		return status;
 	}
 
+	/**
+	 * Sets the status.
+	 *
+	 * @param status the new status
+	 */
 	public void setStatus(String status) {
 		this.status = status;
-	}*/
+	}
 
 }
