@@ -63,10 +63,20 @@ public class CollectController {
 	 * on execute the create event page.
 	 * @return the model and view
 	 */
-	@PostMapping(value = "/createEvent/execute")
+	/*@PostMapping(value = "/createEvent/execute")
 	public String executeCreateEvent(@RequestBody CreateEventDTO createEventDTO) {
 		String result = eventService.save(createEventDTO);	
+		ModelAndView mav =new ModelAndView("redirect:/collect/");
+		
 		return result;
+	}*/
+	
+	@PostMapping(value = "/createEvent/execute")
+	public ModelAndView executeCreateEvent(@RequestBody CreateEventDTO createEventDTO) {
+		String result = eventService.save(createEventDTO);	
+		ModelAndView mav =new ModelAndView("collect/listing");
+		//mav.addObject("success", "Record Added Successfully.");
+		return mav;
 	}
 	
 	/**
