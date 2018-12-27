@@ -55,17 +55,17 @@
 			</div>
 
 			<div class=" mb-3">
-				<table class="ttable table-striped table-bordered" th:id="eventList ">
+				<table class="ttable table-striped table-bordered" th:id="eventList">
 					<thead>
 					<tr>
-						<th colspan="2">Event Name</th>
+						<th>Event Name</th>
 						<th>Status</th>
 						<th class="action">Action</th>
 					</tr>
 					</thead>
 					<tbody>
 						<tr th:each="event,row: ${listEvents}">
-							<td th:text="${event.EventName}" colspan="2">Event Name</td>
+							<td th:text="${event.EventName}" >Event Name</td>
 							<td th:text="${event.status}">Event Status</td>
 							<td class="action">
 								<a th:href="@{/collect/startEvent/input?(eventName=${event.EventName})}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Start"><i class="fa fa-external-link"></i></a>&nbsp;&nbsp;
