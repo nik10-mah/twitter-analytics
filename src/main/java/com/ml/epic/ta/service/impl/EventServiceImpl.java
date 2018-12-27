@@ -20,8 +20,7 @@ import com.ml.epic.ta.service.EventService;
 @Service("eventService")
 public class EventServiceImpl implements EventService {
 	
-	@Autowired
-	Event event;
+	
 
 	@Autowired
 	EventRepository eventRepository;
@@ -69,12 +68,9 @@ public class EventServiceImpl implements EventService {
 		return aoEvents;
 	}
 	
-	public void delete()
-	{
-		Event event = new Event();
-		event.setEventName(eventName);
-		eventRepository.delete
+	
+		
 		
 	}
 
-}
+
