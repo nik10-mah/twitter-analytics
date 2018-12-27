@@ -34,9 +34,10 @@ public class AwsCognitoTests extends BaseTest {
 		try {
 
 			final Map<String, String> authParams = new HashMap<>();
-			authParams.put("USERNAME", "nik10.mah@gmail.com");
-			authParams.put("PASSWORD", "1qaz!QAZ");
-			
+
+			authParams.put("USERNAME", "stacksapien@vradars.com");
+			authParams.put("PASSWORD", "Vishal123!");
+
 //			authParams.put("USERNAME", "abby@vradars.com");
 //			authParams.put("PASSWORD", "Abby@2018");
 			

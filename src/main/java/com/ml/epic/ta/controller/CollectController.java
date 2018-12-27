@@ -1,6 +1,7 @@
 package com.ml.epic.ta.controller;
 
 import java.net.URISyntaxException;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ml.epic.ta.client.service.ClientApiService;
 import com.ml.epic.ta.component.EventToPost;
+
 import com.ml.epic.ta.dto.CreateEventDTO;
 import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.model.Event;
@@ -36,7 +38,6 @@ public class CollectController {
 	
 	@Autowired
 	EventService eventService;
-	
 	
 //	 The API Service to call NodeJS API
 	@Autowired
@@ -177,7 +178,6 @@ public class CollectController {
 		
 //		Sending the event Name of which stream has to be stopped
 		clientApiService.stop(eventName);
-
 		
 		ModelAndView mav =new ModelAndView("collect/collect");
 		mav.addObject("stop","Event Stoped");

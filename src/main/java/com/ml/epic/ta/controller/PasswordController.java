@@ -28,7 +28,8 @@ public class PasswordController {
 	 */
 	@GetMapping(value = "/forgotPassword/input")
 	public ModelAndView forgotPasswordInput() throws InterruptedException {
-		ModelAndView mav = new ModelAndView("password/forgotPassword");
+
+		ModelAndView mav = new ModelAndView("password/forgot");
 		mav.addObject("forgotPasswordDto", new ForgotPasswordDTO(null, null, null));
 		mav.addObject("otp", null);
 
@@ -46,7 +47,8 @@ public class PasswordController {
 	@PostMapping(value = "/forgotPassword/execute")
 	public ModelAndView forgetPasswordExecute(@ModelAttribute("forgotPasswordDto") ForgotPasswordDTO forgotPasswordDto)
 			throws InterruptedException {
-		ModelAndView mav = new ModelAndView("password/forgotPassword");
+
+		ModelAndView mav = new ModelAndView("password/forgot");
 		// if some try to access /forgotPassword/execute , redirect to Login
 		if (null == forgotPasswordDto.getOtp() && null == forgotPasswordDto.getUsername()
 				&& null == forgotPasswordDto.getNewPassword()) {
