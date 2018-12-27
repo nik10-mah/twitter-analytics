@@ -25,4 +25,11 @@ public interface EventService {
 	 * @return the list
 	 */
 	List<Event> findAll();
+
+	/**
+	 * Delete by id.: Handles the delete process. Takes event id .
+	 *
+	 * @param id the id
+	 */
+	void deleteById(String id);
 }

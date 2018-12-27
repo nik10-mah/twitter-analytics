@@ -67,6 +67,16 @@ public class EventServiceImpl implements EventService {
 		List<Event> aoEvents = (List<Event>) eventRepository.findAll();
 		return aoEvents;
 	}
+
+	/**
+	 * Delete by id.: Handles the delete process. Takes event id .
+	 *
+	 * @param id the id
+	 */
+	@Override
+	public void deleteById(String id) {
+		eventRepository.deleteById(id);
+	}
 	
 	
 		
