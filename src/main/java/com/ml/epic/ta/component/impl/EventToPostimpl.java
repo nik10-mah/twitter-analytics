@@ -37,7 +37,14 @@ public class EventToPostimpl implements EventToPost {
 	}
 
 	//Returing the object for conversion to JSON in Clien API Service
+	@Override
+	public String toString(){
+		String x = event_name+" "+topics+" "+languages;
+		return x;
+	}
+	
 	public EventToPostimpl getObject(){
+		System.out.println(event_name+" "+topics+" "+languages);
 		return this;
 	}
 	

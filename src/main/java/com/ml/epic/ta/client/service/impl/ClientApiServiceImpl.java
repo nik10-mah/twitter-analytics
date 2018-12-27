@@ -30,6 +30,7 @@ public class ClientApiServiceImpl implements ClientApiService {
 	//	Created the Json String out of eventToPost class which will be sent as JSON request later
 	//	on to start the stream.
 	public void setRequestJson(EventToPostimpl eventToPost){
+		System.out.println(eventToPost.toString());
 		requestJson = new Gson().toJson(eventToPost);
 	}
 	
