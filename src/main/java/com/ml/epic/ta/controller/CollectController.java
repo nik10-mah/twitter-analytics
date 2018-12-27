@@ -130,7 +130,7 @@ public class CollectController {
 	public ModelAndView executeStartEvent(@ModelAttribute("eventDto") EventDTO eventDto) throws URISyntaxException {
 		
 		//System.out.println(eventDto.getEventName());
-//		Binding the recieved Data with to component
+//		Binding the received Data with to component
 		eventToPost.setEventToPostimpl(eventDto);
 		
 //		Generating the Json Data from Class eventToPost
