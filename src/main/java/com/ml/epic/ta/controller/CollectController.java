@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -181,15 +183,17 @@ public class CollectController {
 	}
 
 	/**
-	 * Delete event.
+	 * Delete event.: handles the delete Event request based on event id.
 	 *
 	 * @return the model and view
 	 */
-	@GetMapping(value = "/deleteEvent")
-	public ModelAndView deleteEvent() {
-		ModelAndView mav = new ModelAndView("collect/collect");
-		mav.addObject("delete", "Event Deleted");
-
+	@DeleteMapping(value = "/deleteEvent/{id}")
+	public ModelAndView deleteEvent(@PathVariable(value="id") String id) {
+		ModelAndView mav =new ModelAndView("collect/listing");
+		//mav.addObject("delete","Event Deleted");
+		eventService.deleteById(id);
+		List<Event> listEvents = eventService.findAll();
+		mav.addObject("listEvents", listEvents);
 		return mav;
 	}
 }

@@ -79,7 +79,9 @@
 							<td class="action">
 								<a th:href="@{/collect/startEvent/input?(eventName=${event.EventName})}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Start"><i class="fa fa-external-link"></i></a>&nbsp;&nbsp;
 								<a th:href="@{/collect/stopEvent}" class="icon-action"	data-toggle="tooltip" data-placement="top" title="Stop Event"	data-original-title="Stop"><i class="fa fa-ban"></i></a>&nbsp;&nbsp;
-								<a th:href="@{/collect/deleteEvent}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Delete Event" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+								<!-- <a th:onclick="Javascript: Listing.deleteFn(\'' +${event.EventName}+ '\')" class="icon-action" data-toggle="tooltip" data-placement="top" title="Delete Event" data-original-title="Delete"><i class="fa fa-trash-o"></i></a> -->
+								<a th:onclick="javascript:return Listing.deleteEvent(this);" th:attr="data-id=${event.id}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Delete Event" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+								
 							</td>
 
 						</tr>

@@ -30,6 +30,7 @@ public class EventsTests extends BaseTest {
 	 * @throws Exception
 	 *             the exception
 	 */
+	@Test
 	public void listTables() throws Exception {
 
 		/*
@@ -63,11 +64,16 @@ public class EventsTests extends BaseTest {
 	/**
 	 * Find all events.
 	 */
-	@Test
 	public void findAllEvents() {
 
 		List<?> aoEvents = eventService.findAll();
 		assertTrue(aoEvents.size() > 0);
+	}
+	public void delete() {
+		List<?> aoEventsBeforeDelete = eventService.findAll();
+		eventService.deleteById("sds");
+		List<?> aoEventsAfterDelete = eventService.findAll();
+		assertTrue(aoEventsBeforeDelete.size() - aoEventsAfterDelete.size() == 1);
 	}
 
 }

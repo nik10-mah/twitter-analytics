@@ -14,7 +14,7 @@ var Common = {
 			// todo set datatable for all pages			
 			var tableObj = $('#'+tableId);
 			tableObj.parent().html(data);
-			tableObj.dataTable();
+			tableObj.DataTable();
 			
 			// $.noop is blank function. if callback is udefined then execute blank function
 			callback = callback || $.noop;
