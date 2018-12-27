@@ -128,7 +128,7 @@ public class CollectController {
 	@PostMapping(value = "/startEvent/execute")
 	public ModelAndView executeStartEvent(@ModelAttribute("eventDto") EventDTO eventDto) throws URISyntaxException {
 		
-		System.out.println(eventDto.getEventName());
+		//System.out.println(eventDto.getEventName());
 //		Binding the recieved Data with to component
 		eventToPost.setEventToPostimpl(eventDto);
 		
@@ -171,6 +171,8 @@ public class CollectController {
 	 */
 	@GetMapping(value = "/stopEvent")
 	public ModelAndView stopEvent() throws URISyntaxException {
+		
+		//Replace the given eventName string with received StringName from stopEvent
 		String eventName = "Halloween";
 		
 //		Sending the event Name of which stream has to be stopped
