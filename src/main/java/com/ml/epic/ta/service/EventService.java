@@ -34,4 +34,7 @@ public interface EventService {
 	 * @param id the id
 	 */
 	void deleteById(String id);
+
+
+	Event findById(String eventId);
 }

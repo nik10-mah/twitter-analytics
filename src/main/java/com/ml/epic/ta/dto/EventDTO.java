@@ -10,6 +10,10 @@ import com.google.gson.annotations.SerializedName;
  * The Class EventDTO.
  */
 public class EventDTO {
+
+	@SerializedName("event_id")
+	private String eventId;
+	
 	@SerializedName("event_name")
 	private String eventName;
 
@@ -155,15 +159,32 @@ public class EventDTO {
 		this.listOfCorrespondingKeywordsDto = listOfCorrespondingKeywordsDto;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	
+	
+	/**
+	 * Gets the event id.
+	 *
+	 * @return the event id
 	 */
+	public String getEventId() {
+		return eventId;
+	}
+
+	/**
+	 * Sets the event id.
+	 *
+	 * @param eventId the new event id
+	 */
+	public void setEventId(String eventId) {
+		this.eventId = eventId;
+	}
+
 	@Override
 	public String toString() {
-		return "EventDTO [eventName=" + eventName + ", targetLangs=" + targetLangs + ", keywords=" + keywords
-				+ ", listOfCorrespondingKeywordsDto=" + listOfCorrespondingKeywordsDto + "]";
+		return "EventDTO [eventId=" + eventId + ", eventName=" + eventName + ", keywords=" + keywords + ", targetLangs="
+				+ targetLangs + ", listOfCorrespondingKeywordsDto=" + listOfCorrespondingKeywordsDto + "]";
 	}
+
+	
 
 }

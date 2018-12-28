@@ -369,3 +369,7 @@ span.company-name {
     font-weight: bold;
     color: #07acdc;
 }
+
+a.icon-action.deleteIcon {
+    cursor: pointer;
+}

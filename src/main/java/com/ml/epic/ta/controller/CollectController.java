@@ -100,21 +100,27 @@ public class CollectController {
 	 * 
 	 * @return the model and view
 	 */
-	@GetMapping(value = "/startEvent/input")
-	public ModelAndView inputStartEvent(@RequestParam String eventName) {
+	/*@GetMapping(value = "/startEvent/input")
+	public ModelAndView inputStartEvent(@RequestParam String eventName) {*/
+		@GetMapping(value = "/startEvent/input")
+		public ModelAndView inputStartEvent(@RequestParam String id) {
+
 		ModelAndView mav = new ModelAndView("/collect/startEvent");
 		// To Display AWS supported languages in Start Event Page, Use
 		// getSupportedLanguages method from AWS Translate Service
 		List<String> allTargetLangsCodes = awsTranslateService.getSupportedLanguages();
 		// Ctreate Empty Object of DTO to initalise the Binding on UI
 		EventDTO eventDto = new EventDTO();
-
+		Event event = eventService.findById(id);
+		eventDto.setEventId(event.getId());
+		eventDto.setEventName(event.getEventName());
+		eventDto.setKeywords(event.getEventKeywords());
 		mav.addObject("eventDto", eventDto);
-		mav.addObject("eventName", eventName);
+		//mav.addObject("eventName", eventName);
 
 		mav.addObject("allTargetLangsCodes", allTargetLangsCodes);
 
-		System.out.println(eventName);
+		//System.out.println(eventName);
 
 		return mav;
 	}

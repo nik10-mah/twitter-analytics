@@ -22,7 +22,7 @@ import com.ml.epic.ta.dto.EventDTO;
 @Service("clientService")
 public class ClientServiceImpl implements ClientService {
 
-	private static String BASE_URL = "http://stacksapien.vradars.com:3000/api";
+	private static String BASE_URL = "http://localhost:9000/api/";
 	private String requestJson;
 
 	/**
