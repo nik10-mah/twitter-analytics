@@ -22,6 +22,7 @@ import com.ml.epic.ta.dto.EventDTO;
 @Service("clientService")
 public class ClientServiceImpl implements ClientService {
 
+	//private static String BASE_URL = "http://stacksapien.vradars.com:3000/api";
 	private static String BASE_URL = "http://localhost:9000/api/";
 	private String requestJson;
 
@@ -68,22 +69,28 @@ public class ClientServiceImpl implements ClientService {
 	 * (non-Javadoc)
 	 * 
 	 * @see com.ml.epic.ta.client.service.ClientService#stop(java.lang.String)
-	 * stop(String eventName) recieves the name of the event as parameter it
+	 * stop(String eventId) recieves the event id of the event as parameter it
 	 * requests the Node API to stop the stream.
 	 */
 	@Override
-	public void stop(String eventName) throws URISyntaxException {
+	public void stop(String eventId) throws URISyntaxException {
 
 		RestTemplate restTemplate = new RestTemplate();
 
 		String URL = BASE_URL + "/event/stop";
 
-		String event_name = "{" + "\"event_name\"" + ": " + "\"" + eventName + "\"" + "}";
-		System.out.println("The generated JSON to stop stream is ->\n" + event_name);
+		//String event_name = "{" + "\"event_name\"" + ": " + "\"" + eventName + "\"" + "}";
+		String event_id = "{" + "\"event_id\"" + ": " + "\"" + eventId + "\"" + "}";
+
+		//System.out.println("The generated JSON to stop stream is ->\n" + event_name);
+		System.out.println("The generated JSON to stop stream is ->\n" + event_id);
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		HttpEntity<String> entity = new HttpEntity<String>(event_name, headers);
+		//HttpEntity<String> entity = new HttpEntity<String>(event_name, headers);
+		HttpEntity<String> entity = new HttpEntity<String>(event_id, headers);
+
 		String resp = restTemplate.postForObject(URL, entity, String.class);
 		System.out.println("The recieved response is ->\n" + resp);
 

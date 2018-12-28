@@ -1,7 +1,6 @@
 package com.ml.epic.ta.controller;
 
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ml.epic.ta.client.service.ClientService;
-
 import com.ml.epic.ta.dto.CreateEventDTO;
 import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.model.Event;
@@ -135,7 +133,7 @@ public class CollectController {
 	@PostMapping(value = "/startEvent/execute")
 	public ModelAndView executeStartEvent(@ModelAttribute("eventDto") EventDTO eventDto) throws URISyntaxException {
 
-		// Sendint the generated data to clientApi Service to start the Stream
+		// Sending the generated data to clientApi Service to start the Stream
 		clientService.start(eventDto);
 
 		ModelAndView mav = new ModelAndView("redirect:/collect/");
@@ -174,14 +172,14 @@ public class CollectController {
 	 * @return the model and view
 	 */
 	@GetMapping(value = "/stopEvent")
-	public ModelAndView stopEvent() throws URISyntaxException {
+	public ModelAndView stopEvent(@RequestParam String id) throws URISyntaxException {
 
-		// Replace the given eventName string with received StringName from
+		// Replace the given eventId string with received String id from
 		// stopEvent
-		String eventName = "Halloween";
+		//String eventName = "Halloween";
 
 		// Sending the event Name of which stream has to be stopped
-		clientService.stop(eventName);
+		clientService.stop(id);
 
 		ModelAndView mav = new ModelAndView("collect/collect");
 		mav.addObject("stop", "Event Stoped");

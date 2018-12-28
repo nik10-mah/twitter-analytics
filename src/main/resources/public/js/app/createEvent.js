@@ -25,14 +25,13 @@ var CreateEvent = {
 						success : function(response) {
 							// update UI
 							// Empty Dialog Fields
-							$("#eventKeywords").val('');
-							$("#eventName").val('');
-							// As we have used class bootstrap-tagsinput , it makes span for every keyword for making tags.
-							// remove all tags.
-							 $(".bootstrap-tagsinput").find("span").remove();
-							 
+							 $("#eventKeywords").val('');
+							 $("#eventName").val('');
+							 $("#eventKeywords").tagsinput('removeAll');
+
 							// close pop up
 							 $('#createDialog').modal('toggle');
+							 
 							$('#displayCollect').html(response);
 							$('#displayMsg').text('Event Saved Successfully .')
 

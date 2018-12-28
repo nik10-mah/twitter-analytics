@@ -25,14 +25,15 @@
 			</div>
 
 		</div>
+		<form th:action="@{/collect/startEvent/execute}"
+					th:object="${eventDto}" method="POST">
 		<div class="row event-view">
 			<div class="event-name text-center">
-				StartEvent: <span th:text="${eventName}"></span>
+				StartEvent: <span th:text="*{eventName}"></span>
 			</div>
 			<div class="col-lg-12 mb-3">
-
-				<form th:action="@{/collect/startEvent/execute}"
-					th:object="${eventDto}" method="POST">
+				
+				
 					<fieldset>
 
 
@@ -65,8 +66,8 @@
 								id="inputKeyword1" th:field="*{keywords}"
 								aria-describedby="inputKeyword1"
 								placeholder="Enter Keywords in csv format" data-role="tagsinput"/>
-								<input type="hidden" name="eventName" th:value="${eventName}" />
-								<input type="hidden" name="eventId" th:value="${eventId}" />
+								<input type="hidden" name="eventName" th:field="*{eventName}" />
+								<input type="hidden" name="eventId" th:field="*{eventId}" />
 								
 
 						<div class="form-group text-right">
@@ -79,9 +80,10 @@
 							</div>
 						</div>
 					</fieldset>
-				</form>
+				
 			</div>
 		</div>
+		</form>
 	</div>
 	<script th:src="@{/js/app/collect.js}"
 		src="../public/js/application/analyze.js" type="text/javascript"></script>
