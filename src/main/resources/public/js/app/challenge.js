@@ -8,7 +8,7 @@ var Challenge = {
 		var confirm_password = document.getElementById("confirmPassword").value;
                // condition to check the password.
 		if (password != confirm_password) {
-			$(".errorMsg").text('Passwords Do Not Match.');
+			$(".errorMsg").text('Passwords do not match.');
 			$(".errorMsg").css('color', 'red');
 
 			$("#challengeSubmit").attr('disabled', true);
