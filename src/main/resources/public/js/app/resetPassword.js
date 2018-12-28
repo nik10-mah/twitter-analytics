@@ -12,7 +12,7 @@ var resetPassword = {
 
 		// compare password 
 		if (password != confirm_password) {
-			$(".errorMsg").text('Passwords Do Not Match.');
+			$(".errorMsg").text('Passwords do not match.');
 			$(".errorMsg").css('color', 'red');
 			$("#forgotPasswordSubmit").attr('disabled', true);
 			return false;
