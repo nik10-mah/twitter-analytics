@@ -6,6 +6,7 @@ $(document).ready(function() {
 var Common = {
 	comingSoon : function() {
 		alert('Coming Soon');
+
 	},
 	// common function for fetching html list for a table. TODO:// to be tested 
 	fetchData : function(url, tableId, callback){

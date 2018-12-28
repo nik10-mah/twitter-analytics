@@ -3,6 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
+
 <title>Event Listing</title>
 </head>
 <body>
@@ -46,7 +47,9 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<span class="subheader-title">EVENTS</span>
+
 			</div>
+
 		</div>
 
 		<form th:action="@{/collect/startEvent/input}">
@@ -80,11 +83,13 @@
 								<a th:onclick="javascript:return Listing.deleteEvent(this);" th:attr="data-id=${event.id}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Delete Event" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
 								
 							</td>
+
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</form>
+
 	</div>
 
 
@@ -123,7 +128,9 @@
 	</div>
 	 </form> 
 </div> --> 
+
 	<script th:src="@{/js/app/collectListing.js}" src="../public/js/app/collectListing.js" type="text/javascript"></script>
+
 </div>
 </div>
 </body>

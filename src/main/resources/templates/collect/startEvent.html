@@ -4,7 +4,9 @@
 	layout:decorate="~{layouts/mainLayout}">
 <head>
 <meta charset="UTF-8">
+
 <title>Start Event</title>
+
 </head>
 <body>
 	<main layout:fragment="content">
@@ -58,11 +60,13 @@
 						</fieldset>
 						<div class="form-group">
 							<label for="enterKeywords" class="label-text">Enter
+
 								Keywords</label> <input type="text" class="form-control"
 								id="inputKeyword1" th:field="*{keywords}"
 								aria-describedby="inputKeyword1"
 								placeholder="Enter Keywords in csv format" data-role="tagsinput"/>
-						</div>
+								<input type="hidden" name="eventName" th:value="${eventName}" />
+
 						<div class="form-group text-right">
 							<button type="button" class="btn btn-global"
 								onclick="Javascript: Collect.clickTranslate(this)">Translate</button>
