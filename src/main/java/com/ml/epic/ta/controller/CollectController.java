@@ -181,7 +181,7 @@ public class CollectController {
 		// Sending the event Name of which stream has to be stopped
 		clientService.stop(id);
 
-		ModelAndView mav = new ModelAndView("collect/collect");
+		ModelAndView mav = new ModelAndView("redirect:/collect/");
 		mav.addObject("stop", "Event Stoped");
 		return mav;
 	}
