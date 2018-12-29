@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EventDTO.
  */
@@ -13,7 +12,7 @@ public class EventDTO {
 
 	@SerializedName("event_id")
 	private String eventId;
-	
+
 	@SerializedName("event_name")
 	private String eventName;
 
@@ -36,6 +35,9 @@ public class EventDTO {
 	transient private List<CorrespondingKeywordsDTO> listOfCorrespondingKeywordsDto = new ArrayList<CorrespondingKeywordsDTO>();
 	// private Map<String, String> translatedText = new HashMap<>() ;
 
+	@SerializedName("keywords_all_languages_csv")
+	private String keywordsAllLanguagesCSV;
+
 	/**
 	 * Instantiates a new event DTO.
 	 */
@@ -47,14 +49,10 @@ public class EventDTO {
 	/**
 	 * Instantiates a new event DTO.
 	 *
-	 * @param eventName
-	 *            the event name
-	 * @param targetLangs
-	 *            the target langs
-	 * @param keywords
-	 *            the keywords
-	 * @param listOfCorrespondingKeywordsDto
-	 *            the list of corresponding keywords dto
+	 * @param eventName                      the event name
+	 * @param targetLangs                    the target langs
+	 * @param keywords                       the keywords
+	 * @param listOfCorrespondingKeywordsDto the list of corresponding keywords dto
 	 */
 	public EventDTO(String eventName, List<String> targetLangs, String keywords,
 			List<CorrespondingKeywordsDTO> listOfCorrespondingKeywordsDto) {
@@ -63,6 +61,27 @@ public class EventDTO {
 		this.targetLangs = targetLangs;
 		this.keywords = keywords;
 		this.listOfCorrespondingKeywordsDto = listOfCorrespondingKeywordsDto;
+	}
+
+	/**
+	 * Instantiates a new event DTO.
+	 *
+	 * @param eventId                        the event id
+	 * @param eventName                      the event name
+	 * @param keywords                       the keywords
+	 * @param targetLangs                    the target langs
+	 * @param listOfCorrespondingKeywordsDto the list of corresponding keywords dto
+	 * @param keywordsAllLanguagesCSV        the keywords all languages CSV
+	 */
+	public EventDTO(String eventId, String eventName, String keywords, List<String> targetLangs,
+			List<CorrespondingKeywordsDTO> listOfCorrespondingKeywordsDto, String keywordsAllLanguagesCSV) {
+		super();
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.keywords = keywords;
+		this.targetLangs = targetLangs;
+		this.listOfCorrespondingKeywordsDto = listOfCorrespondingKeywordsDto;
+		this.keywordsAllLanguagesCSV = keywordsAllLanguagesCSV;
 	}
 
 	/**
@@ -77,8 +96,7 @@ public class EventDTO {
 	/**
 	 * Sets the event name.
 	 *
-	 * @param eventName
-	 *            the new event name
+	 * @param eventName the new event name
 	 */
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
@@ -96,8 +114,7 @@ public class EventDTO {
 	/**
 	 * Sets the target langs.
 	 *
-	 * @param targetLangs
-	 *            the new target langs
+	 * @param targetLangs the new target langs
 	 */
 	public void setTargetLangs(List<String> targetLangs) {
 		this.targetLangs = targetLangs;
@@ -115,8 +132,7 @@ public class EventDTO {
 	/**
 	 * Sets the keywords.
 	 *
-	 * @param keywords
-	 *            the new keywords
+	 * @param keywords the new keywords
 	 */
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
@@ -133,12 +149,11 @@ public class EventDTO {
 	 *//**
 		 * Sets the translated text.
 		 *
-		 * @param translatedText
-		 *            the translated text
+		 * @param translatedText the translated text
 		 *//*
-		 * public void setTranslatedText(Map<String, String> translatedText) {
-		 * this.translatedText = translatedText; }
-		 */
+			 * public void setTranslatedText(Map<String, String> translatedText) {
+			 * this.translatedText = translatedText; }
+			 */
 
 	/**
 	 * Gets the List Of CorrespondingKeywordsDto.
@@ -152,15 +167,13 @@ public class EventDTO {
 	/**
 	 * Sets the list of corresponding keywords dto.
 	 *
-	 * @param listOfCorrespondingKeywordsDto
-	 *            the new list of corresponding keywords dto
+	 * @param listOfCorrespondingKeywordsDto the new list of corresponding keywords
+	 *                                       dto
 	 */
 	public void setListOfCorrespondingKeywordsDto(List<CorrespondingKeywordsDTO> listOfCorrespondingKeywordsDto) {
 		this.listOfCorrespondingKeywordsDto = listOfCorrespondingKeywordsDto;
 	}
 
-	
-	
 	/**
 	 * Gets the event id.
 	 *
@@ -179,12 +192,29 @@ public class EventDTO {
 		this.eventId = eventId;
 	}
 
+	/**
+	 * Gets the keywords all languages CSV.
+	 *
+	 * @return the keywords all languages CSV
+	 */
+	public String getKeywordsAllLanguagesCSV() {
+		return keywordsAllLanguagesCSV;
+	}
+
+	/**
+	 * Sets the keywords all languages CSV.
+	 *
+	 * @param keywordsAllLanguagesCSV the new keywords all languages CSV
+	 */
+	public void setKeywordsAllLanguagesCSV(String keywordsAllLanguagesCSV) {
+		this.keywordsAllLanguagesCSV = keywordsAllLanguagesCSV;
+	}
+
 	@Override
 	public String toString() {
 		return "EventDTO [eventId=" + eventId + ", eventName=" + eventName + ", keywords=" + keywords + ", targetLangs="
-				+ targetLangs + ", listOfCorrespondingKeywordsDto=" + listOfCorrespondingKeywordsDto + "]";
+				+ targetLangs + ", listOfCorrespondingKeywordsDto=" + listOfCorrespondingKeywordsDto
+				+ ", keywordsAllLanguagesCSV=" + keywordsAllLanguagesCSV + "]";
 	}
-
-	
 
 }

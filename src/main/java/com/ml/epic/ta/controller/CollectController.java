@@ -22,6 +22,7 @@ import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.model.Event;
 import com.ml.epic.ta.service.AwsTranslateService;
 import com.ml.epic.ta.service.EventService;
+import com.ml.epic.ta.utils.CommonUtils;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -51,11 +52,14 @@ public class CollectController {
 	 */
 	@GetMapping(value = "/")
 	public ModelAndView collect() {
-		/*ModelAndView mav = new ModelAndView("collect/collect");
-		CreateEventDTO createEventDTO = new CreateEventDTO();
-		mav.addObject("createEventDTO", createEventDTO);
-		List<Event> listEvents = eventService.findAll();
-		mav.addObject("listEvents", listEvents);*/
+		/*
+		 * ModelAndView mav = new ModelAndView("collect/collect"); CreateEventDTO
+		 * createEventDTO = new CreateEventDTO(); mav.addObject("createEventDTO",
+		 * createEventDTO); List<Event> listEvents = eventService.findAll();
+		 * mav.addObject("listEvents", listEvents);
+		 */
+
+		// Load Page with Latest Data, Table.
 		ModelAndView mav = loadCollectPage();
 		return mav;
 	}
@@ -99,10 +103,12 @@ public class CollectController {
 	 * 
 	 * @return the model and view
 	 */
-	/*@GetMapping(value = "/startEvent/input")
-	public ModelAndView inputStartEvent(@RequestParam String eventName) {*/
-		@GetMapping(value = "/startEvent/input")
-		public ModelAndView inputStartEvent(@RequestParam String id) {
+	/*
+	 * @GetMapping(value = "/startEvent/input") public ModelAndView
+	 * inputStartEvent(@RequestParam String eventName) {
+	 */
+	@GetMapping(value = "/startEvent/input")
+	public ModelAndView inputStartEvent(@RequestParam String id) {
 
 		ModelAndView mav = new ModelAndView("/collect/startEvent");
 		// To Display AWS supported languages in Start Event Page, Use
@@ -115,11 +121,11 @@ public class CollectController {
 		eventDto.setEventName(event.getEventName());
 		eventDto.setKeywords(event.getEventKeywords());
 		mav.addObject("eventDto", eventDto);
-		//mav.addObject("eventName", eventName);
+		// mav.addObject("eventName", eventName);
 
 		mav.addObject("allTargetLangsCodes", allTargetLangsCodes);
 
-		//System.out.println(eventName);
+		// System.out.println(eventName);
 
 		return mav;
 	}
@@ -127,8 +133,7 @@ public class CollectController {
 	/**
 	 * Execute start event. to execute the start event
 	 * 
-	 * @param eventDto
-	 *            the event dto
+	 * @param eventDto the event dto
 	 * @return the model and view
 	 */
 	@PostMapping(value = "/startEvent/execute")
@@ -136,7 +141,7 @@ public class CollectController {
 
 		// Sending the generated data to clientApi Service to start the Stream
 		clientService.start(eventDto);
-		ModelAndView mav = loadCollectPage();	
+		ModelAndView mav = loadCollectPage();
 		mav.addObject("success", "Event Started");
 		return mav;
 	}
@@ -146,12 +151,9 @@ public class CollectController {
 	 *
 	 * Used to translate the Keywords into the target Languages.
 	 *
-	 * @param sourceLanguage
-	 *            the source language
-	 * @param targetLangs
-	 *            the target langs
-	 * @param text
-	 *            the text
+	 * @param sourceLanguage the source language
+	 * @param targetLangs    the target langs
+	 * @param text           the text
 	 * @return the model and view
 	 */
 	@GetMapping(value = "/startEvent/transalate")
@@ -164,6 +166,11 @@ public class CollectController {
 		ModelAndView mav = new ModelAndView("/collect/translatedKeywords");
 		mav.addObject("translatedText", translatedText);
 		mav.addObject("actionName", "Start Event");
+		// We need All Translated keywords in csv format
+		CommonUtils commonUtils = new CommonUtils();
+		String keywordsAllLanguagesCSV = commonUtils.mapValuesToCsv(translatedText).toString();
+		mav.addObject("keywordsAllLanguagesCSV", keywordsAllLanguagesCSV);
+
 		return mav;
 	}
 
@@ -177,16 +184,18 @@ public class CollectController {
 
 		// Replace the given eventId string with received String id from
 		// stopEvent
-		//String eventName = "Halloween";
 
 		// Sending the event Name of which stream has to be stopped
 		clientService.stop(id);
 
-		/*ModelAndView mav = new ModelAndView("collect/collect");
-		CreateEventDTO createEventDTO = new CreateEventDTO();
-		mav.addObject("createEventDTO", createEventDTO);
-		List<Event> listEvents = eventService.findAll();
-		mav.addObject("listEvents", listEvents);*/
+		/*
+		 * ModelAndView mav = new ModelAndView("collect/collect"); CreateEventDTO
+		 * createEventDTO = new CreateEventDTO(); mav.addObject("createEventDTO",
+		 * createEventDTO); List<Event> listEvents = eventService.findAll();
+		 * mav.addObject("listEvents", listEvents);
+		 */
+
+		// Load Page with Latest Data, for updated status, Display Message.
 		ModelAndView mav = loadCollectPage();
 		mav.addObject("stop", "Event Stoped");
 		return mav;
@@ -198,19 +207,22 @@ public class CollectController {
 	 * @return the model and view
 	 */
 	@DeleteMapping(value = "/deleteEvent/{id}")
-	public ModelAndView deleteEvent(@PathVariable(value="id") String id) {
-		ModelAndView mav =new ModelAndView("collect/listing");
-		//mav.addObject("delete","Event Deleted");
+	public ModelAndView deleteEvent(@PathVariable(value = "id") String id) {
+		ModelAndView mav = new ModelAndView("collect/listing");
+		// mav.addObject("delete","Event Deleted");
 		eventService.deleteById(id);
 		List<Event> listEvents = eventService.findAll();
 		mav.addObject("listEvents", listEvents);
 		return mav;
 	}
-	
+
+	// common code to avoid duplicate code
 	private ModelAndView loadCollectPage() {
 		ModelAndView mav = new ModelAndView("collect/collect");
+		// FOr Dialog Create Event
 		CreateEventDTO createEventDTO = new CreateEventDTO();
 		mav.addObject("createEventDTO", createEventDTO);
+		// Latest Data For Table displaying All Events.
 		List<Event> listEvents = eventService.findAll();
 		mav.addObject("listEvents", listEvents);
 		return mav;
