@@ -1,6 +1,8 @@
 package com.ml.epic.ta.controller;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +24,6 @@ import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.model.Event;
 import com.ml.epic.ta.service.AwsTranslateService;
 import com.ml.epic.ta.service.EventService;
-import com.ml.epic.ta.utils.CommonUtils;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -138,7 +139,6 @@ public class CollectController {
 	 */
 	@PostMapping(value = "/startEvent/execute")
 	public ModelAndView executeStartEvent(@ModelAttribute("eventDto") EventDTO eventDto) throws URISyntaxException {
-
 		// Sending the generated data to clientApi Service to start the Stream
 		clientService.start(eventDto);
 		ModelAndView mav = loadCollectPage();
@@ -161,15 +161,21 @@ public class CollectController {
 			@RequestParam String text) {
 		// Get Translated Text
 		Map<String, String> translatedText = awsTranslateService.findTranslation(sourceLanguage, targetLangs, text);
-
+		// put translated keywords in a list
+		List<String> keywordsAllLanguagesList = new ArrayList<String>(translatedText.values());
+		// Make list of text , keywords provided initially to translate
+		List<String> initialTextKeywords = Arrays.asList(text.split("\\s*,\\s*"));
+		// make a single list of all the keywords, Like given in english and then translated in to different languages
+		keywordsAllLanguagesList.addAll(initialTextKeywords);
+		System.out.println(keywordsAllLanguagesList);
 		// Set in view modal
 		ModelAndView mav = new ModelAndView("/collect/translatedKeywords");
 		mav.addObject("translatedText", translatedText);
 		mav.addObject("actionName", "Start Event");
 		// We need All Translated keywords in csv format
-		CommonUtils commonUtils = new CommonUtils();
-		String keywordsAllLanguagesCSV = commonUtils.mapValuesToCsv(translatedText).toString();
-		mav.addObject("keywordsAllLanguagesCSV", keywordsAllLanguagesCSV);
+		//CommonUtils commonUtils = new CommonUtils();
+		//String keywordsAllLanguagesCSV = commonUtils.mapValuesToCsv(translatedText).toString();
+		mav.addObject("keywordsAllLanguages", keywordsAllLanguagesList);
 
 		return mav;
 	}
