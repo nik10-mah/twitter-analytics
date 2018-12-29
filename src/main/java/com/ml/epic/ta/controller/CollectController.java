@@ -51,11 +51,12 @@ public class CollectController {
 	 */
 	@GetMapping(value = "/")
 	public ModelAndView collect() {
-		ModelAndView mav = new ModelAndView("collect/collect");
+		/*ModelAndView mav = new ModelAndView("collect/collect");
 		CreateEventDTO createEventDTO = new CreateEventDTO();
 		mav.addObject("createEventDTO", createEventDTO);
 		List<Event> listEvents = eventService.findAll();
-		mav.addObject("listEvents", listEvents);
+		mav.addObject("listEvents", listEvents);*/
+		ModelAndView mav = loadCollectPage();
 		return mav;
 	}
 
@@ -135,8 +136,8 @@ public class CollectController {
 
 		// Sending the generated data to clientApi Service to start the Stream
 		clientService.start(eventDto);
-
-		ModelAndView mav = new ModelAndView("redirect:/collect/");
+		ModelAndView mav = loadCollectPage();	
+		mav.addObject("success", "Event Started");
 		return mav;
 	}
 
@@ -181,7 +182,12 @@ public class CollectController {
 		// Sending the event Name of which stream has to be stopped
 		clientService.stop(id);
 
-		ModelAndView mav = new ModelAndView("redirect:/collect/");
+		/*ModelAndView mav = new ModelAndView("collect/collect");
+		CreateEventDTO createEventDTO = new CreateEventDTO();
+		mav.addObject("createEventDTO", createEventDTO);
+		List<Event> listEvents = eventService.findAll();
+		mav.addObject("listEvents", listEvents);*/
+		ModelAndView mav = loadCollectPage();
 		mav.addObject("stop", "Event Stoped");
 		return mav;
 	}
@@ -196,6 +202,15 @@ public class CollectController {
 		ModelAndView mav =new ModelAndView("collect/listing");
 		//mav.addObject("delete","Event Deleted");
 		eventService.deleteById(id);
+		List<Event> listEvents = eventService.findAll();
+		mav.addObject("listEvents", listEvents);
+		return mav;
+	}
+	
+	private ModelAndView loadCollectPage() {
+		ModelAndView mav = new ModelAndView("collect/collect");
+		CreateEventDTO createEventDTO = new CreateEventDTO();
+		mav.addObject("createEventDTO", createEventDTO);
 		List<Event> listEvents = eventService.findAll();
 		mav.addObject("listEvents", listEvents);
 		return mav;
