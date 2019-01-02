@@ -36,5 +36,19 @@ public interface EventService {
 	void deleteById(String id);
 
 
+	/**
+	 * Find by id. : Used to fetch data for one records by ID
+	 *
+	 * @param eventId the event id
+	 * @return the event
+	 */
 	Event findById(String eventId);
+	
+	/**
+	 * Update event. handles the update request
+	 *
+	 * @param event the event
+	 * @return the event
+	 */
+	public Event updateEvent(Event event);
 }

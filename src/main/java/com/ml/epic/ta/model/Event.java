@@ -24,6 +24,8 @@ public class Event {
 	Date deletedAt;
 	String ownerOfEvent; // (Cognito Username of logged in user will come here)
 	String status;// (CREATED, RUNNING, STOPPED OR DELETED)
+	String startedByUser;
+	String stoppedByUser;
 
 	/**
 	 * Instantiates a new event.
@@ -296,4 +298,43 @@ public class Event {
 		this.status = status;
 	}
 
+	/**
+	 * Gets the started by user.
+	 *
+	 * @return the started by user
+	 */
+	public String getStartedByUser() {
+		return startedByUser;
+	}
+
+	/**
+	 * Sets the started by user.
+	 *
+	 * @param startedByUser the new started by user
+	 */
+	public void setStartedByUser(String startedByUser) {
+		this.startedByUser = startedByUser;
+	}
+
+	/**
+	 * Gets the stopped by user.
+	 *
+	 * @return the stopped by user
+	 */
+	public String getStoppedByUser() {
+		return stoppedByUser;
+	}
+
+	/**
+	 * Sets the stopped by user.
+	 *
+	 * @param stoppedByUser the new stopped by user
+	 */
+	public void setStoppedByUser(String stoppedByUser) {
+		this.stoppedByUser = stoppedByUser;
+	}
+
+	
+
+	
 }

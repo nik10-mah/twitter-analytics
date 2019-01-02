@@ -24,11 +24,11 @@ var Collect = {
 			// if not valid
 			return;
 		}
-
+		const status = $('#status').val();
 		var request = $.ajax({
 			url : "/collect/startEvent/transalate?sourceLanguage="
 					+ sourceLanguage + "&targetLangs=" + targetLangs + "&text="
-					+ textToTranslate,
+					+ textToTranslate+ "&status="+status,
 			type : "GET",
 			success : function(response) {
 				// update UI

@@ -173,7 +173,13 @@ a.btn.btn-sm.btn-add:hover {
 .action i.fa {
     color: #3e4142;
     font-size: 15px;
-    padding-left: 12px;
+    /* padding-left: 12px; */
+}
+.showDelete{
+	visibility: visible;
+}
+.hideDelete{
+	visibility: hidden;
 }
 span.subheader-title {
     font-size: 18px;

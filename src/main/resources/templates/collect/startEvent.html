@@ -68,6 +68,7 @@
 								placeholder="Enter Keywords in csv format" data-role="tagsinput"/>
 								<input type="hidden" name="eventName" th:field="*{eventName}" />
 								<input type="hidden" name="eventId" th:field="*{eventId}" />
+								<input type="hidden" id="status" name="status" th:value="${status}" />
 								
 
 						<div class="form-group text-right">
@@ -83,6 +84,7 @@
 				
 			</div>
 		</div>
+		
 		</form>
 	</div>
 	<script th:src="@{/js/app/collect.js}"

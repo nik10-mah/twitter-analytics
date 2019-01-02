@@ -80,13 +80,25 @@ public class EventServiceImpl implements EventService {
 		eventRepository.deleteById(id);
 	}
 
-
+	/**
+	 * Find by id. : Used to fetch data for one records by ID
+	 *
+	 * @param eventId the event id
+	 * @return the event
+	 */
 	@Override
 	public Event findById(String eventId) {
 		return eventRepository.findById(eventId).orElse(null);
 	}
 	
-	
-		
+	/**
+	 * Update event. handles the update request
+	 *
+	 * @param event the event
+	 * @return the event
+	 */
+	public Event updateEvent(Event event) {
+		return eventRepository.save(event);
+	}
 		
 	}

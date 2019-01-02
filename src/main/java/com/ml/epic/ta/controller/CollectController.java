@@ -121,10 +121,14 @@ public class CollectController {
 		eventDto.setEventId(event.getId());
 		eventDto.setEventName(event.getEventName());
 		eventDto.setKeywords(event.getEventKeywords());
+	
 		mav.addObject("eventDto", eventDto);
 		// mav.addObject("eventName", eventName);
 
 		mav.addObject("allTargetLangsCodes", allTargetLangsCodes);
+		// Set Status to enable / Disable Buttons in UI.
+		mav.addObject("status", event.getStatus());
+
 
 		// System.out.println(eventName);
 
@@ -158,7 +162,7 @@ public class CollectController {
 	 */
 	@GetMapping(value = "/startEvent/transalate")
 	public ModelAndView translateStartEvent(@RequestParam String sourceLanguage, @RequestParam List<String> targetLangs,
-			@RequestParam String text) {
+			@RequestParam String text, @RequestParam String status) {
 		// Get Translated Text
 		Map<String, String> translatedText = awsTranslateService.findTranslation(sourceLanguage, targetLangs, text);
 		// put translated keywords in a list
@@ -176,6 +180,8 @@ public class CollectController {
 		//CommonUtils commonUtils = new CommonUtils();
 		//String keywordsAllLanguagesCSV = commonUtils.mapValuesToCsv(translatedText).toString();
 		mav.addObject("keywordsAllLanguages", keywordsAllLanguagesList);
+		// set status to Enable / Disbale Button in UI.
+		mav.addObject("status", status);
 
 		return mav;
 	}

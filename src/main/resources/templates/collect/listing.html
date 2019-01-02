@@ -54,6 +54,8 @@
 						<th>Start Time</th>
 						<th>End Time</th>
 						<th>Owner</th>
+						<th>Started By User</th>
+						<th>End By User</th>
 						<th class="action">Action</th>
 					</tr>
 					</thead>
@@ -64,9 +66,12 @@
 							<td th:text="${event.startedAt}">Start time</td>
 							<td th:text="${event.stoppedAt}">End Time</td>
 							<td th:text="${event.ownerOfEvent}">Owner</td>
+							<td th:text="${event.startedByUser}">Started By User</td>
+							<td th:text="${event.stoppedByUser}">End By User</td>
+							
 							<td class="action">
 								<a th:href="@{/collect/startEvent/input?(id=${event.id})}" class="icon-action" data-toggle="tooltip" data-placement="top" title="Start"><i class="fa fa-external-link"></i></a>&nbsp;&nbsp;
-								<a th:href="@{/collect/stopEvent?(id=${event.id})}" class="icon-action"	data-toggle="tooltip" data-placement="top" title="Stop Event"	data-original-title="Stop"><i class="fa fa-ban"></i></a>&nbsp;&nbsp;
+								<a  th:classappend="${event.status} == 'RUNNING' ? showDelete : hideDelete" th:href="@{/collect/stopEvent?(id=${event.id})}" class="icon-action"	data-toggle="tooltip" data-placement="top" title="Stop Event"	data-original-title="Stop"><i class="fa fa-ban"></i></a>&nbsp;&nbsp;
 								<!-- <a th:onclick="Javascript: Listing.deleteFn(\'' +${event.EventName}+ '\')" class="icon-action" data-toggle="tooltip" data-placement="top" title="Delete Event" data-original-title="Delete"><i class="fa fa-trash-o"></i></a> -->
 								<a  th:onclick="javascript:return Listing.deleteEvent(this);" th:attr="data-id=${event.id}" class="icon-action deleteIcon" data-toggle="tooltip" data-placement="top" title="Delete Event" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
 								
