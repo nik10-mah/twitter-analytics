@@ -28,7 +28,7 @@ import com.ml.epic.ta.service.EventService;
 public class ClientServiceImpl implements ClientService {
 
 	// private static String BASE_URL = "http://stacksapien.vradars.com:3000/api";
-	private static String BASE_URL = "http://192.168.1.5:9000/api/";
+	private static String BASE_URL = "http://localhost:9000/api/";
 	private String requestJson;
 
 	@Autowired
