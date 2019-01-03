@@ -37,7 +37,7 @@ public class AwsTranslateServiceImpl implements AwsTranslateService {
 	@Override
 	public List<String> getSupportedLanguages() {
 		List<String> langCodes = new ArrayList<>(
-				Arrays.asList("ar", "zh", "zh-TW", "cs", "fr", "de", "it", "ja", "pt", "ru", "es", "tr"));
+				Arrays.asList("en","ar", "zh", "zh-TW", "cs", "fr", "de", "it", "ja", "pt", "ru", "es", "tr"));
 		return langCodes;
 	}
 
