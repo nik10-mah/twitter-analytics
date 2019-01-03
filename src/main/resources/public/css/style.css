@@ -8,6 +8,7 @@
     
 }
 
+
 /* header,
 footer {
     height: 30px;
@@ -378,4 +379,18 @@ span.company-name {
 
 a.icon-action.deleteIcon {
     cursor: pointer;
+}
+
+.disable-div{
+	
+  pointer-events: none;
+  /* for "disabled" effect */
+  opacity: 0.5;
+  background: #CCC;
+}
+ .bootstrap-tagsinput.disabled-div {
+  pointer-events: none;
+  /* for "disabled" effect */
+  opacity: 0.5;
+  background: #CCC;
 }
