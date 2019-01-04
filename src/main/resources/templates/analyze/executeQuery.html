@@ -35,6 +35,19 @@
 						<form th:action="@{/analyze/query/execute}" method="post">
 							<fieldset>
 								<div class="form-group">
+								<label for="eventList">Select Event</label> 
+									<select class="form-control" id="eventList" th:name="selectedEvent" onchange="Javascript: Analyze.onChangeEventListDropDown()">
+        								<option value="">select event</option>
+        								<option th:each="event : ${allEventsList}"
+                							th:value="${event.id}"
+                							th:text="${event.eventName}"></option>
+    								</select>
+    								<div class="pt-md-2">
+    									<label>Selected EventId  </label> 
+    									<span id="selectedEventId"> </span>
+    								</div>
+								</div>
+								<div class="form-group">
 									<label for="selectedSql">Select Query</label> <select
 										class="form-control" name="selectedSql" id="selectedSql"
 										onchange="Javascript: Analyze.onChangeDorpDown()">

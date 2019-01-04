@@ -11,6 +11,10 @@ var Analyze = {
 		// Deselect DropDown
 		document.getElementById("selectedSql").value = '';
 	},
+	onChangeEventListDropDown : function() {
+		// Display Selected Event ID 
+		$("#selectedEventId").text($("#eventList").val());
+	},
 
 	clickTranslate : function(e) {
 		e.preventDefault;
