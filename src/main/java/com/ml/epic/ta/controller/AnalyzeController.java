@@ -18,9 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.amazonaws.services.athena.AmazonAthena;
 import com.ml.epic.ta.dto.EventDTO;
+import com.ml.epic.ta.model.Event;
 import com.ml.epic.ta.model.SampleQuery;
 import com.ml.epic.ta.service.AthenaService;
 import com.ml.epic.ta.service.AwsTranslateService;
+import com.ml.epic.ta.service.EventService;
 
 /**
  * The Class IndexController: the home page Controller.
@@ -42,6 +44,9 @@ public class AnalyzeController {
 	
 	@Autowired
 	AwsTranslateService awsTranslateService;
+	
+	@Autowired
+	EventService eventService;
 
 	/**
 	 * Input query: Open Query form to input query from user.
@@ -64,6 +69,8 @@ public class AnalyzeController {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
 		//mav.addObject("mapObj", SampleQuery.values());
 		mav.addAllObjects(this.setModal());
+		List<Event> allEventsList = eventService.findAll();
+		mav.addObject("allEventsList", allEventsList);
 		return mav;
 	}
 
@@ -79,6 +86,7 @@ public class AnalyzeController {
 	@PostMapping(value = "/query/execute")
 	public ModelAndView executeQuery(@RequestParam("asql") String asql) throws InterruptedException {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
+		
 		Map<String,Object> map = athenaService.executeQuery(asql);
 		map.putAll(this.setModal());
 		List<Integer> pageSizes  = new ArrayList<>(5);
