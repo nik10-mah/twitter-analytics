@@ -5,6 +5,7 @@ import java.util.List;
 import com.ml.epic.ta.dto.CreateEventDTO;
 import com.ml.epic.ta.model.Event;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface EventService.
  */
@@ -21,7 +22,7 @@ public interface EventService {
 
 
 	/**
-	 * Find all events in database
+	 * Find all events in database.
 	 *
 	 * @return the list
 	 */
@@ -51,4 +52,12 @@ public interface EventService {
 	 * @return the event
 	 */
 	public Event updateEvent(Event event);
+
+
+	/**
+	 * Find by owner of event.
+	 *
+	 * @return the list
+	 */
+	List<Event> findByOwnerOfEvent();
 }

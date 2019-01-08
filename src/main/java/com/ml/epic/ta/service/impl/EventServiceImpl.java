@@ -100,5 +100,24 @@ public class EventServiceImpl implements EventService {
 	public Event updateEvent(Event event) {
 		return eventRepository.save(event);
 	}
+
+
+	/**
+	 * Find by owner of event.
+	 *
+	 * @return the list
+	 */
+	@Override
+	public List<Event> findByOwnerOfEvent() {
+		// get user already login
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = null;
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+		return eventRepository.findByOwnerOfEvent(username);
+	}
 		
 	}

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
 import com.ml.epic.ta.dto.CreateEventDTO;
+import com.ml.epic.ta.model.Event;
+import com.ml.epic.ta.repository.EventRepository;
 import com.ml.epic.ta.service.EventService;
 
 
@@ -23,6 +25,9 @@ public class EventsTests extends BaseTest {
 
 	@Autowired
 	EventService eventService;
+	
+	@Autowired
+	EventRepository eventR;
 
 	/**
 	 * List tables.
@@ -30,7 +35,7 @@ public class EventsTests extends BaseTest {
 	 * @throws Exception
 	 *             the exception
 	 */
-	@Test
+	//@Test
 	public void listTables() throws Exception {
 
 		/*
@@ -68,6 +73,16 @@ public class EventsTests extends BaseTest {
 
 		List<?> aoEvents = eventService.findAll();
 		assertTrue(aoEvents.size() > 0);
+	}
+	@Test
+	public void findByOwnerOfEvent() {
+		List<Event> list = (List<Event>)eventR.findByOwnerOfEvent("");
+		System.out.println(list);
+		for(Event event: list ) {
+			System.out.println(event);
+		}
+		System.out.println(list.size());
+		assert(list.size()>0);
 	}
 	public void delete() {
 		List<?> aoEventsBeforeDelete = eventService.findAll();

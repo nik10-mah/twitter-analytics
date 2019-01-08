@@ -75,7 +75,7 @@ public class AnalyzeController {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
 		//mav.addObject("mapObj", SampleQuery.values());
 		//mav.addAllObjects(this.setModal());
-		List<Event> allEventsList = eventService.findAll();
+		List<Event> allEventsList = eventService.findByOwnerOfEvent();
 		mav.addObject("allEventsList", allEventsList);
 		ExecuteQueryDTO executeQueryDto = new ExecuteQueryDTO();
 		mav.addObject("executeQueryDto", executeQueryDto);
@@ -105,7 +105,7 @@ public class AnalyzeController {
 		// keep all values in UI that user already selected for execute/save query.
 		mav.addObject("executeQueryDto", executeQueryDto);
 		// list all events
-		List<Event> allEventsList = eventService.findAll();
+		List<Event> allEventsList = eventService.findByOwnerOfEvent();
 		mav.addObject("allEventsList", allEventsList);
 		List<Query> allQueryList = queryService.findByCreatedBy();
 		mav.addObject("allQueryList", allQueryList);
