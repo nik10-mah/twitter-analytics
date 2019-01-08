@@ -79,7 +79,7 @@ public class AnalyzeController {
 		mav.addObject("allEventsList", allEventsList);
 		ExecuteQueryDTO executeQueryDto = new ExecuteQueryDTO();
 		mav.addObject("executeQueryDto", executeQueryDto);
-		List<Query> allQueryList = queryService.findAll();
+		List<Query> allQueryList = queryService.findByCreatedBy();
 		mav.addObject("allQueryList", allQueryList);
 
 		
@@ -107,7 +107,7 @@ public class AnalyzeController {
 		// list all events
 		List<Event> allEventsList = eventService.findAll();
 		mav.addObject("allEventsList", allEventsList);
-		List<Query> allQueryList = queryService.findAll();
+		List<Query> allQueryList = queryService.findByCreatedBy();
 		mav.addObject("allQueryList", allQueryList);
 		return mav;
 	}
