@@ -20,10 +20,12 @@ import com.amazonaws.services.athena.AmazonAthena;
 import com.ml.epic.ta.dto.ExecuteQueryDTO;
 import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.model.Event;
+import com.ml.epic.ta.model.Query;
 import com.ml.epic.ta.model.SampleQuery;
 import com.ml.epic.ta.service.AthenaService;
 import com.ml.epic.ta.service.AwsTranslateService;
 import com.ml.epic.ta.service.EventService;
+import com.ml.epic.ta.service.QueryService;
 
 /**
  * The Class IndexController: the home page Controller.
@@ -48,6 +50,9 @@ public class AnalyzeController {
 	
 	@Autowired
 	EventService eventService;
+	
+	@Autowired
+	QueryService queryService;
 
 	/**
 	 * Input query: Open Query form to input query from user.
@@ -69,11 +74,14 @@ public class AnalyzeController {
 	public ModelAndView inputQuery() {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
 		//mav.addObject("mapObj", SampleQuery.values());
-		mav.addAllObjects(this.setModal());
+		//mav.addAllObjects(this.setModal());
 		List<Event> allEventsList = eventService.findAll();
 		mav.addObject("allEventsList", allEventsList);
 		ExecuteQueryDTO executeQueryDto = new ExecuteQueryDTO();
 		mav.addObject("executeQueryDto", executeQueryDto);
+		List<Query> allQueryList = queryService.findAll();
+		mav.addObject("allQueryList", allQueryList);
+
 		
 		return mav;
 	}
@@ -99,7 +107,8 @@ public class AnalyzeController {
 		// list all events
 		List<Event> allEventsList = eventService.findAll();
 		mav.addObject("allEventsList", allEventsList);
-		
+		List<Query> allQueryList = queryService.findAll();
+		mav.addObject("allQueryList", allQueryList);
 		return mav;
 	}
 	
