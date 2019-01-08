@@ -16,14 +16,14 @@ import com.ml.epic.ta.utils.IConstants.AwsAthena;
 /**
  * @since Nov 1, 2018
  */
-public class TasApplicationTests extends BaseTest{
+public class AwsAthenaTests extends BaseTest{
 	
 
 	
 	@Autowired
 	AmazonAthena athenaClient;
 	
-	public static final Logger log = Logger.getLogger(TasApplicationTests.class.getName());
+	public static final Logger log = Logger.getLogger(AwsAthenaTests.class.getName());
 	@Test
 	public void executeQuery() throws InterruptedException {
 
