@@ -2,10 +2,9 @@ var Analyze = {
 	onChangeDorpDown : function() {
 
 		// Empty TextField
-		document.getElementById("aSql").value = '';
+		document.getElementById("sqlValue").value = '';
 		// Put value that is selected in DropDown
-		document.getElementById("aSql").value = document
-				.getElementById("selectedSql").value;
+		document.getElementById("sqlValue").value = document.getElementById("selectedSql").value;
 	},
 	onKeyUpAnalyzeQuery : function() {
 		// Deselect DropDown

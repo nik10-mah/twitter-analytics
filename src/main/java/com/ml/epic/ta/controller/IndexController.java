@@ -50,8 +50,8 @@ public class IndexController {
 	@PostMapping(value = "/query/execute")
 	public ModelAndView executeQuery(@RequestParam("asql") String asql) throws InterruptedException{
 		ModelAndView mav =new ModelAndView("index");
-		mav.addAllObjects(athenaService.executeQuery(asql));
-		mav.addObject("asql", asql);
+		//mav.addAllObjects(athenaService.executeQuery(asql));
+		//mav.addObject("asql", asql);
 		return mav;
 	}
 	

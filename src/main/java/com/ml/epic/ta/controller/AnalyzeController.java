@@ -3,7 +3,6 @@
  */
 package com.ml.epic.ta.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +10,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amazonaws.services.athena.AmazonAthena;
+import com.ml.epic.ta.dto.ExecuteQueryDTO;
 import com.ml.epic.ta.dto.EventDTO;
 import com.ml.epic.ta.model.Event;
 import com.ml.epic.ta.model.SampleQuery;
@@ -71,11 +72,14 @@ public class AnalyzeController {
 		mav.addAllObjects(this.setModal());
 		List<Event> allEventsList = eventService.findAll();
 		mav.addObject("allEventsList", allEventsList);
+		ExecuteQueryDTO executeQueryDto = new ExecuteQueryDTO();
+		mav.addObject("executeQueryDto", executeQueryDto);
+		
 		return mav;
 	}
 
 	/**
-	 * Execute query: Executes an query in athena.
+	 * Execute query: Executes/save an query in athena/db.
 	 *
 	 * @param asql
 	 *            the asql
@@ -84,21 +88,23 @@ public class AnalyzeController {
 	 *             the interrupted exception
 	 */
 	@PostMapping(value = "/query/execute")
-	public ModelAndView executeQuery(@RequestParam("asql") String asql) throws InterruptedException {
+	public ModelAndView executeQuery(@ModelAttribute("executeQueryDto") ExecuteQueryDTO executeQueryDto) throws InterruptedException {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
-		
-		Map<String,Object> map = athenaService.executeQuery(asql);
+		System.out.println(executeQueryDto);
+		Map<String,Object> map = athenaService.executeQuery(executeQueryDto);
 		map.putAll(this.setModal());
-		List<Integer> pageSizes  = new ArrayList<>(5);
-		pageSizes.add(10);
-		pageSizes.add(15);
-		pageSizes.add(25);
-		pageSizes.add(50);
-		map.put("pageSizes", pageSizes);
 		mav.addAllObjects(map);
-		mav.addObject("asql", asql);
+		// keep all values in UI that user already selected for execute/save query.
+		mav.addObject("executeQueryDto", executeQueryDto);
+		// list all events
+		List<Event> allEventsList = eventService.findAll();
+		mav.addObject("allEventsList", allEventsList);
+		
 		return mav;
 	}
+	
+	
+	
 	
 	/**
 	 * Dashboard.

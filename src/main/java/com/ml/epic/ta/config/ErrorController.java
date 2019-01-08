@@ -16,6 +16,7 @@ import com.amazonaws.services.cognitoidp.model.InvalidParameterException;
 import com.amazonaws.services.cognitoidp.model.InvalidPasswordException;
 import com.amazonaws.services.cognitoidp.model.UserNotFoundException;
 import com.amazonaws.services.cognitoidp.model.UsernameExistsException;
+import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 import com.ml.epic.ta.dto.ForgotPasswordDTO;
 import com.ml.epic.ta.dto.SignUpDTO;
 
@@ -38,6 +39,18 @@ public class ErrorController {
 	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
 	@ExceptionHandler(InvalidRequestException.class)
 	public ModelAndView athenaInvalidSyntax(InvalidRequestException ex) {
+		return this.handleRedirect(ex);
+	}
+	
+	/**
+	 * Dynamo resource not found : Handles the Exception when TableName/ Resources not found in DB.
+	 *
+	 * @param ex the ex
+	 * @return the model and view
+	 */
+	@ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ModelAndView dynamoResourceNotFound(ResourceNotFoundException ex) {
 		return this.handleRedirect(ex);
 	}
 
