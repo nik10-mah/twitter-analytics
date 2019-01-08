@@ -3,21 +3,18 @@
  */
 package com.ml.epic.ta.service.impl;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.athena.AmazonAthena;
 import com.ml.epic.ta.dto.ExecuteQueryDTO;
-import com.ml.epic.ta.model.Query;
 import com.ml.epic.ta.repository.QueryRepository;
 import com.ml.epic.ta.service.AthenaService;
+import com.ml.epic.ta.service.QueryService;
 import com.ml.epic.ta.utils.AthenaUtils;
 
 /**
@@ -34,6 +31,9 @@ public class AthenaServiceImpl implements AthenaService {
 
 	@Autowired
 	QueryRepository queryRepository;
+	
+	@Autowired
+	QueryService queryService;
 
 	/**
 	 * Executes the query to athena api And Save the Query in Dynamo DB if it is Execute And Save.
@@ -71,7 +71,9 @@ public class AthenaServiceImpl implements AthenaService {
 		// Execute Query
 		Map<String, Object> ret = this.executeQueryLogic(query);
 		// Save Query Object.
-		Query queryObj = new Query();
+		
+		
+		/*Query queryObj = new Query();
 		queryObj.setCreatedAt(new Date());
 		// get user already login
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -84,7 +86,10 @@ public class AthenaServiceImpl implements AthenaService {
 		queryObj.setName(name);
 		queryObj.setValue(query);
 		queryObj.setCreatedBy(username);
-		queryRepository.save(queryObj);
+		queryRepository.save(queryObj);*/
+		
+		
+		queryService.save(query, name);
 
 		return ret;
 	}
