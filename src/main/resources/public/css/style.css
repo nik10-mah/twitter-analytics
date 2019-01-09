@@ -103,11 +103,11 @@ background:#fdf9f9;
     border: 1px solid #3e3e3e;
 }
 .btn-theme-global:hover {
-    background: #00aced;
+    background: #03A9F4;
     padding: 10px 0px;
     font-size: 15px;
     color: #fff;
-    border:1px solid #00aced;
+    border:1px solid #03A9F4;
 }
 .login-form {
     padding: 50px 0px 0px 0px;
@@ -154,7 +154,7 @@ a.btn.btn-secondary.btn-lg.btn-block.card-btn {
     padding: 14px 0px;
 }
 a.btn.btn-secondary.btn-lg.btn-block.card-btn:hover {
-    background: #08acdc;
+    background: #03A9F4;
     color: #ffffff;
    }
 
@@ -199,7 +199,7 @@ span.subheader-title {
 }
 /**************************** modal css ************************/
 .modal-header {
-    background: #00aadb;
+    background: #03A9F4;
     color: #fff;
 }
 button.btn.btn-global {
@@ -210,8 +210,8 @@ button.btn.btn-global {
     color: #313131;
 }
 button.btn.btn-global:hover {
-    background: #00aadb;
-    border: 1px solid #00aadb;
+    background: #03A9F4;
+    border: 1px solid #03A9F4;
     color:#fff;
  
 }
