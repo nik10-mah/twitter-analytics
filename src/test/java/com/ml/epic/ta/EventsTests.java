@@ -74,7 +74,7 @@ public class EventsTests extends BaseTest {
 		List<?> aoEvents = eventService.findAll();
 		assertTrue(aoEvents.size() > 0);
 	}
-	@Test
+	//@Test
 	public void findByOwnerOfEvent() {
 		List<Event> list = (List<Event>)eventR.findByOwnerOfEvent("");
 		System.out.println(list);

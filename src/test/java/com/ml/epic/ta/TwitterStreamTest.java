@@ -15,7 +15,7 @@ public class TwitterStreamTest extends BaseTest {
 
 	private static String BASE_URL = "http://localhost:9000/api";
 
-	@Test
+	//@Test
 	public void test() throws URISyntaxException {
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -29,7 +29,7 @@ public class TwitterStreamTest extends BaseTest {
 		Assert.assertEquals(true, result.getBody().contains("message"));
 	}
 
-	@Test
+	//@Test
 	public void start() throws URISyntaxException {
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -44,7 +44,7 @@ public class TwitterStreamTest extends BaseTest {
 
 	}
 	
-	@Test
+	//@Test
 	public void stop() throws URISyntaxException {
 		RestTemplate restTemplate = new RestTemplate();
 
