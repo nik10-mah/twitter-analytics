@@ -4,7 +4,7 @@ phases:
   build:
     commands:
       - mvn clean
-      - mvn install
+      - mvn install -DskipTests=true
 artifacts:
   files:
     - 'Dockerfile'
