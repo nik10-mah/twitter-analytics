@@ -43,7 +43,6 @@ public class EventDTO {
 	 */
 	public EventDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -54,28 +53,28 @@ public class EventDTO {
 	 * @param keywords                       the keywords
 	 * @param listOfCorrespondingKeywordsDto the list of corresponding keywords dto
 	 */
-	public EventDTO(String eventName, List<String> targetLangs, String keywords,
-			List<CorrespondingKeywordsDTO> listOfCorrespondingKeywordsDto) {
-		super();
-		this.eventName = eventName;
-		this.targetLangs = targetLangs;
-		this.keywords = keywords;
-		this.listOfCorrespondingKeywordsDto = listOfCorrespondingKeywordsDto;
-	}
+//	public EventDTO(String eventName, List<String> targetLangs, String keywords,
+//			List<CorrespondingKeywordsDTO> listOfCorrespondingKeywordsDto) {
+//		super();
+//		this.eventName = eventName;
+//		this.targetLangs = targetLangs;
+//		this.keywords = keywords;
+//		this.listOfCorrespondingKeywordsDto = listOfCorrespondingKeywordsDto;
+//	}
 
 	
 	
 
-	public EventDTO(String eventId, String eventName, String keywords, List<String> targetLangs,
-			List<CorrespondingKeywordsDTO> listOfCorrespondingKeywordsDto, List<String> keywordsAllLanguages) {
-		super();
-		this.eventId = eventId;
-		this.eventName = eventName;
-		this.keywords = keywords;
-		this.targetLangs = targetLangs;
-		this.listOfCorrespondingKeywordsDto = listOfCorrespondingKeywordsDto;
-		this.keywordsAllLanguages = keywordsAllLanguages;
-	}
+//	public EventDTO(String eventId, String eventName, String keywords, List<String> targetLangs,
+//			List<CorrespondingKeywordsDTO> listOfCorrespondingKeywordsDto, List<String> keywordsAllLanguages) {
+//		super();
+//		this.eventId = eventId;
+//		this.eventName = eventName;
+//		this.keywords = keywords;
+//		this.targetLangs = targetLangs;
+//		this.listOfCorrespondingKeywordsDto = listOfCorrespondingKeywordsDto;
+//		this.keywordsAllLanguages = keywordsAllLanguages;
+//	}
 
 	/**
 	 * Gets the event name.

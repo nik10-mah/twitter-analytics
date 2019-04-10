@@ -25,6 +25,7 @@ public class QueryTest extends BaseTest{
 	
 	
 	public void executeQuery() {
+		
 		try {
 		String query = "select * from socialanalyticsblog.tweets hgh gh gh where event_id=\'830b9614-fee3-40b3-a25a-cab49066a679\' limit 20 ";
 		ExecuteQueryDTO executeQueryDTO = new ExecuteQueryDTO();
