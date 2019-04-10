@@ -24,7 +24,7 @@ public class AwsAthenaTests extends BaseTest{
 	AmazonAthena athenaClient;
 	
 	public static final Logger log = Logger.getLogger(AwsAthenaTests.class.getName());
-	@Test
+	//@Test
 	public void executeQuery() throws InterruptedException {
 
 		log.log(Level.INFO, "athenaClient" + athenaClient);

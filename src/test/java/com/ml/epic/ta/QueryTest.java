@@ -61,7 +61,7 @@ public class QueryTest extends BaseTest{
 
 	}
 	
-	@Test
+	//@Test
 	public void findByCreatedBy() {
 		List<Query> allList = (List<Query>)queryService.findByCreatedBy();
 		System.out.println(allList);

@@ -3,7 +3,6 @@
  */
 package com.ml.epic.ta.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.amazonaws.services.athena.AmazonAthena;
-import com.ml.epic.ta.dto.ExecuteQueryDTO;
 import com.ml.epic.ta.dto.EventDTO;
+import com.ml.epic.ta.dto.ExecuteQueryDTO;
 import com.ml.epic.ta.model.Event;
 import com.ml.epic.ta.model.Query;
-import com.ml.epic.ta.model.SampleQuery;
 import com.ml.epic.ta.service.AthenaService;
 import com.ml.epic.ta.service.AwsTranslateService;
 import com.ml.epic.ta.service.EventService;
@@ -44,13 +42,13 @@ public class AnalyzeController {
 
 	@Autowired
 	AthenaService athenaService;
-	
+
 	@Autowired
 	AwsTranslateService awsTranslateService;
-	
+
 	@Autowired
 	EventService eventService;
-	
+
 	@Autowired
 	QueryService queryService;
 
@@ -64,7 +62,7 @@ public class AnalyzeController {
 		ModelAndView mav = new ModelAndView(BASE + "main");
 		return mav;
 	}
-	
+
 	/**
 	 * Input query.
 	 *
@@ -73,34 +71,35 @@ public class AnalyzeController {
 	@GetMapping(value = "/query/input")
 	public ModelAndView inputQuery() {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
-		//mav.addObject("mapObj", SampleQuery.values());
-		//mav.addAllObjects(this.setModal());
+		// mav.addObject("mapObj", SampleQuery.values());
+		// mav.addAllObjects(this.setModal());
 		List<Event> allEventsList = eventService.findByOwnerOfEvent();
 		mav.addObject("allEventsList", allEventsList);
 		ExecuteQueryDTO executeQueryDto = new ExecuteQueryDTO();
 		mav.addObject("executeQueryDto", executeQueryDto);
+		// ExportDTO exportDto = new ExportDTO();
+		// mav.addObject("exportDto", exportDto);
 		List<Query> allQueryList = queryService.findByCreatedBy();
 		mav.addObject("allQueryList", allQueryList);
 
-		
 		return mav;
 	}
 
 	/**
 	 * Execute query: Executes/save an query in athena/db.
 	 *
-	 * @param asql
-	 *            the asql
+	 * @param asql the asql
 	 * @return the model and view
-	 * @throws InterruptedException
-	 *             the interrupted exception
+	 * @throws InterruptedException the interrupted exception
 	 */
 	@PostMapping(value = "/query/execute")
-	public ModelAndView executeQuery(@ModelAttribute("executeQueryDto") ExecuteQueryDTO executeQueryDto) throws InterruptedException {
+	public ModelAndView executeQuery(@ModelAttribute("executeQueryDto") ExecuteQueryDTO executeQueryDto)
+			throws InterruptedException {
 		ModelAndView mav = new ModelAndView(BASE + "executeQuery");
 		System.out.println(executeQueryDto);
-		Map<String,Object> map = athenaService.executeQuery(executeQueryDto);
-		map.putAll(this.setModal());
+
+		Map<String, Object> map = athenaService.executeQuery(executeQueryDto);
+		// map.putAll(this.setModal());
 		mav.addAllObjects(map);
 		// keep all values in UI that user already selected for execute/save query.
 		mav.addObject("executeQueryDto", executeQueryDto);
@@ -109,12 +108,12 @@ public class AnalyzeController {
 		mav.addObject("allEventsList", allEventsList);
 		List<Query> allQueryList = queryService.findByCreatedBy();
 		mav.addObject("allQueryList", allQueryList);
+		// mav.addObject("executedQuery", executeQueryDto.getSqlValue());
+		// mav.addObject("map", map);
+
 		return mav;
 	}
-	
-	
-	
-	
+
 	/**
 	 * Dashboard.
 	 *
@@ -125,7 +124,7 @@ public class AnalyzeController {
 		ModelAndView mav = new ModelAndView(BASE + "dashboard");
 		return mav;
 	}
-	
+
 	/**
 	 * Extract images.
 	 *
@@ -134,32 +133,34 @@ public class AnalyzeController {
 	@GetMapping(value = "/extractImages")
 	public ModelAndView extractImages() {
 		ModelAndView mav = new ModelAndView(BASE + "extractImages");
-		// To Display AWS supported languages in Start Event Page, Use getSupportedLanguages method from AWS Translate Service
-				List<String> allTargetLangsCodes = awsTranslateService.getSupportedLanguages();
-				// Ctreate Empty Object of DTO to initalise the Binding on UI
-				EventDTO eventDto = new EventDTO();
-				
-				mav.addObject("eventDto",eventDto);
-				//mav.addObject("eventName",eventName);
+		// To Display AWS supported languages in Start Event Page, Use
+		// getSupportedLanguages method from AWS Translate Service
+		List<String> allTargetLangsCodes = awsTranslateService.getSupportedLanguages();
+		// Ctreate Empty Object of DTO to initalise the Binding on UI
+		EventDTO eventDto = new EventDTO();
 
-				mav.addObject("allTargetLangsCodes",allTargetLangsCodes);
-				mav.addObject("actionName","Extract Images");
-				//System.out.println(eventName);
+		mav.addObject("eventDto", eventDto);
+		// mav.addObject("eventName",eventName);
+
+		mav.addObject("allTargetLangsCodes", allTargetLangsCodes);
+		mav.addObject("actionName", "Extract Images");
+		// System.out.println(eventName);
 		return mav;
 	}
-	
+
 	@GetMapping(value = "/transalate")
-	public ModelAndView translateStartEvent(@RequestParam String sourceLanguage, @RequestParam List<String> targetLangs, @RequestParam String text ) {
+	public ModelAndView translateStartEvent(@RequestParam String sourceLanguage, @RequestParam List<String> targetLangs,
+			@RequestParam String text) {
 		// Get Translated Text
 		Map<String, String> translatedText = awsTranslateService.findTranslation(sourceLanguage, targetLangs, text);
-		
+
 		// Set in view modal
-		ModelAndView mav =new ModelAndView("/collect/translatedKeywords");
+		ModelAndView mav = new ModelAndView("/collect/translatedKeywords");
 		mav.addObject("translatedText", translatedText);
-		mav.addObject("actionName","Export Images");
+		mav.addObject("actionName", "Export Images");
 		return mav;
 	}
-	
+
 	/**
 	 * User activity.
 	 *
@@ -170,7 +171,7 @@ public class AnalyzeController {
 		ModelAndView mav = new ModelAndView(BASE + "userActivity");
 		return mav;
 	}
-	
+
 	/**
 	 * Streams activity.
 	 *
@@ -181,16 +182,16 @@ public class AnalyzeController {
 		ModelAndView mav = new ModelAndView(BASE + "streamsActivity");
 		return mav;
 	}
-	
+
 	/**
 	 * Sets the modal.
 	 *
 	 * @return the map
 	 */
-	private Map<String,Object> setModal() {
+	/*private Map<String, Object> setModal() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sampleQueries", SampleQuery.values());
 		return map;
-	}
+	}*/
 
 }
