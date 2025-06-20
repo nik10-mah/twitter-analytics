@@ -1,5 +1,5 @@
 # Twitter Analytics System
-A twitter analytics system scraps data from Twitter and saves it on Amazon S3 bucket. Then Using web pages user can query the tweets from data stored on S3 using Athen API using different languages and see the corresponding results. [AWS ATHENA SDK](https://docs.aws.amazon.com/athena/latest/ug/code-samples.html) for  has been used to query database on S3
+A twitter analytics system scraps data from Twitter and saves it on Amazon S3 bucket. Then Using web pages user can query the tweets from data stored on S3 using Athen API using different languages and see the corresponding results. [AWS ATHENA SDK](https://docs.aws.amazon.com/athena/latest/ug/code-samples.html) for  has been used to query database on S3. Amazon Cognito Identity ppols and User Pools were used for login and authentication. 
 
 ## Project Set Up
 This is java based web app based on **Spring Boot** framework with **Thymeleaf** and **Jquery**. The project skeleton has been created using [Spring Initialzr](https://start.spring.io/)
@@ -8,11 +8,11 @@ This is java based web app based on **Spring Boot** framework with **Thymeleaf**
  - Requires JDK 1.8+ to be installed and can be downloaded from [here](http://www.foo.com/)
  - Download and set [Maven](https://maven.apache.org/download.cgi) on your local system environment `path` variable. Refer [this](https://www.tutorialspoint.com/maven/maven_environment_setup.htm) for setting **Java** and **Maven** paths
  - Download [STS](https://www.tutorialspoint.com/maven/maven_environment_setup.htm) based on your OS. **STS 3.8.4** is preferred. It should work with Latest version as well.
- - Downlaod and install [GIT](https://git-scm.com/downloads). THis will provide command line tools for for communicating wit source code on **Gitlab**. It would be helpful to go through some git tutorials.
+ - Downlaod and install [GIT](https://git-scm.com/downloads). THis will provide command line tools for for communicating wit source code on **GitHub**. It would be helpful to go through some git tutorials.
   
  ### Setting up GIT
- - Once the git is installed you need to confiure it to start cloning projects using your gitlab credentials.
- - Run following commands to set your configure your gitlab account provided to you. `git config --global user.name "Your Gitlab Username"` and `git config --global user.email your-email-associated-to-gitlab`
+ - Once the git is installed you need to confiure it to start cloning projects using your github credentials.
+ - Run following commands to set your configure your github account. `git config --global user.name "Your GitHub Username"` and `git config --global user.email your-email-associated-to-github`
  
 ### Setting up development environment
 - Unzip the downloaded STS package inot a folder and then run the **STS** executable file under **sts-bundle**
